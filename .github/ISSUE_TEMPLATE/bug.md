@@ -3,8 +3,6 @@ name: Bug
 about: Template for a bug
 title: ''
 labels: bug, help wanted
-assignees: curcaandrei
-
 ---
 
 ## Expected Behavior
