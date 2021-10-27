@@ -23,12 +23,12 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: RunTests
-      run: dotnet test --logger:nunit
-    - uses: ./
-      if: always()
-      with: 
-        path: 'TestResults/*.xml'
+  tests:
+    name: Unit Testing
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2.1.0
+      - run: dotnet test
         
   sonarcloud:
     runs-on: ubuntu-latest
