@@ -6,8 +6,10 @@
 
 ### Examples:
 
-#### test/YOURNAME/test-for-task1
+#### Feature/YOURNAME/taskName
 
-#### feature/YOURNAME/taskName
+#### Test/YOURNAME/test-for-task1
 
-#### fix/YOURNAME/fix-for-task1
+#### Fix/YOURNAME/fix-for-task1
+
+#### DevOps/YOURNAME/fix-for-task1
