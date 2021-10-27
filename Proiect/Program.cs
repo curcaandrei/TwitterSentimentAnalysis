@@ -11,7 +11,7 @@ namespace Proiect
 
         public static void asd()
         {
-            Console.WriteLine("asddsads");
+            Console.WriteLine("asdddsadssads");
         }
     }
 }
