@@ -6,12 +6,7 @@ namespace Proiect
     {
         public static void Main(string[] args)
         {
-            asd();
-        }
-
-        public static void asd()
-        {
-            Console.WriteLine("TEST");
+            Console.WriteLine("Hello World!");
         }
     }
 }
