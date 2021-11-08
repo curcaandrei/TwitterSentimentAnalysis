@@ -1,14 +1,9 @@
-﻿
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Application.Features.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Web.Http;
-using Raven.Client.Document;
-using Raven.Database.FileSystem.Extensions;
-using WebApplication.Controllers;
 
-namespace WebApplication.v1
+namespace Web.Controllers.v1
 {
     public class TweetController : BaseController
     {
@@ -21,12 +16,12 @@ namespace WebApplication.v1
         // {
         //     return Ok(await mediator.Send(command));
         // }
-
-        // [HttpGet]
-        // public async Task<IActionResult> Get()
-        // {
-        //     return Ok(await mediator.Send(new GetProductsQuery()));
-        // }
+        [Route("/getOne")]
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            return Ok(await mediator.Send(new GetAllTweetsQuery()));
+        }
 
         // [HttpPut]
         // public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProductCommand command)
@@ -38,11 +33,12 @@ namespace WebApplication.v1
         //
         //     return Ok(await mediator.Send(command));
         // }
-
+        [Route("/getAll")]
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             return Ok(await mediator.Send(new GetTweetByIdQuery()));
         }
+
     }
 }

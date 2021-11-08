@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApplication.Controllers
+namespace Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

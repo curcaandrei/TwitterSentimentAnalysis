@@ -15,7 +15,6 @@
     <ItemGroup>
       <PackageReference Include="EntityFramework" Version="6.4.4" />
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
-      <PackageReference Include="Microsoft.AspNet.WebApi.Versioning" Version="4.1.1" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.0" />
