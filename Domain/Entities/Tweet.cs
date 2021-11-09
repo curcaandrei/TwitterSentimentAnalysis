@@ -1,9 +1,9 @@
-﻿using Domain.Common;
+using Domain.Common;
 
 namespace Domain.Entities
 {
     public class Tweet : BaseEntity
     {
-        private string Text { get; set; }
+        public string Text { get; set; }
     }
 }

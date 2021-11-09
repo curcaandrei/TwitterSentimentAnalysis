@@ -1,20 +1,16 @@
-﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Domain.Common;
 
 namespace Application.Interfaces
 {
-    public interface IRepository<TEntity> where TEntity : BaseEntity
+    public interface IRepository<T>
     {
-        Task<TEntity> AddAsync(TEntity entity);
-        
-        Task<TEntity> UpdateAsync(TEntity entity);
-        
-        Task<TEntity> DeleteAsync(TEntity entity);
-        
-        Task<IEnumerable<TEntity>> GetAllAsync();
-        
-        Task<TEntity> GetByIdAsync(Guid id);
+        void CreateOrUpdate(T obj);
+
+        void Delete(string id);
+
+        public T SelectById(string id);
+
+        public IEnumerable<T> SelectAll();
     }
 }
