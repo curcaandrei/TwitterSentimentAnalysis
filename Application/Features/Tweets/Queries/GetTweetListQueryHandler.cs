@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -10,18 +11,16 @@ using MediatR;
 
 namespace Application.Features.Tweets.Queries
 {
-    public class GetTweetListQueryHandler : IRequestHandler<GetTweetListQuery, List<TweetListVm>>
+    public class GetTweetListQueryHandler : IRequestHandler<GetTweetListQuery, List<Tweet>>
     {
         private readonly IRepository<Tweet> _tweetRepository;
-        private readonly IMapper _mapper;
 
-        public GetTweetListQueryHandler(IMapper mapper, IRepository<Tweet> repository)
+        public GetTweetListQueryHandler(IRepository<Tweet> repository)
         {
             _tweetRepository = repository;
-            _mapper = mapper;
         }
         
-        public async Task<List<TweetListVm>> Handle(GetTweetListQuery request, CancellationToken cancellationToken)
+        public async Task<List<Tweet>> Handle(GetTweetListQuery request, CancellationToken cancellationToken)
         {
             GetTweetListResponse response = new GetTweetListResponse();
             
@@ -29,14 +28,14 @@ namespace Application.Features.Tweets.Queries
 
             if (allTweets != null)
             {
-                response.Tweets = _mapper.Map<TweetListVm>(allTweets);
+                response.Tweets = allTweets.ToList();
             }
             else
             {
                 response.Success = false;
                 response.Message = "List of Tweets is null";
             }
-            return _mapper.Map<List<TweetListVm>>(allTweets);
+            return allTweets.ToList();
         }
     }
 }

@@ -2,7 +2,6 @@ using System;
 using System.Reflection;
 using Application.Features.Tweets.Queries;
 using Application.Interfaces;
-using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +25,7 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(RavenDbRepository<>));
 builder.Services.AddScoped<ITweetsRepository, TweetsRepository>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddMediatR(typeof(GetTweetListQueryHandler).GetTypeInfo().Assembly);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

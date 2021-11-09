@@ -24,7 +24,7 @@ namespace WebApp.Controllers
 
         [HttpGet("all", Name = "GetAllTweets")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<TweetListVm>>> GetAll()
+        public async Task<ActionResult<List<Tweet>>> GetAll()
         {
             var dtos = await _mediator.Send(new GetTweetListQuery());
             return Ok(dtos);

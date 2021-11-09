@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Application.Features.Tweets.Queries;
+using Domain.Entities;
 
 namespace Application.Responses.Tweets
 {
@@ -9,6 +11,6 @@ namespace Application.Responses.Tweets
             
         }
 
-        public TweetListVm Tweets { get; set; }
+        public List<Tweet> Tweets { get; set; }
     }
 }
