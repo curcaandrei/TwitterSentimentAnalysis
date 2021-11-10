@@ -1,13 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Application.Features.Tweets.Queries;
 using Application.Interfaces;
 using Domain.Entities;
-using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Persistence.Repositories;
 
 namespace WebApp.Controllers
 {
@@ -15,18 +11,18 @@ namespace WebApp.Controllers
     [Route("api/[controller]")]
     public class TweetController : ControllerBase
     {
-        private readonly IMediator _mediator;
+        private readonly IRepository<Tweet> _repository;
 
-        public TweetController(IMediator mediator)
+        public TweetController(IRepository<Tweet> repository)
         {
-            _mediator = mediator;
+            _repository = repository;
         }
 
         [HttpGet("all", Name = "GetAllTweets")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<Tweet>>> GetAll()
         {
-            var dtos = await _mediator.Send(new GetTweetListQuery());
+            var dtos = _repository.SelectAll();
             return Ok(dtos);
         }
     }

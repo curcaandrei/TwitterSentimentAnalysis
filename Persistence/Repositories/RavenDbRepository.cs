@@ -51,7 +51,7 @@ public class RavenDbRepository<TEntity> : IRepository<TEntity>
                 return element;
         }
 
-        public IEnumerable<TEntity> SelectAll()
+        public List<TEntity> SelectAll()
         {
             try
             {

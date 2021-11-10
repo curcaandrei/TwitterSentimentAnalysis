@@ -11,6 +11,6 @@ namespace Application.Interfaces
 
         public T SelectById(string id);
 
-        public IEnumerable<T> SelectAll();
+        public List<T> SelectAll();
     }
 }

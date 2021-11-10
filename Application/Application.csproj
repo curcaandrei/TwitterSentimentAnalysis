@@ -18,6 +18,8 @@
 
     <ItemGroup>
       <Folder Include="Features\Tweets\Commands" />
+      <Folder Include="Features\Tweets\Queries" />
+      <Folder Include="Responses\Tweets" />
     </ItemGroup>
 
 </Project>

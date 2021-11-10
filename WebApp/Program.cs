@@ -1,6 +1,5 @@
-using System;
+
 using System.Reflection;
-using Application.Features.Tweets.Queries;
 using Application.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -21,11 +20,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton(typeof(IRepository<>), typeof(RavenDbRepository<>));
 builder.Services.AddSingleton<IRavenDbContext, RavenDbContext>();
 builder.Services.Configure<PersistenceSettings>(builder.Configuration.GetSection("Database"));
-builder.Services.AddScoped(typeof(IRepository<>), typeof(RavenDbRepository<>));
-builder.Services.AddScoped<ITweetsRepository, TweetsRepository>();
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
-builder.Services.AddMediatR(typeof(GetTweetListQueryHandler).GetTypeInfo().Assembly);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
