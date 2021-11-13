@@ -3,14 +3,15 @@ using System.Collections.Generic;
 
 namespace Application.Interfaces
 {
-    public interface IRepository<T>
+    public interface IRepository<T> where T : class
     {
-        void CreateOrUpdate(T obj);
-
+        void Create(T obj);
+        void Update(T obj);
+        
         void Delete(string id);
 
         public T SelectById(string id);
 
-        public List<T> SelectAll();
+        public IEnumerable<T> SelectAll();
     }
 }

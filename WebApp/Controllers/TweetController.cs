@@ -1,29 +1,21 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.Features.Tweets.Commands;
 using Application.Interfaces;
 using Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 
 namespace WebApp.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class TweetController : ControllerBase
+    public class TweetController : BaseApiController
     {
-        private readonly IRepository<Tweet> _repository;
 
-        public TweetController(IRepository<Tweet> repository)
+        [HttpPost]
+        public async Task<IActionResult> Create(AddTweetCommand command)
         {
-            _repository = repository;
-        }
-
-        [HttpGet("all", Name = "GetAllTweets")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<Tweet>>> GetAll()
-        {
-            var dtos = _repository.SelectAll();
-            return Ok(dtos);
+            return Ok(await Mediator.Send(command));
         }
     }
 }
