@@ -11,16 +11,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Architect.EntityFramework.DbContextManagement" Version="1.0.0" />
-      <PackageReference Include="EntityFramework" Version="7.0.0-beta4" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
-      <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
       <PackageReference Include="MongoDB.Driver" Version="2.14.0-beta1" />
-      <PackageReference Include="SQLite" Version="3.13.0" />
     </ItemGroup>
 
 </Project>
