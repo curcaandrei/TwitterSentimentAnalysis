@@ -1,6 +1,7 @@
 using Application.Commands.CreateTweet;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Enums;
 
 namespace Application.Profiles
 {
@@ -9,6 +10,7 @@ namespace Application.Profiles
         public MappingProfiles()
         {
             CreateMap<Tweet, CreateTweetCommand>().ReverseMap();
+            CreateMap<Feelings, string>().ReverseMap();
         }
     }
 }

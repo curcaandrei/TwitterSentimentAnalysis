@@ -1,10 +1,11 @@
-using System;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Domain.Common
 {
     public abstract class BaseEntity
     {
-        public Guid Id { get; set; }
-        public DateTime CreatedDate { get; set; }
+        [BsonId]
+        public ObjectId Id { get; set; }
     }
 }

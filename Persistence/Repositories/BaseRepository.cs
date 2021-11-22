@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Persistence;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using Persistence.MongoDb;
 
@@ -15,7 +16,7 @@ namespace Persistence.Repositories
             _context = dbContext;
         }
 
-        public Task<T> GetByIdAsync(Guid id)
+        public Task<T> GetByIdAsync(ObjectId id)
         {
             throw new NotImplementedException();
         }
