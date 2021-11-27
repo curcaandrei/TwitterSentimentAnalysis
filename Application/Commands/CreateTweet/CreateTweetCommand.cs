@@ -10,5 +10,6 @@ namespace Application.Commands.CreateTweet
         public string User { get; set; }
         public string Date { get; set; }
         public Dictionary<string, float> feels { get; set; }
+        
     }
 }
