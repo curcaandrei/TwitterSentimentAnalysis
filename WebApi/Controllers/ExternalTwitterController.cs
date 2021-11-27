@@ -22,7 +22,7 @@ namespace WebApi.Controllers
         public async Task<ActionResult<Tweet>> GetExternalTweetById([FromRoute]string id)
         {
             var dtos = await _mediator.Send(new GetTweetFromURLQuery(id));
-            
+
             return dtos;
         }
     }
