@@ -16,6 +16,7 @@
       <PackageReference Include="MediatR" Version="9.0.0" />
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
       <PackageReference Include="MongoDB.Driver" Version="2.14.0-beta1" />
+      <PackageReference Include="TweetinviAPI" Version="5.0.4" />
     </ItemGroup>
 
 </Project>
