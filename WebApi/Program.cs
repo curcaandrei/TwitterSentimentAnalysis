@@ -1,9 +1,11 @@
+using System;
 using Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Persistence;
 using Persistence.MongoDb;
+using Persistence.TwitterExternalAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,20 @@ builder.Services.Configure<MongoSettings>(options =>
 });
 builder.Services.AddScoped<IMongoDbContext, MongoDbContext>();
 
+// Twitter Helper
+builder.Services.Configure<TwitterSettings>(options =>
+{
+    options.apiKey = builder.Configuration.GetSection("TwitterAPI:TwitterApiKey").Value;
+    options.apiSecret = builder.Configuration.GetSection("TwitterAPI:TwitterApiSecret").Value;
+    options.accessToken = builder.Configuration.GetSection("TwitterAPI:TwitterAccessToken").Value;
+    options.accessSecret = builder.Configuration.GetSection("TwitterAPI:TwitterAccessTokenSecret").Value;
+});
+builder.Services.AddScoped<ITwitterHelper, TwitterHelper>();
+// Twitter Helper
+builder.Services.AddSwaggerGen(options =>
+{
+    options.CustomSchemaIds(type => type.ToString());
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -33,6 +49,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(options =>
     {
         options.DefaultModelsExpandDepth(-1);
+        
     });
 }
 
