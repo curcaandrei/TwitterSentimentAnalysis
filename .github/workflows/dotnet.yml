@@ -20,11 +20,11 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
       working-directory: Backend
+    - name: Setup latest .NET SDKs
+      uses: Elskom/setup-latest-dotnet@v1
     - name: Build
       run: dotnet build --no-restore
       working-directory: Backend
-    - name: Setup latest .NET SDKs
-      uses: Elskom/setup-latest-dotnet@v1
 #     - name: Test
 #       run: dotnet test --no-build --verbosity normal
     - name: Test Reporter
