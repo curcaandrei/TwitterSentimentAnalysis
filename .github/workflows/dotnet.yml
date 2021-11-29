@@ -12,8 +12,6 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-    - name: Setup .NET Core SDK
-      uses: actions/setup-dotnet@v1.9.0
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
@@ -25,6 +23,8 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
       working-directory: Backend
+    - name: Setup latest .NET SDKs
+      uses: Elskom/setup-latest-dotnet@v1
 #     - name: Test
 #       run: dotnet test --no-build --verbosity normal
     - name: Test Reporter
