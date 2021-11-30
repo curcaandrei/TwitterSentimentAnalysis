@@ -26,5 +26,3 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
       working-directory: Backend
-    - name: NUnit Reporter
-      uses: MirageNet/nunit-reporter@v1.0.5
