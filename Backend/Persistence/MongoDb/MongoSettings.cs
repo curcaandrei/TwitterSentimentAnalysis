@@ -4,5 +4,11 @@ namespace Persistence.MongoDb
     {
         public string Connection { get; set; }
         public string DatabaseName { get; set; }
+
+        public MongoSettings(string connection , string databaseName)
+        {
+            Connection = connection;
+            DatabaseName = databaseName;
+        }
     }
 }

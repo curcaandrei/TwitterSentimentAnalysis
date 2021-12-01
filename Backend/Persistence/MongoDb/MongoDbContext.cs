@@ -18,5 +18,6 @@ namespace Persistence.MongoDb
         {
             return Database.GetCollection<T>(name);
         }
+        
     }
 }
