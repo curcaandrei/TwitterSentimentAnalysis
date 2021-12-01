@@ -14,5 +14,10 @@ namespace Persistence.TwitterExternalAPI
             this.accessToken = accessToken;
             this.accessSecret = accessSecret;
         }
+
+        public TwitterSettings()
+        {
+            
+        }
     }
 }
