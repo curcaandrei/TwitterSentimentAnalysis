@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Application.Persistence;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,6 +7,7 @@ using Persistence.TwitterExternalAPI;
 
 namespace Persistence
 {
+    [ExcludeFromCodeCoverage]
     public static class PersistenceServiceRegistration
     {
         public static IServiceCollection AddPersistenceServices(this IServiceCollection serviceCollection, IConfiguration configuration)

@@ -18,7 +18,7 @@ namespace Persistence.Repositories
         
         public Task<Tweet> GetByIdAsync(ObjectId id)
         {
-            return _collection.FindAsync(x => x.Id == id).Result.FirstAsync();
+            return _collection.FindAsync(x => x.Id == id).Result.FirstOrDefaultAsync();
         }
     }
 }

@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using Application.Persistence;
-using AutoMapper;
 using Tweet = Domain.Entities.Tweet;
 
 namespace Persistence.TwitterExternalAPI
@@ -8,11 +7,11 @@ namespace Persistence.TwitterExternalAPI
     public class ExternalTwitterRepository : IExternalTweetRepository
     {
         private readonly ITwitterHelper _twitterHelper;
-        private readonly IMapper _mapper;
-        public ExternalTwitterRepository(ITwitterHelper twitterHelper, IMapper mapper)
+        
+        public ExternalTwitterRepository(ITwitterHelper twitterHelper)
         {
             _twitterHelper = twitterHelper;
-            _mapper = mapper;
+           
         }
         
         public async Task<Tweet> GetTweetById(string id)
