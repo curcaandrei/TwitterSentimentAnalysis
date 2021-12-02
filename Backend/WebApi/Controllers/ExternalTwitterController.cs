@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Application.Features.ExternalTwitterAPI.GetTweetFromURL;
 using MediatR;
@@ -21,6 +22,9 @@ namespace WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<Tweet>> GetExternalTweetById([FromRoute]string id)
         {
+            int a = 3;
+            a = +4;
+            Console.Write(a);
             var dtos = await _mediator.Send(new GetTweetFromURLQuery(id));
 
             return dtos;
