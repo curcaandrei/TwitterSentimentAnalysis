@@ -40,3 +40,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: ReportGenerator
         uses: danielpalme/ReportGenerator-GitHub-Action@5.0.0
+      - name: GenerateReport
+        run: dotnet tool install -g dotnet-reportgenerator-globaltool
+        working-directory: Backend
+      - name: GetXML
+        run: dotnet test --collect:"XPlat Code Coverage"
+        working-directory: Backend
