@@ -5,14 +5,14 @@
  
 ## Branch naming convention
 
-### type/username/taskname
+### users/Branch
 
 ### Examples:
 
-#### Feature/YOURNAME/taskName
+#### YOURNAME/taskName
 
-#### Test/YOURNAME/test-for-task1
+#### YOURNAME/test-for-task1
 
-#### Fix/YOURNAME/fix-for-task1
+#### YOURNAME/fix-for-task1
 
-#### DevOps/YOURNAME/fix-for-task1
+#### YOURNAME/fix-for-task1
