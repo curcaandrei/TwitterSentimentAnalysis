@@ -36,6 +36,19 @@ jobs:
         run: |
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+        working-directory: Backend
+      - name: Build
+        run: dotnet build --no-restore
+        working-directory: Backend
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
+        working-directory: Backend
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
