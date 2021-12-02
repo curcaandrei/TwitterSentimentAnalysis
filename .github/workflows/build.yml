@@ -44,7 +44,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2     # checkout the repo
       - run: dotnet test                 # run tests (configured to use jest-junit reporter)
-
+        working-directory: Backend
       - name: Test Report
         uses: dorny/test-reporter@v1
         if: success() || failure()    # run this step even if previous step failed
