@@ -43,8 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2     # checkout the repo
-      - run: npm ci                   # install packages
-      - run: npm test                 # run tests (configured to use jest-junit reporter)
+      - run: dotnet test                 # run tests (configured to use jest-junit reporter)
 
       - name: Test Report
         uses: dorny/test-reporter@v1
@@ -52,4 +51,4 @@ jobs:
         with:
           name: JEST Tests            # Name of the check run which will be created
           path: reports/jest-*.xml    # Path to test results
-          reporter: jest-junit 
+          reporter: jest-junit        # Format of test results
