@@ -30,9 +30,9 @@ jobs:
           working_directory: Backend
       - run:
           name: Build
-          command: dotnet build --no-restore
           working_directory: Backend
-          
+          command: |
+            dotnet build --no-restore
 
   test:
     docker:
@@ -44,5 +44,6 @@ jobs:
       - checkout
       - run:
           name: Test
-          command: dotnet test --no-build --verbosity normal
           working_directory: Backend
+          command: |
+            dotnet test --no-build --verbosity normal
