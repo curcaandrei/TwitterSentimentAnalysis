@@ -36,10 +36,8 @@ jobs:
           name: Build
           working_directory: Backend
           command: |
-            su -
             apt update
             apt install sudo -y
-            exit
             sudo apt install adoptopenjdk-13-hotspot
             dotnet build -p:RunAnalyzersDuringBuild=true
       #- sonarcloud/scan-docker
