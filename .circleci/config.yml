@@ -11,9 +11,15 @@ workflows:
   build_and_test:
     jobs:
       - build:
-          context: context
+          context: 
+            - context
+            - SonarCloud
       - test:
-          context: context
+          context:
+            - context
+            - SonarCloud
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.1
 
 jobs:
   build:
@@ -33,7 +39,7 @@ jobs:
           working_directory: Backend
           command: |
             dotnet build --no-restore
-
+      - sonarcloud/scan
   test:
     docker:
       - image: mcr.microsoft.com/dotnet/sdk:6.0
