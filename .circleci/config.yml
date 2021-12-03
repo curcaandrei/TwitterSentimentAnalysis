@@ -19,7 +19,7 @@ jobs:
       - run: echo "this is the build job"
   test:
     docker:
-      - image: cimg/<language>:<version TAG>
+      - image: cimg/dotnet:latest
         auth:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}  # context / project UI env-var reference
