@@ -13,7 +13,7 @@ jobs:
       - image: cimg/dotnet:latest
         auth:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}  # context / project UI env-var reference
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}  # context / project UI env-var reference
     steps:
       - checkout
       - run: echo "this is the build job"
@@ -22,7 +22,7 @@ jobs:
       - image: cimg/<language>:<version TAG>
         auth:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}  # context / project UI env-var reference
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}  # context / project UI env-var reference
     steps:
       - checkout
       - run: echo "this is the test job"
