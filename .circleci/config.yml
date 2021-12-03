@@ -24,7 +24,16 @@ jobs:
           password: $DOCKERHUB_TOKEN
     steps:
       - checkout
-      - run: echo "this is the build job"
+      - run:
+          name: Restore dependencies
+          command: dotnet restore
+          working_directory: Backend
+      - run:
+          name: Build
+          command: dotnet build --no-restore
+          working_directory: Backend
+          
+
   test:
     docker:
       - image: mcr.microsoft.com/dotnet/sdk:6.0
@@ -33,4 +42,7 @@ jobs:
           password: $DOCKERHUB_TOKEN
     steps:
       - checkout
-      - run: echo "this is the test job"
+      - run:
+          name: Test
+          command: dotnet test --no-build --verbosity normal
+          working_directory: Backend
