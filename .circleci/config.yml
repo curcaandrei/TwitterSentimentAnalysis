@@ -44,6 +44,6 @@ jobs:
       - checkout
       - run:
           name: Test
-          working_directory: Backend/ApiTest
+          working_directory: Backend
           command: |
-            dotnet test --no-build --verbosity normal
+            dotnet test
