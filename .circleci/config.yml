@@ -37,8 +37,14 @@ jobs:
           working_directory: Backend
           command: |
             dotnet build -p:RunAnalyzersDuringBuild=true
-      #- sonarcloud/scan
-      - sonarcloud-dotnet
+      #- sonarcloud/scan-docker
+      - sonarcloud-dotnet/setup-sonar
+      - sonarcloud-dotnet/run-scan:
+          sonarlogin: deabe192f96e1d51f66463f6d475eef172b48cdf
+          organization: dotnetproiect
+          project_key: curcaandrei_ProiectDotNet
+      - sonarcloud-dotnet/end-scan:
+          sonarlogin: deabe192f96e1d51f66463f6d475eef172b48cdf
   test:
     working_directory: Backend
     docker:
