@@ -1,0 +1,56 @@
+name: .NET
+version: 2.1
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+workflows:
+  build_and_test:
+    jobs:
+      - build:
+          context: 
+            - context
+            - SonarCloud
+      - test:
+          context:
+            - context
+            - SonarCloud
+jobs:
+  build:
+    docker:
+      - image: mcr.microsoft.com/dotnet/sdk:6.0
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_TOKEN
+    steps:
+      - checkout
+      - build-tools/install-ci-tools
+      - run:
+          name: Restore dependencies
+          command: dotnet restore
+          working_directory: Backend
+      - run:
+          name: Build
+          working_directory: Backend
+          command: |
+            dotnet build --no-restore
+      - sonarcloud/scan
+  test:
+    docker:
+      - image: mcr.microsoft.com/dotnet/sdk:6.0
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_TOKEN
+    steps:
+      - checkout
+      - run:
+          name: Test
+          working_directory: Backend
+          command: |
+            dotnet test
+orbs:
+    sonarcloud: sonarsource/sonarcloud@1.0.1
+    build-tools: circleci/build-tools@3.0.0
