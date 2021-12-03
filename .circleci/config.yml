@@ -6,7 +6,15 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-# Define the jobs we want to run for this project
+
+workflows:
+  build_and_test:
+    jobs:
+      - build:
+          context: context
+      - test:
+          context: context
+
 jobs:
   build:
     docker:
@@ -26,10 +34,3 @@ jobs:
     steps:
       - checkout
       - run: echo "this is the test job"
-
-# Orchestrate our job run sequence
-workflows:
-  build_and_test:
-    jobs:
-      - build
-      - test
