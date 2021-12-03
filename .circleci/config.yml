@@ -38,10 +38,11 @@ jobs:
           command: |
             apt update
             apt install sudo -y
-            wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
-            sudo apt -y install software-properties-common
+            wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public
+            sudo apt-key add -
+            sudo apt install software-properties-common -y
             sudo add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
-            sudo apt -y install  adoptopenjdk-13-hotspot
+            sudo apt install  adoptopenjdk-13-hotspot -y
             dotnet build -p:RunAnalyzersDuringBuild=true
       #- sonarcloud/scan-docker
       # - sonarcloud-dotnet/setup-sonar
