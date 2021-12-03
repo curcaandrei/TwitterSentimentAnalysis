@@ -35,7 +35,7 @@ jobs:
           name: Build
           working_directory: Backend
           command: |
-            sudo apt-get install zip unzip
+            apt-get install zip unzip
             dotnet build --no-restore
       - sonarcloud/scan
   test:
