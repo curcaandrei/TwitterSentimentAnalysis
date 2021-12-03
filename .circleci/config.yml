@@ -18,9 +18,6 @@ workflows:
           context:
             - context
             - SonarCloud
-orbs:
-  sonarcloud: sonarsource/sonarcloud@1.0.1
-
 jobs:
   build:
     docker:
@@ -53,3 +50,5 @@ jobs:
           working_directory: Backend
           command: |
             dotnet test
+orbs:
+    sonarcloud: sonarsource/sonarcloud@1.0.1
