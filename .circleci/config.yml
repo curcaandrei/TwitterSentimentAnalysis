@@ -36,7 +36,7 @@ jobs:
           name: Build
           working_directory: Backend
           command: |
-            dotnet build --no-restore
+            dotnet build -p:RunAnalyzersDuringBuild=true
       - sonarcloud/scan
   test:
     working_directory: Backend
