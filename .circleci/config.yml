@@ -45,13 +45,13 @@ jobs:
       #     project_key: curcaandrei_ProiectDotNet
       # - sonarcloud-dotnet/end-scan:
       #     sonarlogin: deabe192f96e1d51f66463f6d475eef172b48cdf
-      - dotnet-sonarscanner/sonar-install
-      - dotnet-sonarscanner/sonar-begin:
-          sonar_login: deabe192f96e1d51f66463f6d475eef172b48cdf
-          sonar_project_key: curcaandrei_ProiectDotNet
-          sonar_host_url: https://sonarcloud.io
-      - dotnet-sonarscanner/sonar-end:
-          sonar_login: deabe192f96e1d51f66463f6d475eef172b48cdf
+      - sonarcloud-dotnet/setup-sonar
+      - sonarcloud-dotnet/run-scan:
+          project_key: curcaandrei_ProiectDotNet 
+          sonarlogin: deabe192f96e1d51f66463f6d475eef172b48cdf 
+          organization: dotnetproiect 
+          build_path: Backend 
+          test_path: Backend 
   test:
     working_directory: Backend
     docker:
@@ -81,5 +81,5 @@ jobs:
             dotnet test --logger:"xunit;LogFilePath=test_result.xml"
 orbs:
     #sonarcloud: sonarsource/sonarcloud@1.0.1
-    dotnet-sonarscanner: storytel/dotnet-sonarscanner@1.4.3
+    sonarcloud-dotnet: bestsellerit/sonarcloud-dotnet@0.0.1
     build-tools: circleci/build-tools@3.0.0
