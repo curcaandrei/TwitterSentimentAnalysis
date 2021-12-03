@@ -36,11 +36,7 @@ jobs:
           name: Build
           working_directory: Backend
           command: |
-            dotnet tool install --global dotnet-sonarscanner
-            dotnet sonarscanner begin /k:"curcaandrei_ProiectDotNet" /d:sonar.login="7e0f8ea1ba6482996e76fa375d9741a7fc
-            f3bda1"
             dotnet build -p:RunAnalyzersDuringBuild=true
-            dotnet sonarscanner end /d:sonar.login="7e0f8ea1ba6482996e76fa375d9741a7fcf3bda1"
       - sonarcloud/scan
   test:
     working_directory: Backend
