@@ -36,6 +36,8 @@ jobs:
           name: Build
           working_directory: Backend
           command: |
+            sudo add-apt-repository ppa:webupd8team/java
+            sudo apt-get install oracle-java8-installer
             dotnet build -p:RunAnalyzersDuringBuild=true
       #- sonarcloud/scan-docker
       # - sonarcloud-dotnet/setup-sonar
