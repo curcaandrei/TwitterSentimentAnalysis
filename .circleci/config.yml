@@ -46,6 +46,7 @@ jobs:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_TOKEN
     steps:
+      - checkout
       - run:
           name: Creating Dummy Artifacts
           working_directory: artifacts
@@ -58,7 +59,7 @@ jobs:
           destination: artifact-file
       - store_artifacts:
           path: artifacts/artifacts
-      - checkout
+  
       - run:
           name: Test
           working_directory: Backend
