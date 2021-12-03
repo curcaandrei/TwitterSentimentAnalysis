@@ -51,7 +51,7 @@ jobs:
           working_directory: Backend/artifacts
           command: |
             echo "my artifact file" > art-1;
-            mkdir Backend/artifacts/artifacts;
+            mkdir -p Backend/artifacts/artifacts;
             echo "my artifact files in a dir" > art-2;
       - store_artifacts:
           path: Backend/artifacts/art-1
