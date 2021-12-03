@@ -41,9 +41,9 @@ jobs:
             dotnet tool list -g
             dotnet tool update --global dotnet-sonarscanner
             dotnet tool list -g
-            dotnet sonarscanner begin /k:"curcaandrei_ProiectDotNet" /d:sonar.login="7e0f8ea1ba6482996e76fa375d9741a7fc
+            dotnet-sonarscanner begin /k:"curcaandrei_ProiectDotNet" /d:sonar.login="7e0f8ea1ba6482996e76fa375d9741a7fc
             f3bda1"
-            dotnet sonarscanner end /d:sonar.login="24b7e46c9379af3fa53b89db1c2e6ad046827eaf"
+            dotnet-sonarscanner end /d:sonar.login="24b7e46c9379af3fa53b89db1c2e6ad046827eaf"
       - sonarcloud/scan
   test:
     working_directory: Backend
