@@ -39,7 +39,7 @@ jobs:
             dotnet build --no-restore
       - sonarcloud/scan
   test:
-    working_directory: Backend/artifacts
+    working_directory: artifacts
     docker:
       - image: mcr.microsoft.com/dotnet/sdk:6.0
         auth:
@@ -48,16 +48,16 @@ jobs:
     steps:
       - run:
           name: Creating Dummy Artifacts
-          working_directory: Backend/artifacts
+          working_directory: artifacts
           command: |
             echo "my artifact file" > art-1;
-            mkdir -p Backend/artifacts/artifacts;
+            mkdir -p artifacts/artifacts;
             echo "my artifact files in a dir" > art-2;
       - store_artifacts:
-          path: Backend/artifacts/art-1
+          path: artifacts/art-1
           destination: artifact-file
       - store_artifacts:
-          path: Backend/artifacts/artifacts
+          path: artifacts/artifacts
       - checkout
       - run:
           name: Test
