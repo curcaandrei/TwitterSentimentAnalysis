@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import Navbar from "../Components/Navigation";
 import { PieChart, Pie, ResponsiveContainer } from "recharts";
+import { useLocation } from "react-router";
+import axios from 'axios';
 
 const Analyzer = () => {
   const data = [
@@ -8,6 +10,22 @@ const Analyzer = () => {
     { name: "Sad", value: 30 },
     { name: "Neutral", value: 20 },
   ];
+  let location = useLocation();
+  let url = location.pathname;
+    let tweet_id = url.substring(10, url.length);
+  
+  const [tweets, setTweet] = useState({hits: []});
+
+  useEffect(async () => {
+    const result = await axios("https://localhost:7225/api/ExternalTwitter/tweetById/" + tweet_id,{
+      
+    });
+    setTweet(result.data);
+  }, []);
+
+  console.log(tweets);
+
+
   return (
     <div>
       <div
@@ -15,7 +33,7 @@ const Analyzer = () => {
           display: "flex",
           justifyContent: "center",
           "margin-top": "4rem",
-          "font-size": "28px"
+          "font-size": "28px",
         }}
       >
         <h1>Statistics about this tweet</h1>
@@ -28,7 +46,7 @@ const Analyzer = () => {
           alignItems: "center",
           height: "68vh",
           "flex-direction": "column",
-          "margin-bottom": "5rem"
+          "margin-bottom": "5rem",
         }}
       >
         <div class="block-parent-analyzer">
@@ -45,14 +63,14 @@ const Analyzer = () => {
                   <span class="TweetAuthor-avatar">
                     <div class="Avatar"> </div>
                   </span>
-                  <span class="TweetAuthor-name">Twitter</span>{" "}
-                  <span class="TweetAuthor-screenName">@twitterofficial</span>
+                  <span class="TweetAuthor-name">{tweets.user}</span>{" "}
+                  <span class="TweetAuthor-screenName">@{tweets.user}</span>
                 </div>
               </div>
-              <div class="tweet-text">BIG NEWS lol jk still Twitter</div>
+              <div class="tweet-text">{tweets.text}</div>
               <div class="tweet-timestamp">
                 <span class="tweet-timestamp-date">
-                  Mon Apr 06 22:19:49 PDT 2009
+                  {tweets.date}
                 </span>
               </div>
             </div>

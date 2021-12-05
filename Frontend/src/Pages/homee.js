@@ -6,7 +6,8 @@ import JsonData from "../MOCK_DATA.json";
 import ReactPaginate from "react-paginate";
 import "../App.css";
 import Navbar from '../Components/Navigation';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Section = styled.section`
@@ -87,20 +88,27 @@ const Homee = () => {
   const usersPerPage = 10;
   const pagesVisited = pageNumber * usersPerPage;
 
+  var url = "";
+  var tweet_id = "";
+  const history = useHistory();
+   let getDataAxios = async() => {
+    let path = '/analyzer/' + tweet_id;
+    history.push(path);
+  }
+  
+
+  function submit_btn() {
+    // https://twitter.com/Twitter/status/1466443318003384325
+    if(url.includes('https://twitter.com/') && url.includes('/status/')){
+      tweet_id = url.substring(url.indexOf('status/') + 7, url.length);
+      getDataAxios();
+    }
+  }
+
   const displayUsers = users
     .slice(pagesVisited, pagesVisited + usersPerPage)
     .map((user) => {
       return (
-        // <div className="user">
-        //   <h3>{user.firstName}{user.lastName}</h3>
-        //   <h3>Mon Apr 06 22:19:49 PDT 2009</h3>
-        //   <h3>is upset that he can't update his Facebook by texting it... and might cry as a result School today ...
-        //   <ButtonText  target='_blank'>
-        //     <span>Analyze</span>
-        //     <MdKeyboardArrowRight />
-        //   </ButtonText>
-        //   </h3>
-        // </div>
         <div class="block-parent">
           <div class="tweet-list">
             <div class="tweet">
@@ -135,9 +143,20 @@ const Homee = () => {
        
         
           <div class="url" style={{color: "#04050a", fontweight: 400, textalign: "-webkit-center"}}>
-          <input type='text' placeholder="Enter Here Tweet URL:" id="tweetURL" 
-          style={{width: "36%", color: "#a3a3a3", font: "inherit", border: "groove", "border-radius": "1rem", padding: "12px 15px", margin: "2% 1% 0% 31%"}} />
-          <a href="#" class="button2">Analyze</a>
+          <input 
+            type='text' 
+            placeholder="Enter Here Tweet URL:" 
+            id="tweetURL"
+            onChange={(e) => {
+              url = e.target.value;
+              console.log(url);
+            }} 
+            style={{width: "36%", color: "#a3a3a3", font: "inherit", border: "groove", "border-radius": "1rem", padding: "12px 15px", margin: "2% 1% 0% 31%"}} />
+          <button href="#"
+             type="submit" 
+             class="button2"
+             onClick = {() => submit_btn()}
+             >Analyze</button>
           </div>
        <div className="App">
       {displayUsers}
