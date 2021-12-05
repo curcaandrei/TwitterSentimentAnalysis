@@ -1,5 +1,7 @@
+using System;
 using System.Threading.Tasks;
 using Application.Persistence;
+using Tweetinvi.Models.V2;
 using Tweet = Domain.Entities.Tweet;
 
 namespace Persistence.TwitterExternalAPI
@@ -20,8 +22,12 @@ namespace Persistence.TwitterExternalAPI
             var tweetV2 = tweetResponse.Tweet;
             Tweet tweet = new Tweet();
             tweet.Text = tweetV2.Text;
-            tweet.User = tweetV2.ContextAnnotations[0].Entity.Name;
+            // tweet.User = tweetV2.ContextAnnotations[0].Entity.Name;
             tweet.Date = tweetV2.CreatedAt.ToString();
+            var userResponse = await _twitterHelper._twitterClient.UsersV2.GetUserByIdAsync(tweetResponse.Tweet.AuthorId);
+            var user = userResponse.User;
+            tweet.User = user.Name;
+            tweet.Username = user.Username;
             return tweet;
         }
     }

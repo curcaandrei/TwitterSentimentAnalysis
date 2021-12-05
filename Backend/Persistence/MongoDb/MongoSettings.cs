@@ -10,5 +10,10 @@ namespace Persistence.MongoDb
             Connection = connection;
             DatabaseName = databaseName;
         }
+
+        public MongoSettings()
+        {
+            
+        }
     }
 }

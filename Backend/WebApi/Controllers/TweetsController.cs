@@ -7,13 +7,15 @@ using Application.Features.Tweets.GetAllTweets;
 using Application.Features.Tweets.GetOneTweet;
 using Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace WebApi.Controllers
-{
+{ 
+    
     [Route("api/[controller]")]
     [ApiController]
     public class TweetsController : ControllerBase
