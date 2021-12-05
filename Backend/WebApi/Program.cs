@@ -1,4 +1,5 @@
-using System;
+using System.Web.Http;
+using System.Web.Http.Cors;
 using Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,6 +35,13 @@ builder.Services.Configure<TwitterSettings>(options =>
     options.accessToken = builder.Configuration.GetSection("TwitterAPI:TwitterAccessToken").Value;
     options.accessSecret = builder.Configuration.GetSection("TwitterAPI:TwitterAccessTokenSecret").Value;
 });
+// builder.Services.AddAuthentication().AddTwitter(twitterOptions =>
+// {
+//     twitterOptions.ConsumerKey = builder.Configuration["TwitterAPI:TwitterApiKey"];
+//     twitterOptions.ConsumerSecret = builder.Configuration["TwitterAPI:TwitterApiSecret"];
+//     twitterOptions.RetrieveUserDetails = true;
+// });
+
 builder.Services.AddScoped<ITwitterHelper, TwitterHelper>();
 // Twitter Helper
 builder.Services.AddSwaggerGen(options =>
@@ -52,6 +60,11 @@ if (app.Environment.IsDevelopment())
         
     });
 }
+var cors = new EnableCorsAttribute("*", "*", "*");
+HttpConfiguration httpConfiguration = new();
+httpConfiguration.EnableCors(cors);
+
+app.UseCors();
 
 app.UseHttpsRedirection();
 

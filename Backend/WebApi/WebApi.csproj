@@ -9,6 +9,8 @@
     <ItemGroup>
         <PackageReference Include="MediatR" Version="9.0.0" />
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+        <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.7" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.Twitter" Version="6.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
         <PackageReference Include="XunitXml.TestLogger" Version="3.0.70" />
