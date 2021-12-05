@@ -21,4 +21,8 @@
       <ProjectReference Include="..\Persistence\Persistence.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\Authentication\ValidateTwitterAuth.cshtml" />
+    </ItemGroup>
+
 </Project>
