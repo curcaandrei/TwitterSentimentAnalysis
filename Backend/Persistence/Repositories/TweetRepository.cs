@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Application.Persistence;
+using Domain.Dtos;
 using Domain.Entities;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -16,9 +17,22 @@ namespace Persistence.Repositories
             _collection = dbContext.GetCollection<Tweet>(typeof(Tweet).Name);
         }
         
-        public Task<Tweet> GetByIdAsync(ObjectId id)
+        public Task<TweetDTO> GetByIdAsync(ObjectId id)
         {
-            return _collection.FindAsync(x => x.Id == id).Result.FirstOrDefaultAsync();
+            var res = _collection.FindAsync(x => x.Id == id).Result.FirstOrDefaultAsync();
+            if (res.Result != null)
+            {
+                TweetDTO dto = new TweetDTO();
+                dto.Id = res.Result.Id.ToString();
+                dto.feels = res.Result.feels;
+                dto.Text = res.Result.Text;
+                dto.Username = res.Result.Username;
+                dto.Date = res.Result.Date;
+                dto.User = res.Result.User;
+                return Task.FromResult(dto);
+            }
+            return Task.FromResult<TweetDTO>(null);
+
         }
     }
 }

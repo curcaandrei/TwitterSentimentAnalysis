@@ -55,6 +55,7 @@ app.UseCors(x =>
 {
     x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(origin => true);
 });
+app.UseAuthorization();
 app.UseEndpoints(x => x.MapControllers());
 // Configure the HTTlP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -69,8 +70,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors();
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
 
 app.MapControllers();
 

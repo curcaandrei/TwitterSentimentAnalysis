@@ -8,7 +8,6 @@ using Application.Features.Tweets.GetOneTweet;
 using Domain.Dtos;
 using Domain.Entities;
 using MediatR;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
@@ -33,20 +32,7 @@ namespace WebApi.Controllers
         public async Task<ActionResult<List<Tweet>>> GetAll(int pageNr)
         {
             var list = await _mediator.Send(new GetTweetsQuery(pageNr));
-
-            List<TweetDTO> dtos = new List<TweetDTO>();
-            foreach (var VARIABLE in list)
-            {
-                TweetDTO tweetDto = new TweetDTO();
-                tweetDto.feels = VARIABLE.feels;
-                tweetDto.Date = VARIABLE.Date;
-                tweetDto.Id = VARIABLE.Id.ToString();
-                tweetDto.Text = VARIABLE.Text;
-                tweetDto.User = VARIABLE.User;
-                tweetDto.Username = VARIABLE.Username;
-                dtos.Add(tweetDto);
-            }
-            return Ok(dtos);
+            return Ok(list);
         }
         
         [HttpPost("Create", Name = "CreateTweet")]
@@ -61,14 +47,7 @@ namespace WebApi.Controllers
         public Task<TweetDTO> GetOne([FromRoute]string id)
         {
             var res = _mediator.Send(new GetOneTweetQuery(id));
-            TweetDTO dto = new TweetDTO();
-            dto.Id = res.Result.Id.ToString();
-            dto.feels = res.Result.feels;
-            dto.Text = res.Result.Text;
-            dto.Username = res.Result.Username;
-            dto.Date = res.Result.Date;
-            dto.User = res.Result.User;
-            return Task.FromResult(dto);
+            return res;
         }
 
         [HttpDelete("delete/{id}", Name = "DeleteOne")]
