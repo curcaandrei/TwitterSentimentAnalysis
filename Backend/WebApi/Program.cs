@@ -7,7 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Persistence;
 using Persistence.MongoDb;
 using Persistence.TwitterExternalAPI;
-
+using Microsoft.Owin.Hosting;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -50,7 +50,17 @@ builder.Services.AddSwaggerGen(options =>
 });
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+var config = new HttpConfiguration();
+var cors = new EnableCorsAttribute("*", "*", "*");
+
+config.EnableCors(cors);
+app.UseRouting();
+app.UseCors(x =>
+{
+    x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(origin => true).AllowCredentials();
+});
+app.UseEndpoints(x => x.MapControllers());
+// Configure the HTTlP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -60,12 +70,8 @@ if (app.Environment.IsDevelopment())
         
     });
 }
-var cors = new EnableCorsAttribute("*", "*", "*");
-HttpConfiguration httpConfiguration = new();
-httpConfiguration.EnableCors(cors);
 
 app.UseCors();
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
