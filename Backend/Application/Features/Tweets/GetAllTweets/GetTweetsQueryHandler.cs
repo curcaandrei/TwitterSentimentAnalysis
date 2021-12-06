@@ -19,7 +19,7 @@ namespace Application.Features.Tweets.GetAllTweets
 
         public async Task<List<Tweet>> Handle(GetTweetsQuery request, CancellationToken cancellationToken)
         {
-            var allTweets = await _repository.ListAllAsync();
+            var allTweets = await _repository.ListAllAsync(request.PageNr);
             return allTweets.ToList();
         }
     }

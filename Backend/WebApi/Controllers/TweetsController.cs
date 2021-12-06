@@ -27,11 +27,11 @@ namespace WebApi.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("all", Name = "AllTweets")]
+        [HttpGet("all/{pageNr}", Name = "AllTweets")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<Tweet>>> GetAll()
+        public async Task<ActionResult<List<Tweet>>> GetAll(int pageNr)
         {
-            var dtos = await _mediator.Send(new GetTweetsQuery());
+            var dtos = await _mediator.Send(new GetTweetsQuery(pageNr));
             return Ok(dtos);
         }
         
