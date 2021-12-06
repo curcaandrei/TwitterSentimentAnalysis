@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Application.Commands.CreateTweet;
 using Application.Features.Tweets.GetOneTweet;
-using AutoMapper;
 using Domain.Entities;
 using MediatR;
 using WebApi.Controllers;

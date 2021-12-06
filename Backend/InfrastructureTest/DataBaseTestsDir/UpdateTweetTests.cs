@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Domain.Dtos;
 using Domain.Entities;
 using MongoDB.Bson;
 using Xunit;
@@ -15,7 +16,7 @@ namespace InfrastructureTest.DataBaseTestsDir
             await _repository.AddAsync(_tweet);
             _repository.UpdateAsync(_tweet.Id.ToString(), new Dictionary<string, float> {{"happy", 100}});
             _tweet.feels = new Dictionary<string, float> {{"happy", 100}};
-            Tweet testTweet = await _repository.GetByIdAsync(_tweet.Id);
+            TweetDTO testTweet = await _repository.GetByIdAsync(_tweet.Id);
             Assert.NotNull(testTweet);
             foreach (var (key, value) in _tweet.feels)
             {
@@ -30,7 +31,7 @@ namespace InfrastructureTest.DataBaseTestsDir
             _tweet.Id = new ObjectId();
             await _repository.AddAsync(_tweet);
             _repository.UpdateAsync(_tweet.Id.ToString(), new Dictionary<string, float> {{"happy", 100}});
-            Tweet testTweet = await _repository.GetByIdAsync(_tweet.Id);
+            TweetDTO testTweet = await _repository.GetByIdAsync(_tweet.Id);
             Assert.NotNull(testTweet);
             foreach (var (key, value) in _tweet.feels)
             {

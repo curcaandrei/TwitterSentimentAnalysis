@@ -3,12 +3,13 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Persistence;
+using Domain.Dtos;
 using Domain.Entities;
 using MediatR;
 
 namespace Application.Features.Tweets.GetAllTweets
 {
-    public class GetTweetsQueryHandler : IRequestHandler<GetTweetsQuery, List<Tweet>>
+    public class GetTweetsQueryHandler : IRequestHandler<GetTweetsQuery, List<TweetDTO>>
     {
         private readonly IAsyncRepository<Tweet> _repository;
 
@@ -17,7 +18,7 @@ namespace Application.Features.Tweets.GetAllTweets
             _repository = repository;
         }
 
-        public async Task<List<Tweet>> Handle(GetTweetsQuery request, CancellationToken cancellationToken)
+        public async Task<List<TweetDTO>> Handle(GetTweetsQuery request, CancellationToken cancellationToken)
         {
             var allTweets = await _repository.ListAllAsync(request.PageNr);
             return allTweets.ToList();

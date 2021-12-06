@@ -1,5 +1,8 @@
+using System;
+using Domain.Dtos;
 using Domain.Entities;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization.IdGenerators;
 using Xunit;
 
 namespace InfrastructureTest.DataBaseTestsDir
@@ -13,7 +16,7 @@ namespace InfrastructureTest.DataBaseTestsDir
         {
             _tweet.Id = new ObjectId();
             await _repository.AddAsync(_tweet);
-            Tweet testTweet = await _repository.GetByIdAsync(_tweet.Id);
+            TweetDTO testTweet = await _repository.GetByIdAsync(_tweet.Id);
             Assert.NotNull(testTweet);
             Assert.Equal(testTweet.Date, _tweet.Date);
             Assert.Equal(testTweet.User, _tweet.User);
@@ -31,7 +34,8 @@ namespace InfrastructureTest.DataBaseTestsDir
             _tweet.Id = new ObjectId();
             await _repository.AddAsync(_tweet);
             _tweet.Id = new ObjectId();
-            Tweet testTweet = await _repository.GetByIdAsync(_tweet.Id);
+
+            TweetDTO testTweet = await _repository.GetByIdAsync(_tweet.Id);
             Assert.Null(testTweet);
             Dispose();
         }

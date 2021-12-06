@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Persistence;
+using Domain.Dtos;
+using Domain.Entities;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Persistence.MongoDb;
@@ -16,9 +18,24 @@ namespace Persistence.Repositories
             _context = dbContext;
         }
         
-        public async Task<IReadOnlyList<T>> ListAllAsync(int pageNr)
+        public async Task<List<TweetDTO>> ListAllAsync(int pageNr)
         {
-            return await _context.GetCollection<T>(typeof(T).Name).Find(_ => true).Skip((pageNr - 1) * 10).Limit(10).ToListAsync();
+            List<T> tweets =  _context.GetCollection<T>(typeof(T).Name).Find(_ => true).Skip((pageNr - 1) * 10).Limit(10).ToList();
+            List<TweetDTO> tweetDtos = new List<TweetDTO>();
+            foreach (var VARIABLE in tweets)
+            {
+                Tweet t = VARIABLE as Tweet;
+                TweetDTO tweetDto = new TweetDTO();
+                tweetDto.feels = t.feels;
+                tweetDto.Date = t.Date;
+                tweetDto.Id = t.Id.ToString();
+                tweetDto.Text = t.Text;
+                tweetDto.User = t.User;
+                tweetDto.Username = t.Username;
+                tweetDtos.Add(tweetDto);
+            }
+
+            return await Task.FromResult(tweetDtos);
         }
 
         public async Task<T> AddAsync(T entity)
