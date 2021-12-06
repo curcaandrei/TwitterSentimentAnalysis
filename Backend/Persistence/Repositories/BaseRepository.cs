@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Application.Commands.DeleteTweet;
 using Application.Persistence;
-using Domain.Entities;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Persistence.MongoDb;
@@ -18,9 +16,9 @@ namespace Persistence.Repositories
             _context = dbContext;
         }
         
-        public async Task<IReadOnlyList<T>> ListAllAsync()
+        public async Task<IReadOnlyList<T>> ListAllAsync(int pageNr)
         {
-            return await _context.GetCollection<T>(typeof(T).Name).Find(_ => true).ToListAsync();
+            return await _context.GetCollection<T>(typeof(T).Name).Find(_ => true).Skip((pageNr - 1) * 10).Limit(10).ToListAsync();
         }
 
         public async Task<T> AddAsync(T entity)
@@ -28,12 +26,7 @@ namespace Persistence.Repositories
             await _context.GetCollection<T>(typeof(T).Name).InsertOneAsync(entity);
             return entity;
         }
-
-        public UpdateResult UpdateAsync(ObjectId id)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public UpdateResult UpdateAsync(string id, Dictionary<string, float>  entity)
         {
             var objectId = new ObjectId(id);

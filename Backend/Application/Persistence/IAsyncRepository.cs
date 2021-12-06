@@ -9,7 +9,7 @@ namespace Application.Persistence
 {
     public interface IAsyncRepository<T> where T : class
     {
-        Task<IReadOnlyList<T>> ListAllAsync();
+        Task<IReadOnlyList<T>> ListAllAsync(int pageNr);
 
         Task<T> AddAsync(T entity);
 
