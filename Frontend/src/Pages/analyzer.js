@@ -15,16 +15,21 @@ const Analyzer = () => {
     let tweet_id = url.substring(10, url.length);
   
   const [tweets, setTweet] = useState({hits: []});
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(async () => {
     const result = await axios("https://localhost:7225/api/ExternalTwitter/tweetById/" + tweet_id,{
       
     });
     setTweet(result.data);
+    setLoading(false);
   }, []);
 
   console.log(tweets);
 
+  if(isLoading){
+    return <div className="App4">Loading...</div>;
+  }
 
   return (
     <div>
