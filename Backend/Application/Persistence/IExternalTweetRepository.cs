@@ -7,5 +7,9 @@ namespace Application.Persistence
     public interface IExternalTweetRepository
     {
         public Task<Tweet> GetTweetById(string id);
+
+        public Task<string> PostToGetAuth();
+
+        public Task<string> ValidateAuth(string queryValue);
     }
 }
