@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Domain.Dtos;
 using MediatR;
 
 namespace Application.Features.Tweets.GetAllTweets
