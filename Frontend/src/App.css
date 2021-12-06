@@ -7,13 +7,7 @@
 }
 
 .App {
-  /* width: 71rem; */
-  /* margin: 0 auto; */
-  /* display: flex; */
-  /* align-content: stretch; */
   margin: 5% 35% 0% 35%;
-  /* justify-content: center; */
-  /* align-items: baseline; */
   flex-direction: column;
 }
 
@@ -47,18 +41,7 @@
   }
 }
 
-/* .user {
-  border: 2px solid rgb(41, 70, 102);
-  border-radius: 10px;
-  background-color: #9dc4dd;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 40em;
-  height: auto;
-  margin-top: 1em;
-} */
+
 
 @font-face {
   font-family: "Roboto";
@@ -316,6 +299,7 @@
   list-style: none;
   display: flex;
   justify-content: center;
+ 
 }
 
 .paginationBttns a {
@@ -342,3 +326,500 @@
   background-color: grey; */
   display: none;
 }
+.inputURL{
+  width: 36%;
+  color: "#a3a3a3";
+  font: inherit;
+  border: groove;
+  border-radius: 1rem; 
+  padding: 12px 15px;
+  margin: 2% 1% 0% 31%;
+}
+
+@media screen and (min-width: 1330px)  and (max-width: 1600px) {
+  
+  
+.App {
+  margin: 6% 0% 0% 30%;
+  flex-direction: column;
+}
+
+.url {
+  margin-bottom: 1rem;
+}
+
+.inputURL{
+  margin: 8.5% 0% 0% 30%;
+}
+.button2 {
+  margin: 9% 26.9% 0% 0%;
+}
+.tweet {
+  position: relative;
+  padding: 10px;
+  width: 35rem;
+}
+
+.paginationBttns {
+  margin-top: 8em;
+  /* width: 80%; */
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  margin-left:-2em;
+}
+}
+
+@media screen and (min-width: 1200px)  and (max-width: 1329px) {
+  
+
+  .App {
+    margin: 6% 0% 0% 32%;
+    flex-direction: column;
+  }
+  
+  .url {
+    margin-bottom: 1rem;
+  }
+  
+  .inputURL{
+    margin: 12% 0% 0% 33%;
+  }
+  .button2 {
+    margin: 12.5% 23% 0% 0%;
+  }
+  
+  }
+
+  
+@media screen and (min-width: 1100px)  and (max-width: 1199px) {
+  
+  
+  .App {
+    margin: 6% 0% 0% 30%;
+    flex-direction: column;
+  }
+  
+  .url {
+    margin-bottom: 1rem;
+  }
+  
+  .inputURL{
+    margin: 11% 0% 0% 36%;
+    width: 27%;
+  }
+  .button2 {
+    margin: 11.6% 28% 0% 0%;
+  }
+  
+  }
+  
+@media screen and (min-width: 1000px)  and (max-width: 1099px) {
+  
+  
+  .App {
+    margin: 6% 0% 0% 30%;
+    flex-direction: column;
+  }
+  
+  .url {
+    margin-bottom: 1rem;
+  }
+  
+  .inputURL{
+    margin: 11% 0% 0% 36%;
+    width: 27%;
+  }
+  .button2 {
+    margin: 11.6% 28% 0% 0%;
+  }
+  
+.tweet {
+  position: relative;
+  padding: 10px;
+  width: 30rem;
+}
+
+  }
+
+ 
+  @media screen and (min-width: 850px)  and (max-width: 999px) {
+  
+    .App {
+      margin: 6% 0% 0% 30%;
+      flex-direction: column;
+    }
+    
+    .url {
+      margin-bottom: 1rem;
+    }
+    
+    .inputURL{
+      margin: 11% 0% 0% 34%;
+      width: 31%;
+    }
+    .button2 {
+      margin: 11.6% 23% 0% 0%;
+    }
+    
+  .tweet {
+    position: relative;
+    padding: 10px;
+    width: 27rem;
+  }
+  
+  .TweetAuthor-name {
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 18px;
+}
+.tweet-text {
+  margin-left: 40px;
+  margin-bottom: 8px;
+  word-wrap: break-word;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  margin-top: 6px;
+}
+
+.TweetAuthor-avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+  
+    }
+    
+
+    @media screen and (min-width: 800px)  and (max-width: 849px) {
+  
+      .App {
+        margin: 5% 0% 0% 30%;
+        flex-direction: column;
+      }
+      
+      .url {
+        margin-bottom: 1rem;
+      }
+      
+      .inputURL{
+        margin: 11% 0% 0% 34%;
+        width: 31%;
+      }
+      .button2 {
+        margin: 11.6% 28% 0% 0%;
+      }
+      
+    .tweet {
+      position: relative;
+      padding: 10px;
+      width: 27rem;
+    }
+    
+    .TweetAuthor-name {
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 18px;
+  }
+  .tweet-text {
+    margin-left: 40px;
+    margin-bottom: 8px;
+    word-wrap: break-word;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 300;
+    margin-top: 6px;
+  }
+  
+  .TweetAuthor-avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .button2 {
+    margin: 11.9% 21.5% 0% 0%;
+}
+      }
+      
+      @media screen and (min-width: 750px)  and (max-width: 799px) {
+  
+        .App {
+          margin: 5% 0% 0% 30%;
+          flex-direction: column;
+        }
+        
+        .url {
+          margin-bottom: 1rem;
+        }
+        
+        .inputURL{
+          margin: 11% 0% 0% 34%;
+          width: 31%;
+        }
+        .button2 {
+          margin: 11.6% 28% 0% 0%;
+        }
+        
+      .tweet {
+        position: relative;
+        padding: 10px;
+        width: 27rem;
+      }
+      
+      .TweetAuthor-name {
+        margin-top: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 18px;
+    }
+    .tweet-text {
+      margin-left: 40px;
+      margin-bottom: 8px;
+      word-wrap: break-word;
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 300;
+      margin-top: 6px;
+    }
+    
+    .TweetAuthor-avatar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+    .button2 {
+      margin: 11.9% 21.5% 0% 0%;
+  }
+        }
+        
+        
+      @media screen and (min-width: 725px)  and (max-width: 749px) {
+  
+        .App {
+          margin: 5% 0% 0% 30%;
+          flex-direction: column;
+        }
+        
+        .url {
+          margin-bottom: 1rem;
+        }
+        
+        .inputURL{
+          margin: 11% 0% 0% 34%;
+          width: 37%;
+        }
+        .button2 {
+          margin: 11.9% 15% 0% 0%;
+      }
+        
+      .tweet {
+        position: relative;
+        padding: 10px;
+        width: 27rem;
+      }
+      
+      .TweetAuthor-name {
+        margin-top: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 18px;
+    }
+    .tweet-text {
+      margin-left: 40px;
+      margin-bottom: 8px;
+      word-wrap: break-word;
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 300;
+      margin-top: 6px;
+    }
+    
+    .TweetAuthor-avatar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+  
+        }
+         
+      @media screen and (min-width: 700px)  and (max-width: 724px) {
+  
+        .App {
+          margin: 5% 0% 0% 30%;
+          flex-direction: column;
+        }
+        
+        .url {
+          margin-bottom: 1rem;
+        }
+        
+        .inputURL{
+          margin: 11% 0% 0% 34%;
+          width: 37%;
+        }
+        .button2 {
+          margin: 11.9% 15% 0% 0%;
+      }
+        
+      .tweet {
+        position: relative;
+        padding: 10px;
+        width: 25rem;
+    }
+      
+      .TweetAuthor-name {
+        margin-top: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 18px;
+    }
+    .tweet-text {
+      margin-left: 40px;
+      margin-bottom: 8px;
+      word-wrap: break-word;
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 300;
+      margin-top: 6px;
+    }
+    
+    .TweetAuthor-avatar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+  
+        }
+        
+             
+      @media screen and (min-width: 650px)  and (max-width: 699px) {
+  
+        .App {
+          margin: 5% 0% 0% 30%;
+          flex-direction: column;
+        }
+        
+        .url {
+          margin-bottom: 1rem;
+        }
+        
+        .inputURL{
+          margin: 11% 0% 0% 34%;
+          width: 37%;
+        }
+        .button2 {
+          margin: 11.9% 15% 0% 0%;
+      }
+        
+      .tweet {
+        position: relative;
+        padding: 10px;
+        width: 25rem;
+    }
+      
+      .TweetAuthor-name {
+        margin-top: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 18px;
+    }
+    .tweet-text {
+      margin-left: 40px;
+      margin-bottom: 8px;
+      word-wrap: break-word;
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 300;
+      margin-top: 6px;
+    }
+    
+    .TweetAuthor-avatar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+  
+        }
+         
+        @media screen and (min-width: 600px)  and (max-width: 649px) {
+  
+          .App {
+            margin: 5% 0% 0% 30%;
+            flex-direction: column;
+          }
+          
+          .url {
+            margin-bottom: 1rem;
+          }
+          
+          .inputURL{
+            margin: 11% 0% 0% 34%;
+            width: 37%;
+          }
+          .button2 {
+            margin: 11.9% 15% 0% 0%;
+        }
+          
+        .tweet {
+          position: relative;
+          padding: 10px;
+          width: 25rem;
+      }
+        
+        .TweetAuthor-name {
+          margin-top: 10px;
+          font-size: 13px;
+          font-weight: 700;
+          line-height: 18px;
+      }
+      .tweet-text {
+        margin-left: 40px;
+        margin-bottom: 8px;
+        word-wrap: break-word;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 300;
+        margin-top: 6px;
+      }
+      
+      .TweetAuthor-avatar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 30px;
+        height: 30px;
+        overflow: hidden;
+        border-radius: 4px;
+      }
+    
+          }
+          
+        
