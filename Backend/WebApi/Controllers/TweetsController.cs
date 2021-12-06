@@ -5,6 +5,7 @@ using Application.Commands.DeleteTweet;
 using Application.Commands.UpdateTweet;
 using Application.Features.Tweets.GetAllTweets;
 using Application.Features.Tweets.GetOneTweet;
+using Domain.Dtos;
 using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Cors;
@@ -44,10 +45,17 @@ namespace WebApi.Controllers
 
         [HttpGet("one/{id}", Name = "GetOne")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public Task<Tweet> GetOne([FromRoute]string id)
+        public Task<TweetDTO> GetOne([FromRoute]string id)
         {
             var res = _mediator.Send(new GetOneTweetQuery(id));
-            return res;
+            TweetDTO dto = new TweetDTO();
+            dto.Id = res.Result.Id.ToString();
+            dto.feels = res.Result.feels;
+            dto.Text = res.Result.Text;
+            dto.Username = res.Result.Username;
+            dto.Date = res.Result.Date;
+            dto.User = res.Result.User;
+            return Task.FromResult(dto);
         }
 
         [HttpDelete("delete/{id}", Name = "DeleteOne")]
