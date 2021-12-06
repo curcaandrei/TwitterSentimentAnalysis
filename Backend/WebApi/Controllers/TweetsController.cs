@@ -47,14 +47,7 @@ namespace WebApi.Controllers
         public Task<TweetDTO> GetOne([FromRoute]string id)
         {
             var res = _mediator.Send(new GetOneTweetQuery(id));
-            TweetDTO dto = new TweetDTO();
-            dto.Id = res.Result.Id.ToString();
-            dto.feels = res.Result.feels;
-            dto.Text = res.Result.Text;
-            dto.Username = res.Result.Username;
-            dto.Date = res.Result.Date;
-            dto.User = res.Result.User;
-            return Task.FromResult(dto);
+            return res;
         }
 
         [HttpDelete("delete/{id}", Name = "DeleteOne")]
