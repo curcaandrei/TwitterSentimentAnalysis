@@ -32,7 +32,6 @@ namespace WebApi.Controllers
         public async Task<ActionResult<List<Tweet>>> GetAll(int pageNr)
         {
             var list = await _mediator.Send(new GetTweetsQuery(pageNr));
-            
             return Ok(list);
         }
         
@@ -48,7 +47,14 @@ namespace WebApi.Controllers
         public Task<TweetDTO> GetOne([FromRoute]string id)
         {
             var res = _mediator.Send(new GetOneTweetQuery(id));
-            return res;
+            TweetDTO dto = new TweetDTO();
+            dto.Id = res.Result.Id.ToString();
+            dto.feels = res.Result.feels;
+            dto.Text = res.Result.Text;
+            dto.Username = res.Result.Username;
+            dto.Date = res.Result.Date;
+            dto.User = res.Result.User;
+            return Task.FromResult(dto);
         }
 
         [HttpDelete("delete/{id}", Name = "DeleteOne")]
