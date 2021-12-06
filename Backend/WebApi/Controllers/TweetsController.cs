@@ -32,7 +32,19 @@ namespace WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<Tweet>>> GetAll(int pageNr)
         {
-            var dtos = await _mediator.Send(new GetTweetsQuery(pageNr));
+            var list = await _mediator.Send(new GetTweetsQuery(pageNr));
+
+            List<TweetDTO> dtos = new List<TweetDTO>();
+            foreach (var VARIABLE in list)
+            {
+                TweetDTO tweetDto = new TweetDTO();
+                tweetDto.feels = VARIABLE.feels;
+                tweetDto.Date = VARIABLE.Date;
+                tweetDto.Id = VARIABLE.Id.ToString();
+                tweetDto.Text = VARIABLE.Text;
+                tweetDto.User = VARIABLE.User;
+                tweetDto.Username = VARIABLE.Username;
+            }
             return Ok(dtos);
         }
         
