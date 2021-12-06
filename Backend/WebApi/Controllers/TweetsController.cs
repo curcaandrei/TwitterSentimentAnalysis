@@ -44,6 +44,7 @@ namespace WebApi.Controllers
                 tweetDto.Text = VARIABLE.Text;
                 tweetDto.User = VARIABLE.User;
                 tweetDto.Username = VARIABLE.Username;
+                dtos.Add(tweetDto);
             }
             return Ok(dtos);
         }
