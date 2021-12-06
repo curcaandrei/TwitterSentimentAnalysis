@@ -16,9 +16,9 @@ namespace InfrastructureTest.ExternalTwitterAPITestsDir
 
         public GetExternalTweetTests()
         {
-            _settings = new Mock<TwitterSettings>("yhJAct7wkrUjZqH29G2JnaNXp",
-                "VIGJH866VEcowNcK1VxzsdJXJ01JJFLohGrNXS8mSHwNvLR2g7",
-                "995542379410153472-dKr2vqGzIvUviUoQwJre0ddfy0uS5In", "JU8O787mlpPXyAoWnJWUZsJmFVaIyBaFAnmEEGe3UJ3NP");
+            _settings = new Mock<TwitterSettings>("IAup8uCkBVBvNNlETc6oHcdPT",
+                "gSs0B9xiI8zIABz728ugOYlaKWBlWi9mL5tRvD51hof7yG8AEz",
+                "995542379410153472-AUx78yrjMn2bqzkJR2sqWgfUBhzIBeH", "RcxyF6vQVEFMAjZXAd6rlQWrxDjNGUAah50CdnxVxdBDt");
             IOptions<TwitterSettings> options = Options.Create(_settings.Object);
             _twitterHelper = new Mock<TwitterHelper>(options);
             _externalTwitterRepository = new ExternalTwitterRepository(_twitterHelper.Object);
