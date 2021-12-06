@@ -38,6 +38,8 @@ jobs:
           command: |
             apt update
             apt install sudo -y
+            dotnet tool install --global dotnet-sonarscanner
+            dotnet sonarscanner
             dotnet build -p:RunAnalyzersDuringBuild=true
       - sonarcloud/scan
   test:
