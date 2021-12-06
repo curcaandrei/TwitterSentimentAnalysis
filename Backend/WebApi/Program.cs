@@ -50,14 +50,10 @@ builder.Services.AddSwaggerGen(options =>
 });
 var app = builder.Build();
 
-var config = new HttpConfiguration();
-var cors = new EnableCorsAttribute("*", "*", "*");
-
-config.EnableCors(cors);
 app.UseRouting();
 app.UseCors(x =>
 {
-    x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(origin => true).AllowCredentials();
+    x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(origin => true);
 });
 app.UseEndpoints(x => x.MapControllers());
 // Configure the HTTlP request pipeline.
