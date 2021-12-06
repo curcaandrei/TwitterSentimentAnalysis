@@ -5,7 +5,6 @@ using RestSharp;
 using RestSharp.Authenticators;
 using Tweetinvi;
 using Tweetinvi.Auth;
-using Tweetinvi.Models.V2;
 using Tweetinvi.Parameters;
 using Tweet = Domain.Entities.Tweet;
 
@@ -28,7 +27,7 @@ namespace Persistence.TwitterExternalAPI
             Tweet tweet = new Tweet();
             tweet.Text = tweetV2.Text;
             tweet.Date = tweetV2.CreatedAt.ToString();
-            
+
             var userResponse = await _twitterHelper._twitterClient.UsersV2.GetUserByIdAsync(tweetResponse.Tweet.AuthorId);
             var user = userResponse.User;
             tweet.User = user.Name;
@@ -38,7 +37,7 @@ namespace Persistence.TwitterExternalAPI
 
         public async Task<string> PostToGetAuth()
         {
-            var appClient = new TwitterClient("q7mkGsaBL9YggmwtpgRPnoqIo", "xwozMoQJAEUnpCSGJlv7y3cDILCPYyhZgSUzzWMODrBxENGXEW");
+            var appClient = _twitterHelper._twitterClient;
             var authenticationRequestId = Guid.NewGuid().ToString();
             var redirectPath = "https://localhost:7225/signin";
 
@@ -53,8 +52,7 @@ namespace Persistence.TwitterExternalAPI
 
         public async Task<string> ValidateAuth(string queryValue)
         {
-            var appClient = new TwitterClient("q7mkGsaBL9YggmwtpgRPnoqIo",
-                "xwozMoQJAEUnpCSGJlv7y3cDILCPYyhZgSUzzWMODrBxENGXEW");
+            var appClient = _twitterHelper._twitterClient;
             
             var requestParameters = await RequestCredentialsParameters.FromCallbackUrlAsync(queryValue, MyAuthRequestStore);
             
