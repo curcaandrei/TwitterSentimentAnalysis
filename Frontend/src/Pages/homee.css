@@ -1,0 +1,13 @@
+Section {
+  background-image: url(${BgImg});
+  
+  height: 785px;
+  display: block;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+Content{ 
+  width: 100%;
+  height: 100px;
+}
