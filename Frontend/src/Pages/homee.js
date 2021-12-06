@@ -39,12 +39,8 @@ const Homee = () => {
     });
     setUsers(result.data);
     setLoading(false);
-  }, []);
+  }, [pageNumber]);
 
-
-  // const [users, setUsers] = useState(JsonData.slice(0, 1000));
-  
-  const BSON = require('bson');
 
   const usersPerPage = 10;
   const pagesVisited = pageNumber * usersPerPage;
@@ -89,12 +85,12 @@ const Homee = () => {
               </div>
             </div>
             {/* <Link to={href} className="button">Analyze</Link> */}
-            <a href={"/analyzer/" + users[user].id} class="button">Analyze</a>
+            <a href={"/analyzerdb/" + users[user].id} class="button">Analyze</a>
           </div>
       );
     });
 
-  const pageCount = Math.ceil(users.length / usersPerPage);
+  const pageCount = 104800;
 
   const changePage = ({ selected }) => {
     setPageNumber(selected);
