@@ -36,9 +36,9 @@ jobs:
           name: Build
           working_directory: Backend
           command: |
-            apt update
-            apt install sudo -y
-            cat << \EOF >> ~/.bash_profile
+            apt update 
+            apt install sudo -y 
+            cat \<< \EOF >> ~/.bash_profile 
             dotnet tool install --global dotnet-sonarscanner
             dotnet sonarscanner
             dotnet build -p:RunAnalyzersDuringBuild=true
