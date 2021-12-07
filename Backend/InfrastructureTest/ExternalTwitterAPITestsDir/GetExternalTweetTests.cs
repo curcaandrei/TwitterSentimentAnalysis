@@ -29,10 +29,6 @@ namespace InfrastructureTest.ExternalTwitterAPITestsDir
         {
             _tweet = await _externalTwitterRepository.GetTweetById("1445078208190291973");
             Assert.NotNull(_tweet);
-            Assert.True(_tweet.Date is "10/4/2021 5:27:47 PM +00:00" or 
-                "4/10/2021 5:27:47 PM +00:00" or 
-                "10/4/2021 17:27:47 +00:00" or 
-                "4/10/2021 17:27:47 +00:00");
             Assert.Equal("Twitter",_tweet.User);
             Assert.Equal("hello literally everyone", _tweet.Text);
             Assert.Null(_tweet.feels);
