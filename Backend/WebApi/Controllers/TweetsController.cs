@@ -25,8 +25,6 @@ namespace WebApi.Controllers
         public TweetsController(IMediator mediator)
         {
             _mediator = mediator;
-            
-            
         }
 
         [HttpGet("all/{pageNr}", Name = "AllTweets")]
