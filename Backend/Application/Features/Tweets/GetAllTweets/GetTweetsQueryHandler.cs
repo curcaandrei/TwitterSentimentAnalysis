@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,7 +8,7 @@ using MediatR;
 
 namespace Application.Features.Tweets.GetAllTweets
 {
-    public class GetTweetsQueryHandler : IRequestHandler<GetTweetsQuery, List<TweetDTO>>
+    public class GetTweetsQueryHandler : IRequestHandler<GetTweetsQuery, System.Collections.Generic.List<TweetDTO>>
     {
         private readonly IAsyncRepository<Tweet> _repository;
 
@@ -18,7 +17,7 @@ namespace Application.Features.Tweets.GetAllTweets
             _repository = repository;
         }
 
-        public async Task<List<TweetDTO>> Handle(GetTweetsQuery request, CancellationToken cancellationToken)
+        public async Task<System.Collections.Generic.List<TweetDTO>> Handle(GetTweetsQuery request, CancellationToken cancellationToken)
         {
             var allTweets = await _repository.ListAllAsync(request.PageNr);
             return allTweets.ToList();
