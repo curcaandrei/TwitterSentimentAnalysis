@@ -443,3 +443,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
+Backend/sonarqubecoverage/SonarQube.xml

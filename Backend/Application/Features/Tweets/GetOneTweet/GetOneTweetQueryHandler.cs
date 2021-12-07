@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Application.Features.Tweets.GetOneTweet
 {
-    public class GetOneTweetQueryHandler : IRequestHandler<GetOneTweetQuery, TweetDTO>
+    public class GetOneTweetQueryHandler : IRequestHandler<GetOneTweetQuery, TweetDto>
     {
         private readonly ITweetsRepository _repository;
 
@@ -16,7 +16,7 @@ namespace Application.Features.Tweets.GetOneTweet
             _repository = repository;
         }
 
-        public async Task<TweetDTO> Handle(GetOneTweetQuery request, CancellationToken cancellationToken)
+        public async Task<TweetDto> Handle(GetOneTweetQuery request, CancellationToken cancellationToken)
         {
             var tweet = await _repository.GetByIdAsync(request.Id);
             return tweet;

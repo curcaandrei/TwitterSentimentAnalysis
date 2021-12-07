@@ -10,24 +10,30 @@ namespace InfrastructureTest.DataBaseTestsDir
         [Fact]
         public async void DeleteTweetTest()
         {
-            _tweet.Id = new ObjectId();
             await _repository.AddAsync(_tweet);
-            TweetDTO testTweet = await _repository.GetByIdAsync(_tweet.Id);
+            TweetDto testTweet = await _repository.GetByIdAsync(_tweet.Id);
             Assert.NotNull(testTweet);
             _repository.DeleteAsync(_tweet.Id.ToString());
-            TweetDTO deletedTweet = await _repository.GetByIdAsync(_tweet.Id);
-            Assert.Null(deletedTweet);
+            TweetDto deletedTweet = await _repository.GetByIdAsync(_tweet.Id);
+            Assert.Equal("No date",deletedTweet.Date);
+            Assert.Equal("No text",deletedTweet.Text);
+            Assert.Equal("No id",deletedTweet.Id);
         }
         
         [Fact]
         public async void DeleteTweetIncorrectTest()
         {
             _tweet.Id = new ObjectId();
-            TweetDTO testTweet = await _repository.GetByIdAsync(_tweet.Id);
-            Assert.Null(testTweet);
+            TweetDto testTweet = await _repository.GetByIdAsync(_tweet.Id);
+            Assert.Equal("No date",testTweet.Date);
+            Assert.Equal("No text",testTweet.Text);
+            Assert.Equal("No id",testTweet.Id);
+
             _repository.DeleteAsync(_tweet.Id.ToString());
-            TweetDTO deletedTweet = await _repository.GetByIdAsync(_tweet.Id);
-            Assert.Null(deletedTweet);
+            TweetDto deletedTweet = await _repository.GetByIdAsync(_tweet.Id);
+            Assert.Equal("No date",deletedTweet.Date);
+            Assert.Equal("No text",deletedTweet.Text);
+            Assert.Equal("No id",deletedTweet.Id);
         }
     }
 }

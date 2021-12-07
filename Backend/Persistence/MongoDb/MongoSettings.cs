@@ -13,7 +13,8 @@ namespace Persistence.MongoDb
 
         public MongoSettings()
         {
-            
+            Connection = "";
+            DatabaseName = "";
         }
     }
 }

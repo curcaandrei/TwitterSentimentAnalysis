@@ -18,7 +18,7 @@ namespace Application.Commands.UpdateTweet
 
         public Task<UpdateResult> Handle(UpdateTweetCommand request, CancellationToken cancellationToken)
         {
-            var t = _tweetsRepository.UpdateAsync(request.Id.ToString(), request.t);
+            var t = _tweetsRepository.UpdateAsync(request.Id.ToString(), request.Feels);
             return Task.FromResult<UpdateResult>(t);
         }
     }

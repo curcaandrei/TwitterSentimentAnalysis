@@ -10,28 +10,28 @@ namespace Persistence.Repositories
 {
     public class TweetRepository : BaseRepository<Tweet>, ITweetsRepository
     {
-        private IMongoCollection<Tweet> _collection;
+        private readonly IMongoCollection<Tweet> _collection;
         
         public TweetRepository(IMongoDbContext dbContext) : base(dbContext)
         {
             _collection = dbContext.GetCollection<Tweet>(typeof(Tweet).Name);
         }
         
-        public Task<TweetDTO> GetByIdAsync(ObjectId id)
+        public Task<TweetDto> GetByIdAsync(ObjectId id)
         {
             var res = _collection.FindAsync(x => x.Id == id).Result.FirstOrDefaultAsync();
+            TweetDto dto = new TweetDto();
             if (res.Result != null)
             {
-                TweetDTO dto = new TweetDTO();
                 dto.Id = res.Result.Id.ToString();
-                dto.feels = res.Result.feels;
+                dto.Feels = res.Result.feels;
                 dto.Text = res.Result.Text;
                 dto.Username = res.Result.Username;
                 dto.Date = res.Result.Date;
                 dto.User = res.Result.User;
                 return Task.FromResult(dto);
             }
-            return Task.FromResult<TweetDTO>(null);
+            return Task.FromResult<TweetDto>(dto);
 
         }
     }

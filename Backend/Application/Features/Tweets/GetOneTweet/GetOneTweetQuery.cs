@@ -6,7 +6,7 @@ using MongoDB.Bson;
 
 namespace Application.Features.Tweets.GetOneTweet
 {
-    public class GetOneTweetQuery : IRequest<TweetDTO>
+    public class GetOneTweetQuery : IRequest<TweetDto>
     {
         public ObjectId Id { get; set; }
         

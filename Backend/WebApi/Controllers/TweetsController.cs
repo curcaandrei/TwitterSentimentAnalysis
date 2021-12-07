@@ -44,7 +44,7 @@ namespace WebApi.Controllers
 
         [HttpGet("one/{id}", Name = "GetOne")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public Task<TweetDTO> GetOne([FromRoute]string id)
+        public Task<TweetDto> GetOne([FromRoute]string id)
         {
             var res = _mediator.Send(new GetOneTweetQuery(id));
             return res;

@@ -6,7 +6,7 @@ namespace Application.Persistence
 {
     public interface IAsyncRepository<T> where T : class
     {
-        Task<System.Collections.Generic.List<TweetDTO>> ListAllAsync(int pageNr);
+        Task<System.Collections.Generic.List<TweetDto>> ListAllAsync(int pageNr);
 
         Task<T> AddAsync(T entity);
 

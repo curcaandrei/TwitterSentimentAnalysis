@@ -13,10 +13,10 @@ namespace Persistence.TwitterExternalAPI
 
         public TwitterHelper(IOptions<TwitterSettings> configuration)
         {
-            apiKey = configuration.Value.apiKey;
-            apiSecret = configuration.Value.apiSecret;
-            accessToken = configuration.Value.accessToken;
-            accessSecret = configuration.Value.accessSecret;
+            apiKey = configuration.Value.ApiKey;
+            apiSecret = configuration.Value.ApiSecret;
+            accessToken = configuration.Value.AccessToken;
+            accessSecret = configuration.Value.AccessSecret;
             _twitterClient = new TwitterClient(apiKey, apiSecret, accessToken, accessSecret);
         }
 

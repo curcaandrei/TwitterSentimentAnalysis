@@ -7,6 +7,6 @@ namespace Application.Persistence
 {
     public interface ITweetsRepository : IAsyncRepository<Tweet>
     {
-        Task<TweetDTO> GetByIdAsync(ObjectId id);
+        Task<TweetDto> GetByIdAsync(ObjectId id);
     }
 }

@@ -18,21 +18,25 @@ namespace Persistence.Repositories
             _context = dbContext;
         }
         
-        public async Task<List<TweetDTO>> ListAllAsync(int pageNr)
+        public async Task<List<TweetDto>> ListAllAsync(int pageNr)
         {
             List<T> tweets =  _context.GetCollection<T>(typeof(T).Name).Find(_ => true).Skip((pageNr - 1) * 10).Limit(10).ToList();
-            List<TweetDTO> tweetDtos = new List<TweetDTO>();
-            foreach (var VARIABLE in tweets)
+            List<TweetDto> tweetDtos = new List<TweetDto>();
+            
+            foreach (var variable in tweets)
             {
-                Tweet t = VARIABLE as Tweet;
-                TweetDTO tweetDto = new TweetDTO();
-                tweetDto.feels = t.feels;
-                tweetDto.Date = t.Date;
-                tweetDto.Id = t.Id.ToString();
-                tweetDto.Text = t.Text;
-                tweetDto.User = t.User;
-                tweetDto.Username = t.Username;
-                tweetDtos.Add(tweetDto);
+                Tweet? t = variable as Tweet;
+                TweetDto tweetDto = new TweetDto();
+                if (t != null)
+                {
+                    tweetDto.Feels = t.feels;
+                    tweetDto.Date = t.Date;
+                    tweetDto.Id = t.Id.ToString();
+                    tweetDto.Text = t.Text;
+                    tweetDto.User = t.User;
+                    tweetDto.Username = t.Username;
+                    tweetDtos.Add(tweetDto);
+                }
             }
 
             return await Task.FromResult(tweetDtos);
@@ -44,11 +48,11 @@ namespace Persistence.Repositories
             return entity;
         }
         
-        public UpdateResult UpdateAsync(string id, Dictionary<string, float>  entity)
+        public UpdateResult UpdateAsync(string id, Dictionary<string, float>  feels)
         {
             var objectId = new ObjectId(id);
             return _context.GetCollection<T>(typeof(T).Name).UpdateOne(Builders<T>.Filter.Eq("_id", objectId),
-                Builders<T>.Update.Set("feels", entity));
+                Builders<T>.Update.Set("feels", feels));
         }
 
         public DeleteResult DeleteAsync(string id)
