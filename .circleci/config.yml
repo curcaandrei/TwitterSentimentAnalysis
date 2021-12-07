@@ -43,9 +43,9 @@ jobs:
           command: |
             export PATH="$PATH:/root/.dotnet/tools"
             dotnet tool install --global dotnet-sonarscanner
-            dotnet sonarscanner begin /k:"ProiectDotNet" /d:sonar.host.url="http://localhost:9000"  /d:sonar.login="d1c3b6d57203a339957c0dbeaac683f836760a5e"
+            dotnet-sonarscanner begin /k:"ProiectDotNet" /d:sonar.host.url="http://localhost:9000"  /d:sonar.login="d1c3b6d57203a339957c0dbeaac683f836760a5e"
             dotnet build
-            dotnet sonarscanner end /d:sonar.login="d1c3b6d57203a339957c0dbeaac683f836760a5e"
+            dotnet-sonarscanner end /d:sonar.login="d1c3b6d57203a339957c0dbeaac683f836760a5e"
   test:
     working_directory: Backend
     docker:
