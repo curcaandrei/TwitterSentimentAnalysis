@@ -7,15 +7,15 @@ using Tweetinvi.Models.V2;
 
 namespace Application.Features.ExternalTwitterAPI.GetTweetFromURL
 {
-    public class GetTweetFromURLQueryHandler : IRequestHandler<GetTweetFromURLQuery, Tweet>
+    public class GetTweetFromUrlQueryHandler : IRequestHandler<GetTweetFromUrlQuery, Tweet>
     {
         private readonly IExternalTweetRepository _tweetRepository;
-        public GetTweetFromURLQueryHandler(IExternalTweetRepository tweetRepository)
+        public GetTweetFromUrlQueryHandler(IExternalTweetRepository tweetRepository)
         {
             _tweetRepository = tweetRepository;
         }
 
-        public async Task<Tweet> Handle(GetTweetFromURLQuery request, CancellationToken cancellationToken)
+        public async Task<Tweet> Handle(GetTweetFromUrlQuery request, CancellationToken cancellationToken)
         {
             return await _tweetRepository.GetTweetById(request.Id);
         }

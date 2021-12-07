@@ -31,6 +31,7 @@ namespace InfrastructureTest.DataBaseTestsDir
         public void Dispose()
         {
             _repository.DeleteAsync(_tweet.Id.ToString());
+            GC.SuppressFinalize(this);
         }
     }
 }

@@ -39,6 +39,8 @@ namespace Persistence.TwitterExternalAPI
         {
             var appClient = _twitterHelper._twitterClient;
             var authenticationRequestId = Guid.NewGuid().ToString();
+            
+            #pragma warning disable S1075 // URIs should not be hardcoded   
             var redirectPath = "https://localhost:7225/signin";
 
             var redirectUrl = MyAuthRequestStore.AppendAuthenticationRequestIdToCallbackUrl(redirectPath, authenticationRequestId);
@@ -61,7 +63,7 @@ namespace Persistence.TwitterExternalAPI
             var userClient = new TwitterClient(userCreds.ConsumerKey,userCreds.ConsumerSecret,userCreds.AccessToken,userCreds.AccessTokenSecret);
             var user = await userClient.Users.GetAuthenticatedUserAsync();
             
-            
+            #pragma warning disable S1075 // URIs should not be hardcoded   
             var client = new RestClient("https://api.twitter.com/2/users/"+user.Id +"/tweets");
             client.Authenticator = OAuth1Authenticator.ForAccessToken(userCreds.ConsumerKey, userCreds.ConsumerSecret,
                 userCreds.AccessToken, userCreds.AccessTokenSecret);

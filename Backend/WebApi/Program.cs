@@ -30,10 +30,10 @@ builder.Services.AddScoped<IMongoDbContext, MongoDbContext>();
 // Twitter Helper
 builder.Services.Configure<TwitterSettings>(options =>
 {
-    options.apiKey = builder.Configuration.GetSection("TwitterAPI:TwitterApiKey").Value;
-    options.apiSecret = builder.Configuration.GetSection("TwitterAPI:TwitterApiSecret").Value;
-    options.accessToken = builder.Configuration.GetSection("TwitterAPI:TwitterAccessToken").Value;
-    options.accessSecret = builder.Configuration.GetSection("TwitterAPI:TwitterAccessTokenSecret").Value;
+    options.ApiKey = builder.Configuration.GetSection("TwitterAPI:TwitterApiKey").Value;
+    options.ApiSecret = builder.Configuration.GetSection("TwitterAPI:TwitterApiSecret").Value;
+    options.AccessToken = builder.Configuration.GetSection("TwitterAPI:TwitterAccessToken").Value;
+    options.AccessSecret = builder.Configuration.GetSection("TwitterAPI:TwitterAccessTokenSecret").Value;
 });
 
 builder.Services.AddScoped<ITwitterHelper, TwitterHelper>();

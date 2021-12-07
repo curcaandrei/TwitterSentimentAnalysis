@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
@@ -7,6 +8,8 @@ namespace Persistence.MongoDb
     {
         private IMongoDatabase Database { get; set; }
         private MongoClient MongoClient { get; set; }
+        
+        [AllowNull]
         public IClientSessionHandle SessionHandle { get; set; }
         
         public MongoDbContext(IOptions<MongoSettings> configuration)
