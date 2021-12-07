@@ -13,11 +13,9 @@ workflows:
       - build:
           context: 
             - context
-            - SonarCloud
       - test:
           context:
             - context
-            - SonarCloud
 jobs:
   build:
     docker:
@@ -39,14 +37,14 @@ jobs:
             apt update
             apt install sudo -y
             dotnet build -p:RunAnalyzersDuringBuild=true
-      - sonarcloud/scan
-      # - sonarcloud-dotnet/setup-sonar
-      # - sonarcloud-dotnet/run-scan:
-      #     sonarlogin: 
-      #     organization: dotnetproiect
-      #     project_key: curcaandrei_ProiectDotNet
-      # - sonarcloud-dotnet/end-scan:
-      #     sonarlogin: deabe192f96e1d51f66463f6d475eef172b48cdf
+      - run:
+          name: SonarQube
+          working_directory: Backend
+          command: |
+            dotnet tool install --global dotnet-sonarscanner
+            dotnet sonarscanner begin /k:"ProiectDotNet" /d:sonar.host.url="http://localhost:9000"  /d:sonar.login="d1c3b6d57203a339957c0dbeaac683f836760a5e"
+            dotnet build
+            dotnet sonarscanner end /d:sonar.login="d1c3b6d57203a339957c0dbeaac683f836760a5e"
   test:
     working_directory: Backend
     docker:
@@ -57,23 +55,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Creating Dummy Artifacts
-          working_directory: artifacts
-          command: |
-            echo "my artifact file" > art-1;
-            mkdir -p artifacts/artifacts;
-            echo "my artifact files in a dir" > art-2;
-      - store_artifacts:
-          path: artifacts/art-1
-          destination: artifact-file
-      - store_artifacts:
-          path: artifacts/artifacts
-  
-      - run:
           name: Test
           working_directory: Backend
           command: |
             dotnet test --logger:"xunit;LogFilePath=test_result.xml"
 orbs:
-    sonarcloud: sonarsource/sonarcloud@1.0.1
     build-tools: circleci/build-tools@3.0.0
