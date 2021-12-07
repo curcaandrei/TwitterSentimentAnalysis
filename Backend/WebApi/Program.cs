@@ -35,12 +35,6 @@ builder.Services.Configure<TwitterSettings>(options =>
     options.accessToken = builder.Configuration.GetSection("TwitterAPI:TwitterAccessToken").Value;
     options.accessSecret = builder.Configuration.GetSection("TwitterAPI:TwitterAccessTokenSecret").Value;
 });
-// builder.Services.AddAuthentication().AddTwitter(twitterOptions =>
-// {
-//     twitterOptions.ConsumerKey = builder.Configuration["TwitterAPI:TwitterApiKey"];
-//     twitterOptions.ConsumerSecret = builder.Configuration["TwitterAPI:TwitterApiSecret"];
-//     twitterOptions.RetrieveUserDetails = true;
-// });
 
 builder.Services.AddScoped<ITwitterHelper, TwitterHelper>();
 // Twitter Helper
@@ -53,7 +47,7 @@ var app = builder.Build();
 app.UseRouting();
 app.UseCors(x =>
 {
-    x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(origin => true);
+    x.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(origin => true);
 });
 app.UseAuthorization();
 app.UseEndpoints(x => x.MapControllers());

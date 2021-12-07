@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Persistence;
@@ -20,7 +19,7 @@ namespace Application.Features.Tweets.GetAllTweets
         public async Task<System.Collections.Generic.List<TweetDTO>> Handle(GetTweetsQuery request, CancellationToken cancellationToken)
         {
             var allTweets = await _repository.ListAllAsync(request.PageNr);
-            return allTweets.ToList();
+            return System.Linq.Enumerable.ToList(allTweets);
         }
     }
 }
