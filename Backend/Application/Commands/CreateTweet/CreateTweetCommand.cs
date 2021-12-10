@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using MediatR;
 using MongoDB.Bson;
@@ -12,5 +13,18 @@ namespace Application.Commands.CreateTweet
 
         [AllowNull]
         public System.Collections.Generic.Dictionary<string, float> Feels { get; set; }
+
+        public CreateTweetCommand(string text, string user, string date, Dictionary<string, float> feels)
+        {
+            Text = text;
+            User = user;
+            Date = date;
+            Feels = feels;
+        }
+
+        public CreateTweetCommand()
+        {
+            
+        }
     }
 }

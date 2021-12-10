@@ -6,11 +6,9 @@ using Application.Commands.UpdateTweet;
 using Application.Features.Tweets.GetAllTweets;
 using Application.Features.Tweets.GetOneTweet;
 using Domain.Dtos;
-using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace WebApi.Controllers
@@ -29,17 +27,17 @@ namespace WebApi.Controllers
 
         [HttpGet("all/{pageNr}", Name = "AllTweets")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<Tweet>>> GetAll(int pageNr)
+        public async Task<List<TweetDto>> GetAll(int pageNr)
         {
             var list = await _mediator.Send(new GetTweetsQuery(pageNr));
-            return Ok(list);
+            return list;
         }
         
         [HttpPost("Create", Name = "CreateTweet")]
-        public async Task<ActionResult<Tweet>> Create([FromBody] CreateTweetCommand command)
+        public async Task<string> Create([FromBody] CreateTweetCommand command)
         {
             var response = await _mediator.Send(command);
-            return Ok(response.ToJson());
+            return response.ToString();
         }
 
         [HttpGet("one/{id}", Name = "GetOne")]

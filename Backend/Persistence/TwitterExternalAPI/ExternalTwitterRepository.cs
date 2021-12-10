@@ -48,7 +48,7 @@ namespace Persistence.TwitterExternalAPI
             var authenticationRequestToken = await appClient.Auth.RequestAuthenticationUrlAsync(redirectUrl);
 
             await MyAuthRequestStore.AddAuthenticationTokenAsync(authenticationRequestId, authenticationRequestToken);
-
+            
             return authenticationRequestToken.AuthorizationURL;
         }
 
