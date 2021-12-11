@@ -20,7 +20,7 @@ namespace WebApi.Controllers
         
         [HttpGet("tweetById/{id}", Name = "Get-External-Tweet")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<Tweet>> GetExternalTweetById([FromRoute]string id)
+        public async Task<Tweet> GetExternalTweetById([FromRoute]string id)
         {
             var dtos = await _mediator.Send(new GetTweetFromUrlQuery(id));
 

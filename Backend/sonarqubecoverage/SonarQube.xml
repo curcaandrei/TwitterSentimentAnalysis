@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <coverage version="1">
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Application\Commands\CreateTweet\CreateTweetCommand.cs">
-    <lineToCover lineNumber="8" covered="false" />
-    <lineToCover lineNumber="9" covered="false" />
-    <lineToCover lineNumber="10" covered="false" />
-    <lineToCover lineNumber="11" covered="false" />
-    <lineToCover lineNumber="14" covered="false" />
+    <lineToCover lineNumber="10" covered="true" />
+    <lineToCover lineNumber="11" covered="true" />
+    <lineToCover lineNumber="12" covered="true" />
+    <lineToCover lineNumber="15" covered="true" />
+    <lineToCover lineNumber="17" covered="true" />
+    <lineToCover lineNumber="18" covered="true" />
+    <lineToCover lineNumber="19" covered="true" />
+    <lineToCover lineNumber="20" covered="true" />
+    <lineToCover lineNumber="21" covered="true" />
+    <lineToCover lineNumber="22" covered="true" />
+    <lineToCover lineNumber="23" covered="true" />
+    <lineToCover lineNumber="25" covered="true" />
+    <lineToCover lineNumber="26" covered="true" />
+    <lineToCover lineNumber="28" covered="true" />
   </file>
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Application\Commands\CreateTweet\CreateTweetCommandHandler.cs">
     <lineToCover lineNumber="15" covered="false" />
@@ -20,11 +29,11 @@
     <lineToCover lineNumber="26" covered="false" />
   </file>
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Application\Commands\DeleteTweet\DeleteTweetCommand.cs">
-    <lineToCover lineNumber="10" covered="false" />
-    <lineToCover lineNumber="12" covered="false" />
-    <lineToCover lineNumber="13" covered="false" />
-    <lineToCover lineNumber="14" covered="false" />
-    <lineToCover lineNumber="15" covered="false" />
+    <lineToCover lineNumber="10" covered="true" />
+    <lineToCover lineNumber="12" covered="true" />
+    <lineToCover lineNumber="13" covered="true" />
+    <lineToCover lineNumber="14" covered="true" />
+    <lineToCover lineNumber="15" covered="true" />
   </file>
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Application\Commands\DeleteTweet\DeleteTweetCommandHandler.cs">
     <lineToCover lineNumber="15" covered="false" />
@@ -37,13 +46,13 @@
     <lineToCover lineNumber="24" covered="false" />
   </file>
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Application\Commands\UpdateTweet\UpdateTweetCommand.cs">
-    <lineToCover lineNumber="9" covered="false" />
-    <lineToCover lineNumber="10" covered="false" />
-    <lineToCover lineNumber="12" covered="false" />
-    <lineToCover lineNumber="13" covered="false" />
-    <lineToCover lineNumber="14" covered="false" />
-    <lineToCover lineNumber="15" covered="false" />
-    <lineToCover lineNumber="16" covered="false" />
+    <lineToCover lineNumber="9" covered="true" />
+    <lineToCover lineNumber="10" covered="true" />
+    <lineToCover lineNumber="12" covered="true" />
+    <lineToCover lineNumber="13" covered="true" />
+    <lineToCover lineNumber="14" covered="true" />
+    <lineToCover lineNumber="15" covered="true" />
+    <lineToCover lineNumber="16" covered="true" />
   </file>
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Application\Commands\UpdateTweet\UpdateTweetCommandHandler.cs">
     <lineToCover lineNumber="14" covered="false" />
@@ -56,29 +65,13 @@
     <lineToCover lineNumber="23" covered="false" />
   </file>
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Application\Features\ExternalTwitterAPI\GetTweetFromURL\GetTweetFromUrlQuery.cs">
-    <lineToCover lineNumber="9" covered="false" />
-    <lineToCover lineNumber="11" covered="false" />
-    <lineToCover lineNumber="12" covered="false" />
-    <lineToCover lineNumber="13" covered="false" />
-    <lineToCover lineNumber="14" covered="false" />
-  </file>
-  <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Application\Features\ExternalTwitterAPI\GetTweetFromURL\GetTweetFromURLQuery.cs">
-    <lineToCover lineNumber="9" covered="false" />
-    <lineToCover lineNumber="11" covered="false" />
-    <lineToCover lineNumber="12" covered="false" />
-    <lineToCover lineNumber="13" covered="false" />
-    <lineToCover lineNumber="14" covered="false" />
+    <lineToCover lineNumber="9" covered="true" />
+    <lineToCover lineNumber="11" covered="true" />
+    <lineToCover lineNumber="12" covered="true" />
+    <lineToCover lineNumber="13" covered="true" />
+    <lineToCover lineNumber="14" covered="true" />
   </file>
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Application\Features\ExternalTwitterAPI\GetTweetFromURL\GetTweetFromUrlQueryHandler.cs">
-    <lineToCover lineNumber="13" covered="false" />
-    <lineToCover lineNumber="14" covered="false" />
-    <lineToCover lineNumber="15" covered="false" />
-    <lineToCover lineNumber="16" covered="false" />
-    <lineToCover lineNumber="19" covered="false" />
-    <lineToCover lineNumber="20" covered="false" />
-    <lineToCover lineNumber="21" covered="false" />
-  </file>
-  <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Application\Features\ExternalTwitterAPI\GetTweetFromURL\GetTweetFromURLQueryHandler.cs">
     <lineToCover lineNumber="13" covered="false" />
     <lineToCover lineNumber="14" covered="false" />
     <lineToCover lineNumber="15" covered="false" />
@@ -97,11 +90,11 @@
     <lineToCover lineNumber="20" covered="false" />
   </file>
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Application\Features\ExternalTwitterAPI\LogInUser\ValidateAuth\ValidateAuthQuery.cs">
-    <lineToCover lineNumber="8" covered="false" />
-    <lineToCover lineNumber="10" covered="false" />
-    <lineToCover lineNumber="11" covered="false" />
-    <lineToCover lineNumber="12" covered="false" />
-    <lineToCover lineNumber="13" covered="false" />
+    <lineToCover lineNumber="8" covered="true" />
+    <lineToCover lineNumber="10" covered="true" />
+    <lineToCover lineNumber="11" covered="true" />
+    <lineToCover lineNumber="12" covered="true" />
+    <lineToCover lineNumber="13" covered="true" />
   </file>
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Application\Features\ExternalTwitterAPI\LogInUser\ValidateAuth\ValidateAuthQueryHandler.cs">
     <lineToCover lineNumber="12" covered="false" />
@@ -113,23 +106,21 @@
     <lineToCover lineNumber="20" covered="false" />
   </file>
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Application\Features\Tweets\GetAllTweets\GetTweetsQuery.cs">
-    <lineToCover lineNumber="8" covered="false" />
-    <lineToCover lineNumber="10" covered="false" />
-    <lineToCover lineNumber="11" covered="false" />
-    <lineToCover lineNumber="12" covered="false" />
-    <lineToCover lineNumber="13" covered="false" />
+    <lineToCover lineNumber="8" covered="true" />
+    <lineToCover lineNumber="10" covered="true" />
+    <lineToCover lineNumber="11" covered="true" />
+    <lineToCover lineNumber="12" covered="true" />
+    <lineToCover lineNumber="13" covered="true" />
   </file>
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Application\Features\Tweets\GetAllTweets\GetTweetsQueryHandler.cs">
     <lineToCover lineNumber="14" covered="false" />
     <lineToCover lineNumber="15" covered="false" />
     <lineToCover lineNumber="16" covered="false" />
     <lineToCover lineNumber="17" covered="false" />
-    <lineToCover lineNumber="18" covered="false" />
     <lineToCover lineNumber="20" covered="false" />
     <lineToCover lineNumber="21" covered="false" />
     <lineToCover lineNumber="22" covered="false" />
     <lineToCover lineNumber="23" covered="false" />
-    <lineToCover lineNumber="24" covered="false" />
   </file>
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Application\Features\Tweets\GetOneTweet\GetOneTweetQuery.cs">
     <lineToCover lineNumber="11" covered="true" />
@@ -166,35 +157,22 @@
     <lineToCover lineNumber="15" covered="true" />
     <lineToCover lineNumber="18" covered="true" />
   </file>
-  <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Domain\Dtos\TweetDTO.cs">
-    <lineToCover lineNumber="8" covered="true" />
-    <lineToCover lineNumber="9" covered="true" />
-    <lineToCover lineNumber="10" covered="true" />
-    <lineToCover lineNumber="13" covered="true" />
-    <lineToCover lineNumber="14" covered="true" />
-    <lineToCover lineNumber="15" covered="true" />
-  </file>
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Domain\Entities\Tweet.cs">
     <lineToCover lineNumber="11" covered="true" />
     <lineToCover lineNumber="12" covered="true" />
     <lineToCover lineNumber="15" covered="true" />
-    <lineToCover lineNumber="16" covered="true" />
     <lineToCover lineNumber="17" covered="true" />
     <lineToCover lineNumber="20" covered="true" />
   </file>
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Persistence\MongoDb\MongoDbContext.cs">
-    <lineToCover lineNumber="8" covered="true" />
     <lineToCover lineNumber="9" covered="true" />
     <lineToCover lineNumber="10" covered="true" />
-    <lineToCover lineNumber="12" covered="true" />
-    <lineToCover lineNumber="13" covered="true" />
-    <lineToCover lineNumber="14" covered="true" />
+    <lineToCover lineNumber="13" covered="false" />
     <lineToCover lineNumber="15" covered="true" />
     <lineToCover lineNumber="16" covered="true" />
     <lineToCover lineNumber="17" covered="true" />
     <lineToCover lineNumber="18" covered="true" />
     <lineToCover lineNumber="19" covered="true" />
-    <lineToCover lineNumber="20" covered="true" />
     <lineToCover lineNumber="21" covered="true" />
     <lineToCover lineNumber="22" covered="true" />
     <lineToCover lineNumber="23" covered="true" />
@@ -221,7 +199,6 @@
     <lineToCover lineNumber="22" covered="false" />
     <lineToCover lineNumber="23" covered="false" />
     <lineToCover lineNumber="24" covered="false" />
-    <lineToCover lineNumber="25" covered="false" branchesToCover="2" coveredBranches="0" />
     <lineToCover lineNumber="26" covered="false" branchesToCover="2" coveredBranches="0" />
     <lineToCover lineNumber="27" covered="false" />
     <lineToCover lineNumber="28" covered="false" />
@@ -237,23 +214,17 @@
     <lineToCover lineNumber="38" covered="false" />
     <lineToCover lineNumber="39" covered="false" />
     <lineToCover lineNumber="40" covered="false" />
-    <lineToCover lineNumber="42" covered="true" />
-    <lineToCover lineNumber="43" covered="true" />
-    <lineToCover lineNumber="44" covered="true" />
-    <lineToCover lineNumber="45" covered="true" />
+    <lineToCover lineNumber="42" covered="false" />
+    <lineToCover lineNumber="43" covered="false" />
     <lineToCover lineNumber="46" covered="true" />
     <lineToCover lineNumber="47" covered="true" />
     <lineToCover lineNumber="48" covered="true" />
     <lineToCover lineNumber="49" covered="true" />
-    <lineToCover lineNumber="50" covered="true" />
-    <lineToCover lineNumber="51" covered="true" />
     <lineToCover lineNumber="52" covered="true" />
     <lineToCover lineNumber="53" covered="true" />
     <lineToCover lineNumber="54" covered="true" />
     <lineToCover lineNumber="55" covered="true" />
     <lineToCover lineNumber="56" covered="true" />
-    <lineToCover lineNumber="57" covered="true" />
-    <lineToCover lineNumber="58" covered="true" />
     <lineToCover lineNumber="59" covered="true" />
     <lineToCover lineNumber="60" covered="true" />
     <lineToCover lineNumber="61" covered="true" />
@@ -266,7 +237,7 @@
     <lineToCover lineNumber="18" covered="true" />
     <lineToCover lineNumber="21" covered="true" />
     <lineToCover lineNumber="22" covered="true" />
-    <lineToCover lineNumber="23" covered="true" branchesToCover="2" coveredBranches="2" />
+    <lineToCover lineNumber="23" covered="true" />
     <lineToCover lineNumber="24" covered="true" branchesToCover="2" coveredBranches="2" />
     <lineToCover lineNumber="25" covered="true" />
     <lineToCover lineNumber="26" covered="true" />
@@ -280,7 +251,7 @@
     <lineToCover lineNumber="36" covered="true" />
   </file>
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Persistence\TwitterExternalAPI\ExternalTwitterRepository.cs">
-    <lineToCover lineNumber="16" covered="false" />
+    <lineToCover lineNumber="16" covered="true" />
     <lineToCover lineNumber="18" covered="true" />
     <lineToCover lineNumber="19" covered="true" />
     <lineToCover lineNumber="20" covered="true" />
@@ -297,34 +268,26 @@
     <lineToCover lineNumber="34" covered="true" />
     <lineToCover lineNumber="35" covered="true" />
     <lineToCover lineNumber="36" covered="true" />
-    <lineToCover lineNumber="39" covered="false" />
-    <lineToCover lineNumber="40" covered="false" />
-    <lineToCover lineNumber="41" covered="false" />
-    <lineToCover lineNumber="42" covered="false" />
-    <lineToCover lineNumber="44" covered="false" />
-    <lineToCover lineNumber="46" covered="false" />
-    <lineToCover lineNumber="48" covered="false" />
-    <lineToCover lineNumber="50" covered="false" />
-    <lineToCover lineNumber="51" covered="false" />
-    <lineToCover lineNumber="52" covered="false" />
-    <lineToCover lineNumber="53" covered="false" />
-    <lineToCover lineNumber="54" covered="false" />
-    <lineToCover lineNumber="55" covered="false" />
-    <lineToCover lineNumber="56" covered="false" />
-    <lineToCover lineNumber="57" covered="false" />
-    <lineToCover lineNumber="59" covered="false" />
+    <lineToCover lineNumber="39" covered="true" />
+    <lineToCover lineNumber="40" covered="true" />
+    <lineToCover lineNumber="41" covered="true" />
+    <lineToCover lineNumber="44" covered="true" />
+    <lineToCover lineNumber="46" covered="true" />
+    <lineToCover lineNumber="48" covered="true" />
+    <lineToCover lineNumber="50" covered="true" />
+    <lineToCover lineNumber="52" covered="true" />
+    <lineToCover lineNumber="53" covered="true" />
+    <lineToCover lineNumber="56" covered="true" />
+    <lineToCover lineNumber="57" covered="true" />
+    <lineToCover lineNumber="59" covered="true" />
     <lineToCover lineNumber="61" covered="false" />
-    <lineToCover lineNumber="62" covered="false" />
     <lineToCover lineNumber="63" covered="false" />
     <lineToCover lineNumber="64" covered="false" />
-    <lineToCover lineNumber="65" covered="false" />
-    <lineToCover lineNumber="66" covered="false" />
     <lineToCover lineNumber="67" covered="false" />
     <lineToCover lineNumber="68" covered="false" />
     <lineToCover lineNumber="69" covered="false" />
     <lineToCover lineNumber="70" covered="false" />
     <lineToCover lineNumber="71" covered="false" />
-    <lineToCover lineNumber="72" covered="false" />
     <lineToCover lineNumber="73" covered="false" />
     <lineToCover lineNumber="74" covered="false" />
   </file>
@@ -393,81 +356,72 @@
     <lineToCover lineNumber="51" covered="false" />
     <lineToCover lineNumber="52" covered="false" />
     <lineToCover lineNumber="53" covered="false" />
-    <lineToCover lineNumber="54" covered="false" />
     <lineToCover lineNumber="55" covered="false" branchesToCover="2" coveredBranches="0" />
     <lineToCover lineNumber="56" covered="false" />
     <lineToCover lineNumber="57" covered="false" />
     <lineToCover lineNumber="58" covered="false" />
     <lineToCover lineNumber="59" covered="false" />
     <lineToCover lineNumber="60" covered="false" />
-    <lineToCover lineNumber="61" covered="false" branchesToCover="2" coveredBranches="0" />
+    <lineToCover lineNumber="61" covered="false" />
     <lineToCover lineNumber="62" covered="false" />
     <lineToCover lineNumber="63" covered="false" />
-    <lineToCover lineNumber="64" covered="false" />
     <lineToCover lineNumber="65" covered="false" />
     <lineToCover lineNumber="66" covered="false" />
-    <lineToCover lineNumber="67" covered="false" />
     <lineToCover lineNumber="68" covered="false" />
-    <lineToCover lineNumber="69" covered="false" />
     <lineToCover lineNumber="70" covered="false" />
   </file>
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\WebApi\Controllers\AuthenticationController.cs">
-    <lineToCover lineNumber="15" covered="false" />
-    <lineToCover lineNumber="16" covered="false" />
-    <lineToCover lineNumber="17" covered="false" />
-    <lineToCover lineNumber="18" covered="false" />
-    <lineToCover lineNumber="23" covered="false" />
-    <lineToCover lineNumber="24" covered="false" />
-    <lineToCover lineNumber="25" covered="false" />
-    <lineToCover lineNumber="26" covered="false" />
-    <lineToCover lineNumber="31" covered="false" />
-    <lineToCover lineNumber="32" covered="false" />
-    <lineToCover lineNumber="33" covered="false" />
-    <lineToCover lineNumber="34" covered="false" branchesToCover="2" coveredBranches="0" />
-    <lineToCover lineNumber="35" covered="false" />
-    <lineToCover lineNumber="36" covered="false" />
-    <lineToCover lineNumber="37" covered="false" />
-    <lineToCover lineNumber="39" covered="false" />
-    <lineToCover lineNumber="40" covered="false" />
-    <lineToCover lineNumber="41" covered="false" />
-    <lineToCover lineNumber="42" covered="false" />
-    <lineToCover lineNumber="44" covered="false" />
-    <lineToCover lineNumber="45" covered="false" />
-  </file>
-  <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\WebApi\Controllers\ExternalTwitterController.cs">
-    <lineToCover lineNumber="16" covered="false" />
-    <lineToCover lineNumber="17" covered="false" />
-    <lineToCover lineNumber="18" covered="false" />
-    <lineToCover lineNumber="19" covered="false" />
-    <lineToCover lineNumber="24" covered="false" />
-    <lineToCover lineNumber="25" covered="false" />
-    <lineToCover lineNumber="27" covered="false" />
-    <lineToCover lineNumber="28" covered="false" />
-  </file>
-  <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\WebApi\Controllers\TweetsController.cs">
+    <lineToCover lineNumber="16" covered="true" />
+    <lineToCover lineNumber="17" covered="true" />
+    <lineToCover lineNumber="18" covered="true" />
+    <lineToCover lineNumber="19" covered="true" />
+    <lineToCover lineNumber="24" covered="true" />
     <lineToCover lineNumber="25" covered="true" />
     <lineToCover lineNumber="26" covered="true" />
     <lineToCover lineNumber="27" covered="true" />
+    <lineToCover lineNumber="32" covered="true" />
+    <lineToCover lineNumber="33" covered="true" />
+    <lineToCover lineNumber="34" covered="true" />
+    <lineToCover lineNumber="35" covered="true" />
+    <lineToCover lineNumber="36" covered="true" />
+    <lineToCover lineNumber="37" covered="true" />
+    <lineToCover lineNumber="38" covered="true" />
+    <lineToCover lineNumber="39" covered="true" />
+  </file>
+  <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\WebApi\Controllers\ExternalTwitterController.cs">
+    <lineToCover lineNumber="16" covered="true" />
+    <lineToCover lineNumber="17" covered="true" />
+    <lineToCover lineNumber="18" covered="true" />
+    <lineToCover lineNumber="19" covered="true" />
+    <lineToCover lineNumber="24" covered="true" />
+    <lineToCover lineNumber="25" covered="true" />
+    <lineToCover lineNumber="27" covered="true" />
     <lineToCover lineNumber="28" covered="true" />
-    <lineToCover lineNumber="33" covered="false" />
-    <lineToCover lineNumber="34" covered="false" />
-    <lineToCover lineNumber="35" covered="false" />
-    <lineToCover lineNumber="36" covered="false" />
-    <lineToCover lineNumber="40" covered="false" />
-    <lineToCover lineNumber="41" covered="false" />
-    <lineToCover lineNumber="42" covered="false" />
-    <lineToCover lineNumber="43" covered="false" />
+  </file>
+  <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\WebApi\Controllers\TweetsController.cs">
+    <lineToCover lineNumber="23" covered="true" />
+    <lineToCover lineNumber="24" covered="true" />
+    <lineToCover lineNumber="25" covered="true" />
+    <lineToCover lineNumber="26" covered="true" />
+    <lineToCover lineNumber="31" covered="true" />
+    <lineToCover lineNumber="32" covered="true" />
+    <lineToCover lineNumber="33" covered="true" />
+    <lineToCover lineNumber="34" covered="true" />
+    <lineToCover lineNumber="38" covered="true" />
+    <lineToCover lineNumber="39" covered="true" />
+    <lineToCover lineNumber="40" covered="true" />
+    <lineToCover lineNumber="41" covered="true" />
+    <lineToCover lineNumber="46" covered="true" />
+    <lineToCover lineNumber="47" covered="true" />
     <lineToCover lineNumber="48" covered="true" />
     <lineToCover lineNumber="49" covered="true" />
-    <lineToCover lineNumber="50" covered="true" />
-    <lineToCover lineNumber="51" covered="true" />
-    <lineToCover lineNumber="56" covered="false" />
-    <lineToCover lineNumber="57" covered="false" />
-    <lineToCover lineNumber="58" covered="false" />
-    <lineToCover lineNumber="59" covered="false" />
-    <lineToCover lineNumber="64" covered="false" />
-    <lineToCover lineNumber="65" covered="false" />
-    <lineToCover lineNumber="66" covered="false" />
-    <lineToCover lineNumber="67" covered="false" />
+    <lineToCover lineNumber="54" covered="true" />
+    <lineToCover lineNumber="55" covered="true" />
+    <lineToCover lineNumber="56" covered="true" />
+    <lineToCover lineNumber="57" covered="true" />
+    <lineToCover lineNumber="62" covered="true" />
+    <lineToCover lineNumber="63" covered="true" />
+    <lineToCover lineNumber="64" covered="true" />
+    <lineToCover lineNumber="65" covered="true" />
   </file>
 </coverage>

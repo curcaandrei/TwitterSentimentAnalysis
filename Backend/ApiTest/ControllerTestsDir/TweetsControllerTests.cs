@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using Application.Commands.CreateTweet;
+using Application.Commands.DeleteTweet;
+using Application.Commands.UpdateTweet;
+using Application.Features.Tweets.GetAllTweets;
 using Application.Features.Tweets.GetOneTweet;
-using Domain.Entities;
+using AutoMapper;
 using MediatR;
 using WebApi.Controllers;
 using Xunit;
 using FakeItEasy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Moq;
 using Persistence.MongoDb;
@@ -40,17 +42,44 @@ namespace ApiTest.ControllerTestsDir
             A.CallTo(() => mediator.Send(A<GetOneTweetQuery>._, default)).MustHaveHappenedOnceExactly();
         }
 
-        // [Fact]
-        // public async void CreateTweetTest()
-        // {
-        //     CreateTweetCommand createTweetCommand = new CreateTweetCommand();
-        //     createTweetCommand.Date = "3454534";
-        //     createTweetCommand.User = "dfgdfhdf";
-        //     createTweetCommand.Text = "fasfasf";
-        //     createTweetCommand.feels = new Dictionary<string, float> {{"sad", 100}};
-        //
-        //     await controller.Object.Create(createTweetCommand);
-        //     // A.CallTo(() => mediator.Send(A<CreateTweetCommand>._, default)).MustHaveHappenedOnceExactly();
-        //}
+        [Fact]
+        public async void GetPageTest()
+        {
+            var list = await controller.Object.GetAll(1);
+            A.CallTo(() => mediator.Send(A<GetTweetsQuery>._, default)).MustHaveHappenedOnceExactly();
+        }
+        
+        [Fact]
+        public async void CreateTweetTest()
+        {
+            var cmd = new CreateTweetCommand();
+            cmd.Date = "";
+            cmd.Feels = new Dictionary<string, float>();
+            cmd.Text = "";
+            cmd.User = "";
+            await controller.Object.Create(cmd);
+            cmd = new CreateTweetCommand("","","",new Dictionary<string, float>());
+            await controller.Object.Create(cmd);
+            A.CallTo(() => mediator.Send(A<CreateTweetCommand>._, default)).MustHaveHappenedTwiceExactly();
+        }
+
+        [Fact]
+        public async void DeleteTweetTest()
+        {
+            var obj = await controller.Object.Create(new CreateTweetCommand());
+            A.CallTo(() => mediator.Send(A<CreateTweetCommand>._, default)).MustHaveHappenedOnceExactly();
+            var res = controller.Object.DeleteOne(obj);
+            A.CallTo(() => mediator.Send(A<DeleteTweetCommand>._, default)).MustHaveHappenedOnceExactly();
+        }
+
+        [Fact]
+        public async void UpdateTweetTest()
+        {
+            var obj = await controller.Object.Create(new CreateTweetCommand());
+            A.CallTo(() => mediator.Send(A<CreateTweetCommand>._, default)).MustHaveHappenedOnceExactly();
+            var res = controller.Object.UpdateOne(obj, new Dictionary<string, float>());
+            A.CallTo(() => mediator.Send(A<UpdateTweetCommand>._, default)).MustHaveHappenedOnceExactly();
+
+        }
     }
 }

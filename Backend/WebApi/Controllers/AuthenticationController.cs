@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Application.Features.ExternalTwitterAPI.LogInUser.GetTwitterAuth;
 using Application.Features.ExternalTwitterAPI.LogInUser.ValidateAuth;
 using MediatR;
@@ -27,20 +28,13 @@ namespace WebApi.Controllers
 
         [HttpGet("/signin", Name = "Twitter Authentication Validator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<string> ValidateTwitterAuth()
+        public async Task<string> ValidateTwitterAuth(string tweetinvi_auth_request_id, string oauth_token, string oauth_verifier)
         {
-            var stringQuery = Request.QueryString.Value;
             string response = "";
-            if (stringQuery != null)
-            {
-                response = await _mediator.Send(new ValidateAuthQuery(stringQuery));
-            }
-            else
-            {
-                response = "Could not auth";
-                Response.StatusCode = 400;
-            }
-            
+            var req = "?tweetinvi_auth_request_id=" + tweetinvi_auth_request_id + 
+                      "&oauth_token=" + oauth_token + 
+                      "&oauth_verifier=" + oauth_verifier;
+            response = await _mediator.Send(new ValidateAuthQuery(req));
             return response;
         }
     }
