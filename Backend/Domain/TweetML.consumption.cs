@@ -39,7 +39,7 @@ namespace Domain
 
         #endregion
 
-        private static string MLNetModelPath = Path.GetFullPath("C:\\Users\\Q\\RiderProjects\\ProiectNET\\ProiectDotNet\\Backend\\Domain\\TweetML.zip");
+        private static string MLNetModelPath = Path.GetFullPath(@"..\Domain/TweetML.zip");
 
         public static readonly Lazy<PredictionEngine<ModelInput, ModelOutput>> PredictEngine = new Lazy<PredictionEngine<ModelInput, ModelOutput>>(() => CreatePredictEngine(), true);
 
