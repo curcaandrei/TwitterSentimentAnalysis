@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using Domain.Common;
+using Microsoft.ML.Data;
 
 namespace Domain.Entities
 {
@@ -14,6 +15,7 @@ namespace Domain.Entities
         [AllowNull]
         public string Username { get; set; }
 
+        [LoadColumn(1)]
         public string Text { get; set; } = "No text";
         
         [AllowNull]
