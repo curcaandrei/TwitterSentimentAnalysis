@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain.Dtos;
 using MongoDB.Driver;
@@ -13,5 +14,6 @@ namespace Application.Persistence
         UpdateResult UpdateAsync(string id,  System.Collections.Generic.Dictionary<string, float> feels);
 
         DeleteResult DeleteAsync(string id);
+        Task<Dictionary<string, float>> PredictSentiment(string text);
     }
 }

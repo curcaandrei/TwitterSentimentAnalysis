@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Persistence;
+using Domain;
 using RestSharp;
 using RestSharp.Authenticators;
 using Tweetinvi;
@@ -20,7 +22,7 @@ namespace Persistence.TwitterExternalAPI
             _twitterHelper = twitterHelper;
         }
         
-        public async Task<Tweet> GetTweetById(string id)
+        public async Task<Tweet> GetTweetById(string id, bool unitTest = false)
         {
             var tweetResponse = await _twitterHelper._twitterClient.TweetsV2.GetTweetAsync(id);
             var tweetV2 = tweetResponse.Tweet;
@@ -32,6 +34,11 @@ namespace Persistence.TwitterExternalAPI
             var user = userResponse.User;
             tweet.User = user.Name;
             tweet.Username = user.Username;
+            if (!unitTest)
+            {
+                tweet.feels = PredictSentiment(tweet.Text).Result;
+
+            }
             return tweet;
         }
 
@@ -71,6 +78,17 @@ namespace Persistence.TwitterExternalAPI
             request.AddHeader("content-type", "application/json");
             
             return client.Execute(request).Content;
+        }
+
+        public async Task<Dictionary<string, float>> PredictSentiment(string text)
+        {
+            TweetML.ModelInput modelInput = new TweetML.ModelInput();
+            modelInput.Text = text;
+            var result = TweetML.Predict(modelInput);
+            Dictionary<string, float> map = new Dictionary<string, float>();
+            map.Add("sad", result.Score[0]);
+            map.Add("happy",result.Score[1]);
+            return await Task.FromResult(map);
         }
     }
 }

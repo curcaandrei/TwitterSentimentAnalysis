@@ -1,5 +1,4 @@
-﻿using System.Formats.Asn1;
-using Application.Features.ExternalTwitterAPI.LogInUser.GetTwitterAuth;
+﻿using Application.Features.ExternalTwitterAPI.LogInUser.GetTwitterAuth;
 using Application.Features.ExternalTwitterAPI.LogInUser.ValidateAuth;
 using FakeItEasy;
 using MediatR;
