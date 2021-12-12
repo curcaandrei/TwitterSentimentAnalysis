@@ -22,25 +22,27 @@ namespace Persistence.Repositories
             _collection = dbContext.GetCollection<Tweet>(typeof(Tweet).Name);
         }
         
-        public Task<TweetDto> GetByIdAsync(ObjectId id)
+        public Task<TweetDto> GetByIdAsync(ObjectId id, bool unitTest = false)
         {
             var res = _collection.FindAsync(x => x.Id == id).Result.FirstOrDefaultAsync();
             TweetDto dto = new TweetDto();
             if (res.Result != null)
             {
                 dto.Id = res.Result.Id.ToString();
-                try
+                if (!unitTest)
                 {
-                    if (dto.Feels.Count != 2)
+                    try
+                    {
+                        if (dto.Feels.Count != 2)
+                        {
+                            dto.Feels = PredictSentiment(dto.Text).Result;
+                        }
+                    }
+                    catch(NullReferenceException e)
                     {
                         dto.Feels = PredictSentiment(dto.Text).Result;
                     }
                 }
-                catch(NullReferenceException e)
-                {
-                    dto.Feels = PredictSentiment(dto.Text).Result;
-                }
-
                 dto.Text = res.Result.Text;
                 dto.Username = res.Result.Username;
                 dto.Date = res.Result.Date;

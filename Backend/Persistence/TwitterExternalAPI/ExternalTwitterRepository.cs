@@ -22,7 +22,7 @@ namespace Persistence.TwitterExternalAPI
             _twitterHelper = twitterHelper;
         }
         
-        public async Task<Tweet> GetTweetById(string id)
+        public async Task<Tweet> GetTweetById(string id, bool unitTest = false)
         {
             var tweetResponse = await _twitterHelper._twitterClient.TweetsV2.GetTweetAsync(id);
             var tweetV2 = tweetResponse.Tweet;
@@ -34,7 +34,11 @@ namespace Persistence.TwitterExternalAPI
             var user = userResponse.User;
             tweet.User = user.Name;
             tweet.Username = user.Username;
-            tweet.feels = PredictSentiment(tweet.Text).Result;
+            if (!unitTest)
+            {
+                tweet.feels = PredictSentiment(tweet.Text).Result;
+
+            }
             return tweet;
         }
 

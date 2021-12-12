@@ -11,7 +11,7 @@ namespace InfrastructureTest.DataBaseTestsDir
         public async void DeleteTweetTest()
         {
             await _repository.AddAsync(_tweet);
-            TweetDto testTweet = await _repository.GetByIdAsync(_tweet.Id);
+            TweetDto testTweet = await _repository.GetByIdAsync(_tweet.Id, true);
             Assert.NotNull(testTweet);
             _repository.DeleteAsync(_tweet.Id.ToString());
             TweetDto deletedTweet = await _repository.GetByIdAsync(_tweet.Id);
