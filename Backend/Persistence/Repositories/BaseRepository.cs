@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Persistence;
+using Domain;
 using Domain.Dtos;
 using Domain.Entities;
 using MongoDB.Bson;
@@ -59,6 +60,17 @@ namespace Persistence.Repositories
         {
             var objectId = new ObjectId(id);
             return _context.GetCollection<T>(typeof(T).Name).DeleteOne(Builders<T>.Filter.Eq("_id", objectId));
+        }
+        
+        public async Task<Dictionary<string, float>> PredictSentiment(string text)
+        {
+            TweetML.ModelInput modelInput = new TweetML.ModelInput();
+            modelInput.Text = text;
+            var result = TweetML.Predict(modelInput);
+            Dictionary<string, float> map = new Dictionary<string, float>();
+            map.Add("sad", result.Score[0]);
+            map.Add("happy",result.Score[1]);
+            return await Task.FromResult(map);
         }
     }
 }
