@@ -21,10 +21,6 @@ namespace InfrastructureTest.DataBaseTestsDir
             Assert.Equal(testTweet.Date, _tweet.Date);
             Assert.Equal(testTweet.User, _tweet.User);
             Assert.Equal(testTweet.Text, _tweet.Text);
-            foreach (var (key, value) in _tweet.feels)
-            {
-                Assert.Equal(testTweet.Feels[key],value);
-            }
             Dispose();
         }
 

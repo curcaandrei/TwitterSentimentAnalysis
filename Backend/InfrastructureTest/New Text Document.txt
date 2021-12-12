@@ -1,0 +1,16 @@
+        private static string GetPath()
+        {
+            var path = "";
+            try
+            {
+                path = Directory.GetParent(Directory.GetCurrentDirectory()).FullName +
+                       "\\..\\..\\TweetML.zip";
+                Console.WriteLine(path);
+            }
+            catch (FileNotFoundException e)
+            {
+
+            }
+
+            return path;
+        }

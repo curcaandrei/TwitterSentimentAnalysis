@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Application.Persistence;
 using Domain;
@@ -38,7 +40,7 @@ namespace Persistence.Repositories
                 {
                     dto.Feels = PredictSentiment(dto.Text).Result;
                 }
- 
+
                 dto.Text = res.Result.Text;
                 dto.Username = res.Result.Username;
                 dto.Date = res.Result.Date;

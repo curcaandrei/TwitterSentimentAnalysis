@@ -38,8 +38,25 @@ namespace Domain
         }
 
         #endregion
+        private static string GetPath()
+        {
+            var path = "";
+      
+                if (Directory.GetParent(Directory.GetCurrentDirectory()).FullName.Contains("InfrastructureTest"))
+                {
+                    path = Directory.GetParent(Directory.GetCurrentDirectory()).FullName +
+                           "\\..\\..\\TweetML.zip";
+                }
+                else
+                {
+                    path = path = Directory.GetParent(Directory.GetCurrentDirectory()).FullName +
+                                  "\\..\\..\\ProiectDotNet\\Backend\\Domain\\TweetML.zip";
+                }
 
-        private static string MLNetModelPath = Path.GetFullPath(@"..\Domain/TweetML.zip");
+                return path;
+        }
+
+        private static string MLNetModelPath = GetPath();
 
         public static readonly Lazy<PredictionEngine<ModelInput, ModelOutput>> PredictEngine = new Lazy<PredictionEngine<ModelInput, ModelOutput>>(() => CreatePredictEngine(), true);
 

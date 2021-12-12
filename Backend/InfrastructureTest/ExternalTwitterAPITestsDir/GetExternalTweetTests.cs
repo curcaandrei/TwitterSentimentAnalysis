@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using System.IO;
+using Domain.Entities;
 using Microsoft.Extensions.Options;
 using Moq;
 using Persistence.TwitterExternalAPI;
@@ -15,7 +16,7 @@ namespace InfrastructureTest.ExternalTwitterAPITestsDir
             Assert.NotNull(_tweet);
             Assert.Equal("Twitter",_tweet.User);
             Assert.Equal("hello literally everyone", _tweet.Text);
-            Assert.Null(_tweet.feels);
+            Assert.NotNull(_tweet.feels);
         }
     }
 }
