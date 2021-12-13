@@ -42,7 +42,7 @@ namespace Domain
         {
             var path = "";
             path = path = Directory.GetParent(Directory.GetCurrentDirectory()).FullName +
-                          "\\..\\..\\ProiectDotNet\\Backend\\Domain\\TweetML.zip";
+                          "/../../ProiectDotNet/Backend/Domain/TweetML.zip";
             return path;
         }
 
