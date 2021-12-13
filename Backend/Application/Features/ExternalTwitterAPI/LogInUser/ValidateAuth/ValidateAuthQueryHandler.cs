@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Persistence;
@@ -5,6 +6,7 @@ using MediatR;
 
 namespace Application.Features.ExternalTwitterAPI.LogInUser.ValidateAuth
 {
+    [ExcludeFromCodeCoverage]
     public class ValidateAuthQueryHandler : IRequestHandler<ValidateAuthQuery, string>
     {
         private readonly IExternalTweetRepository _tweetRepository;

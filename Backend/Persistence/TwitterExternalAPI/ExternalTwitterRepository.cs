@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Persistence;
 using Domain;
+using Persistence.Repositories;
 using RestSharp;
 using RestSharp.Authenticators;
 using Tweetinvi;
@@ -12,7 +13,7 @@ using Tweet = Domain.Entities.Tweet;
 
 namespace Persistence.TwitterExternalAPI
 {
-    public class ExternalTwitterRepository : IExternalTweetRepository
+    public class ExternalTwitterRepository : MlRepository, IExternalTweetRepository
     {
         private readonly ITwitterHelper _twitterHelper;
         private static IAuthenticationRequestStore MyAuthRequestStore = MyAuthRequestStore = new LocalAuthenticationRequestStore();
@@ -79,16 +80,6 @@ namespace Persistence.TwitterExternalAPI
             
             return client.Execute(request).Content;
         }
-
-        public async Task<Dictionary<string, float>> PredictSentiment(string text)
-        {
-            TweetML.ModelInput modelInput = new TweetML.ModelInput();
-            modelInput.Text = text;
-            var result = TweetML.Predict(modelInput);
-            Dictionary<string, float> map = new Dictionary<string, float>();
-            map.Add("sad", result.Score[0]);
-            map.Add("happy",result.Score[1]);
-            return await Task.FromResult(map);
-        }
+        
     }
 }

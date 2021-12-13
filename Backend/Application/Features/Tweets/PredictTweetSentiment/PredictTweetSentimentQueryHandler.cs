@@ -11,10 +11,10 @@ namespace Application.Features.Tweets.PredictTweetSentiment
 {
     public class PredictTweetSentimentQueryHandler : IRequestHandler<PredictTweetSentimentQuery, Dictionary<string, float>>
     {
-        
-        private readonly IAsyncRepository<Tweet> _repository;
 
-        public PredictTweetSentimentQueryHandler(IAsyncRepository<Tweet> repository)
+        private readonly IMlRepository _repository;
+
+        public PredictTweetSentimentQueryHandler(IMlRepository repository)
         {
             _repository = repository;
         }

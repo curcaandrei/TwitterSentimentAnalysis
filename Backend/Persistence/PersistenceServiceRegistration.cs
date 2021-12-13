@@ -16,6 +16,7 @@ namespace Persistence
             serviceCollection.AddScoped<ITweetsRepository, TweetRepository>();
             serviceCollection.AddScoped<ITwitterHelper, TwitterHelper>();
             serviceCollection.AddScoped<IExternalTweetRepository, ExternalTwitterRepository>();
+            serviceCollection.AddScoped<IMlRepository, MlRepository>();
             return serviceCollection;
         }
     }
