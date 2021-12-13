@@ -1,6 +1,4 @@
-﻿using Application.Persistence;
-using Domain.Dtos;
-using Domain.Entities;
+﻿using Domain.Dtos;
 using MediatR;
 using MongoDB.Bson;
 

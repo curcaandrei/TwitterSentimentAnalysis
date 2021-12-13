@@ -1,6 +1,5 @@
 using Domain.Entities;
 using MediatR;
-using Tweetinvi.Models.V2;
 
 namespace Application.Features.ExternalTwitterAPI.GetTweetFromURL
 {

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain.Dtos;
-using Domain.Entities;
 using MongoDB.Bson;
 using Xunit;
 

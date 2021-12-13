@@ -1,5 +1,4 @@
-﻿using Domain.Dtos;
-using Xunit;
+﻿using Xunit;
 
 namespace InfrastructureTest.DataBaseTestsDir
 {

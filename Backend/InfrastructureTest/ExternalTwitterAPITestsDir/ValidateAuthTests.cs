@@ -1,7 +1,4 @@
-﻿using System;
-using Application.Features.ExternalTwitterAPI.GetTweetFromURL;
-using Moq;
-using Xunit;
+﻿using Xunit;
 
 namespace InfrastructureTest.ExternalTwitterAPITestsDir
 {

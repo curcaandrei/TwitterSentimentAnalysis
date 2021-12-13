@@ -1,5 +1,3 @@
-using System.Web.Http;
-using System.Web.Http.Cors;
 using Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,7 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Persistence;
 using Persistence.MongoDb;
 using Persistence.TwitterExternalAPI;
-using Microsoft.Owin.Hosting;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

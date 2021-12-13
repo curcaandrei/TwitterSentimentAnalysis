@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Application.Persistence;
 using MediatR;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Application.Commands.UpdateTweet
