@@ -36,13 +36,12 @@ namespace Persistence.Repositories
                     {
                         if (dto.Feels.Count != 2)
                         {
-                            dto.Feels = PredictSentiment(dto.Text).Result;
+                            dto.Feels = PredictSentiment(res.Result.Text).Result;
                         }
                     }
                     catch(NullReferenceException)
                     {
-                        
-                        dto.Feels = PredictSentiment(dto.Text).Result;
+                        dto.Feels = PredictSentiment(res.Result.Text).Result;
                     }
                 }
                 dto.Text = res.Result.Text;
