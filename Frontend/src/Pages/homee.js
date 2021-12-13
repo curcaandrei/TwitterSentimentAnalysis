@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import BgImg from '../../src/tweet.png';
-import JsonData from "../MOCK_DATA.json";
 import ReactPaginate from "react-paginate";
 import "../App.css";
 import { useHistory } from 'react-router-dom';

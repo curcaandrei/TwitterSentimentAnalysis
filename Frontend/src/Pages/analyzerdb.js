@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from "../Components/Navigation";
 import { PieChart, Pie, ResponsiveContainer } from "recharts";
 import { useLocation } from "react-router";
 import axios from 'axios';

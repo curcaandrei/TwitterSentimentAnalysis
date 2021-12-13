@@ -10,6 +10,7 @@ import Contact from './Pages/contact';
 import Homee from './Pages/homee';
 import Analyzer from './Pages/analyzer';
 import AnalyzerDB from './Pages/analyzerdb';
+import MyTweets2 from './Pages/signin';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path='/contact-us' component={Homee} />
         <Route path='/analyzer' component={Analyzer} />
         <Route path='/analyzerdb' component={AnalyzerDB} />
+        <Route path='/signin' component={MyTweets2} />
       </Switch>
     </Router>
      
