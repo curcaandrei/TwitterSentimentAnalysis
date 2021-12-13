@@ -47,7 +47,7 @@ namespace Persistence.TwitterExternalAPI
             var authenticationRequestId = Guid.NewGuid().ToString();
             
             #pragma warning disable S1075 // URIs should not be hardcoded   
-            const string redirectPath = "https://localhost:3000/signin";
+            const string redirectPath = "http://localhost:3000/signin";
 
             var redirectUrl = MyAuthRequestStore.AppendAuthenticationRequestIdToCallbackUrl(redirectPath, authenticationRequestId);
    
