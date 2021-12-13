@@ -10,6 +10,8 @@ import Contact from './Pages/contact';
 import Homee from './Pages/homee';
 import Analyzer from './Pages/analyzer';
 import AnalyzerDB from './Pages/analyzerdb';
+import MyTweets from './Pages/mytweets';
+import Redirect from './Pages/redirect';
 
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
         <Route path='/contact-us' component={Homee} />
         <Route path='/analyzer' component={Analyzer} />
         <Route path='/analyzerdb' component={AnalyzerDB} />
+        <Route path='/mytweets' component={MyTweets} />
+        <Route path='/redirect' component={Redirect} />
       </Switch>
     </Router>
      
