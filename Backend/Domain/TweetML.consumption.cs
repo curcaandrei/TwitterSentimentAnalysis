@@ -42,7 +42,7 @@ namespace Domain
         {
             var path = "";
             path = path = Directory.GetParent(Directory.GetCurrentDirectory()).FullName +
-                          "\\..\\..\\ProiectDotNet\\Backend\\Domain\\TweetML.zip";
+                          "/../../ProiectDotNet/Backend/Domain/TweetML.zip";
             return path;
         }
 
@@ -57,7 +57,17 @@ namespace Domain
         /// <returns><seealso cref=" ModelOutput"/></returns>
         public static ModelOutput Predict(ModelInput input)
         {
-            var predEngine = PredictEngine.Value;
+            Microsoft.ML.PredictionEngine<Domain.TweetML.ModelInput, Domain.TweetML.ModelOutput> predEngine;
+            try
+            { 
+                predEngine = PredictEngine.Value;
+            }
+            catch (System.AggregateException)
+            {
+                MLNetModelPath = "Backend/Domain/TweetML.zip";
+                predEngine = PredictEngine.Value;
+            }
+            
             return predEngine.Predict(input);
         }
 

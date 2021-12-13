@@ -12,6 +12,5 @@ namespace Application.Persistence
         public Task<string> PostToGetAuth();
 
         public Task<string> ValidateAuth(string queryValue);
-        Task<Dictionary<string, float>> PredictSentiment(string text);
     }
 }

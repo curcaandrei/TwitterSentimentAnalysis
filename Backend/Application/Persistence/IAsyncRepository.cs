@@ -11,9 +11,8 @@ namespace Application.Persistence
 
         Task<T> AddAsync(T entity);
 
-        UpdateResult UpdateAsync(string id,  System.Collections.Generic.Dictionary<string, float> feels);
+        UpdateResult UpdateAsync(string id, System.Collections.Generic.Dictionary<string, float> feels);
 
         DeleteResult DeleteAsync(string id);
-        Task<Dictionary<string, float>> PredictSentiment(string text);
     }
 }

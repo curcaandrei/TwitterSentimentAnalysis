@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Application.Commands.CreateTweet;
 using Application.Commands.UpdateTweet;
 using Application.Features.ExternalTwitterAPI.GetTweetFromURL;
@@ -8,6 +9,7 @@ using Tweetinvi.Models.V2;
 
 namespace Application.Profiles
 {
+    [ExcludeFromCodeCoverage]
     public class MappingProfiles : Profile
     {
         public MappingProfiles()

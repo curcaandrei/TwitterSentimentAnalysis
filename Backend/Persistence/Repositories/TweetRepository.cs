@@ -7,6 +7,7 @@ using Application.Persistence;
 using Domain;
 using Domain.Dtos;
 using Domain.Entities;
+using Microsoft.Extensions.Logging;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Persistence.MongoDb;
@@ -38,8 +39,9 @@ namespace Persistence.Repositories
                             dto.Feels = PredictSentiment(dto.Text).Result;
                         }
                     }
-                    catch(NullReferenceException e)
+                    catch(NullReferenceException)
                     {
+                        
                         dto.Feels = PredictSentiment(dto.Text).Result;
                     }
                 }
