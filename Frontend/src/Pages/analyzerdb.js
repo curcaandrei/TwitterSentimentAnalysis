@@ -5,27 +5,34 @@ import { useLocation } from "react-router";
 import axios from 'axios';
 
 const AnalyzerDB = () => {
-  const data = [
-    { name: "Happy", value: 50 },
-    { name: "Sad", value: 30 },
-    { name: "Neutral", value: 20 },
-  ];
+  
   let location = useLocation();
   let url = location.pathname;
     let tweet_id = url.substring(12, url.length);
   
   const [tweets, setTweet] = useState({hits: []});
   const [isLoading, setLoading] = useState(true);
+  const [feels, setFeels] = useState({hits: []});
 
   useEffect(async () => {
     const result = await axios("https://localhost:7225/api/Tweets/one/" + tweet_id,{
       
     });
     setTweet(result.data);
+    setFeels(result.data.feels)
     setLoading(false);
   }, []);
 
-  console.log(tweets);
+  // console.log(tweets);
+  const happy = feels.happy*100
+  const perch = parseFloat(happy).toFixed(2);
+  const sad = feels.sad*100
+  const percs = parseFloat(sad).toFixed(2);
+  const data = [
+    { name: "Happy", value: Number(perch)  },
+    { name: "Sad", value: Number(percs) },
+  ];
+  console.log(data);
 
   if(isLoading){
     return <div className="App4">Loading...</div>;
