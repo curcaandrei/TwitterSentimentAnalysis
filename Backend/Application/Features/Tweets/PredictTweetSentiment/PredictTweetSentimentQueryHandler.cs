@@ -1,10 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Features.Tweets.GetOneTweet;
 using Application.Persistence;
-using Domain.Dtos;
-using Domain.Entities;
 using MediatR;
 
 namespace Application.Features.Tweets.PredictTweetSentiment

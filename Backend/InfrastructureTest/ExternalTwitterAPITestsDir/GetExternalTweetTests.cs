@@ -1,9 +1,4 @@
-﻿using System.IO;
-using Domain.Entities;
-using Microsoft.Extensions.Options;
-using Moq;
-using Persistence.TwitterExternalAPI;
-using Xunit;
+﻿using Xunit;
 
 namespace InfrastructureTest.ExternalTwitterAPITestsDir
 {

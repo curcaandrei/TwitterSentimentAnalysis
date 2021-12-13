@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Application.Features.ExternalTwitterAPI.LogInUser.GetTwitterAuth;
 using Application.Features.ExternalTwitterAPI.LogInUser.ValidateAuth;
 using MediatR;

@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Features.Tweets.PredictTweetSentiment;
-using Domain;
-using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using static Domain.TweetML;
 
 namespace WebApi.Controllers
 {

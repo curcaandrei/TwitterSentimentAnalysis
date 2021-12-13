@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Persistence;
-using Domain;
 using Persistence.Repositories;
 using RestSharp;
 using RestSharp.Authenticators;
@@ -49,7 +47,7 @@ namespace Persistence.TwitterExternalAPI
             var authenticationRequestId = Guid.NewGuid().ToString();
             
             #pragma warning disable S1075 // URIs should not be hardcoded   
-            var redirectPath = "https://localhost:7225/signin";
+            const string redirectPath = "https://localhost:7225/signin";
 
             var redirectUrl = MyAuthRequestStore.AppendAuthenticationRequestIdToCallbackUrl(redirectPath, authenticationRequestId);
    
@@ -68,17 +66,27 @@ namespace Persistence.TwitterExternalAPI
             
             var userCreds = await appClient.Auth.RequestCredentialsAsync(requestParameters);
 
-            var userClient = new TwitterClient(userCreds.ConsumerKey,userCreds.ConsumerSecret,userCreds.AccessToken,userCreds.AccessTokenSecret);
+            var userClient = new TwitterClient(userCreds.ConsumerKey,
+                                               userCreds.ConsumerSecret,
+                                               userCreds.AccessToken,
+                                      userCreds.AccessTokenSecret);
+            
             var user = await userClient.Users.GetAuthenticatedUserAsync();
             
             #pragma warning disable S1075 // URIs should not be hardcoded   
-            var client = new RestClient("https://api.twitter.com/2/users/"+user.Id +"/tweets");
-            client.Authenticator = OAuth1Authenticator.ForAccessToken(userCreds.ConsumerKey, userCreds.ConsumerSecret,
-                userCreds.AccessToken, userCreds.AccessTokenSecret);
+            var client = new RestClient("https://api.twitter.com/2/users/" + user.Id + "/tweets")
+            {
+                Authenticator = OAuth1Authenticator.ForAccessToken(
+                    userCreds.ConsumerKey, 
+                    userCreds.ConsumerSecret,
+                    userCreds.AccessToken, 
+                    userCreds.AccessTokenSecret)
+            };
+
             var request = new RestRequest("", DataFormat.Json);
             request.AddHeader("content-type", "application/json");
             
-            return client.Execute(request).Content;
+            return (await client.ExecuteAsync(request)).Content;
         }
         
     }

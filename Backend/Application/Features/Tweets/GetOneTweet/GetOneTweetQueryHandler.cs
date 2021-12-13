@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Application.Persistence;
 using Domain.Dtos;
-using Domain.Entities;
 using MediatR;
 
 namespace Application.Features.Tweets.GetOneTweet

@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Persistence;
-using Domain;
 using Domain.Dtos;
 using Domain.Entities;
 using MongoDB.Bson;

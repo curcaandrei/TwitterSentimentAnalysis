@@ -2,9 +2,7 @@
 using Microsoft.ML;
 using Microsoft.ML.Data;
 using System;
-using System.Linq;
 using System.IO;
-using System.Collections.Generic;
 namespace Domain
 {
     public partial class TweetML

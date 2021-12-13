@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Tweetinvi.Models.V2;
 using Tweet = Domain.Entities.Tweet;
 
 namespace Application.Persistence

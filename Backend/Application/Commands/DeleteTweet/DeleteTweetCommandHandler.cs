@@ -1,9 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Application.Persistence;
-using Domain.Entities;
 using MediatR;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Application.Commands.DeleteTweet

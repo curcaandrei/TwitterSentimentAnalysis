@@ -1,5 +1,4 @@
-﻿using Domain.Entities;
-using MediatR;
+﻿using MediatR;
 using MongoDB.Bson;
 using MongoDB.Driver;
 

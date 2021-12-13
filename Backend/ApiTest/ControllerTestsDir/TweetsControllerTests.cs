@@ -4,15 +4,14 @@ using Application.Commands.DeleteTweet;
 using Application.Commands.UpdateTweet;
 using Application.Features.Tweets.GetAllTweets;
 using Application.Features.Tweets.GetOneTweet;
-using AutoMapper;
-using MediatR;
-using WebApi.Controllers;
-using Xunit;
 using FakeItEasy;
+using MediatR;
 using Microsoft.Extensions.Options;
 using Moq;
 using Persistence.MongoDb;
 using Persistence.Repositories;
+using WebApi.Controllers;
+using Xunit;
 
 namespace ApiTest.ControllerTestsDir
 {

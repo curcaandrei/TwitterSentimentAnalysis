@@ -1,10 +1,9 @@
-using System;
 using System.Threading.Tasks;
 using Application.Features.ExternalTwitterAPI.GetTweetFromURL;
+using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Tweet = Domain.Entities.Tweet;
 
 namespace WebApi.Controllers
 {    

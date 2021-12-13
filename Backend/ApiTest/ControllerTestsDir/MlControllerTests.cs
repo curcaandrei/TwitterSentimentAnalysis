@@ -1,5 +1,4 @@
-﻿using Application.Features.Tweets.GetOneTweet;
-using Application.Features.Tweets.PredictTweetSentiment;
+﻿using Application.Features.Tweets.PredictTweetSentiment;
 using FakeItEasy;
 using MediatR;
 using Microsoft.Extensions.Options;
