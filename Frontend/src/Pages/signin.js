@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import BgImg from '../../src/tweet.png';
-import "../App.css";
+import "./signin.css";
 import axios from 'axios';
 
 
