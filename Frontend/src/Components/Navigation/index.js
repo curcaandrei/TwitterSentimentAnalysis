@@ -33,10 +33,10 @@ const Navbar = () => {
           </NavLink>
           <Bars />
           <NavMenu>
-            <NavLink to='/about' activeStyle>
+            <NavLink to='/about' >
               About
             </NavLink>
-            <NavLink to='/mytweets' activeStyle>
+            <NavLink to='/mytweets' >
               My Tweets
             </NavLink>
             
@@ -54,10 +54,10 @@ const Navbar = () => {
         </NavLink>
         <Bars />
         <NavMenu>
-          <NavLink to='/about' activeStyle>
+          <NavLink to='/about' >
             About
           </NavLink>
-          <NavLink to='/mytweets' activeStyle>
+          <NavLink to='/mytweets' >
             My Tweets
           </NavLink>
           <Route path='/mytweets' component={() => { 

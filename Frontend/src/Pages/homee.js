@@ -30,13 +30,14 @@ const Homee = () => {
 
   var [pageNumber, setPageNumber] = useState(0);
 
-  const [users, setUsers] = useState({hits: []});
+  const [users, setUsers] = useState("");
   const [isLoading, setLoading] = useState(true);
   pageNumber++;
-  useEffect(async () => {
-    const result = await axios("https://localhost:7225/api/Tweets/all/" + pageNumber,{
-    });
-    setUsers(result.data);
+
+
+  useEffect(() => {
+    axios("https://localhost:7225/api/Tweets/all/" + pageNumber,{
+    }).then(res => setUsers(res.data));
     setLoading(false);
   }, [pageNumber]);
 
@@ -61,30 +62,29 @@ const Homee = () => {
       getDataAxios();
     }
   }
-  console.log(users)
+  // console.log(users)
   const displayUsers = Object.keys(users).map((user,i) => {
-     var id = users[user].id;
-     var good_id = new ObjectId(id).ObjectId;
-     console.log(good_id);
+     var good_id = users[user].id;
+     //var good_id = new ObjectId(id).ObjectId;
       return (
-        <div class="block-parent">
-          <div class="tweet-list">
-            <div class="tweet">
-              <div class="twitter-icon">
-                <div class="Icon Icon--twitter"></div>
+        <div className="block-parent" key={i}>
+          <div className="tweet-list" key={++i}>
+            <div className="tweet" key={++i}>
+              <div className="twitter-icon" key={++i}>
+                <div className="Icon Icon--twitter" key={++i}></div>
               </div>
-              <div class="tweet-author">
-                <div class="TweetAuthor"><a class="TweetAuthor-link" href="#channel"> </a><span class="TweetAuthor-avatar"> 
-                  <div class="Avatar"> </div></span><span class="TweetAuthor-name">{users[user].user}</span> <span class="TweetAuthor-screenName">@{users[user].user}</span></div>
+              <div className="tweet-author" key={++i}>
+                <div className="TweetAuthor" key={++i}><a className="TweetAuthor-link" href="#channel"> </a><span className="TweetAuthor-avatar"> 
+                  <div className="Avatar" key={++i}> </div></span><span className="TweetAuthor-name">{users[user].user}</span> <span className="TweetAuthor-screenName">@{users[user].user}</span></div>
                 </div>
-                <div class="tweet-text">{users[user].text}</div>
-                <div class="tweet-timestamp">
-                  <span class="tweet-timestamp-date">{users[user].date}</span>
+                <div className="tweet-text" key={++i}>{users[user].text}</div>
+                <div className="tweet-timestamp" key={++i}>
+                  <span className="tweet-timestamp-date" >{users[user].date}</span>
                 </div>
               </div>
             </div>
-            {/* <Link to={href} className="button">Analyze</Link> */}
-            <a href={"/analyzerdb/" + users[user].id} class="button">Analyze</a>
+            {/* <Link to={href} classNameName="button">Analyze</Link> */}
+            <a href={"/analyzerdb/" + users[user].id} className="button">Analyze</a>
           </div>
       );
     });
@@ -100,19 +100,19 @@ const Homee = () => {
       <Content>
        
         
-          <div class="url" style={{color: "#04050a", fontweight: 400, textalign: "-webkit-center"}}>
+          <div className="url" style={{color: "#04050a", fontweight: 400, textalign: "-webkit-center"}}>
           <input 
             type='text' className="inputURL"
             placeholder="Enter Here Tweet URL:" 
             id="tweetURL"
             onChange={(e) => {
               url = e.target.value;
-              console.log(url);
+              // console.log(url);
             }} 
              />
           <a href="#"
              type="submit" 
-             class="button2"
+             className="button2"
              onClick = {() => submit_btn()}
              >Analyze</a>
           </div>
