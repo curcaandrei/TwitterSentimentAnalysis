@@ -12,16 +12,17 @@ import axios from 'axios';
 
 const Navbar = () => {
   const [link, setLink] = useState("");
-  const [tweets, setTweets] = useState({hits: []});
+  // const [tweets, setTweets] = useState({hits: []});
   const [isLoading, setLoading] = useState(true);
     
-  useEffect(async () => {
-      const result = await axios({
+  useEffect(() => {
+      axios({
           method: 'post',
           url: 'https://localhost:7225/signin'
+      }).then(function (res) {
+        setLink(res.data);
+        setLoading(false);
       });
-      setLink(result.data);
-      setLoading(false);
   }, []);
 
   if(isLoading){

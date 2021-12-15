@@ -11,7 +11,6 @@ const AnalyzerDB = () => {
   var data2 = [];
   
   const [tweet, setTweet] = useState("");
-  const [isLoading, setLoading] = useState(true);
   const [happy, setHappy] = useState("");
   const [sad, setSad] = useState("");
   const [data, setData] = useState([]);
@@ -21,32 +20,30 @@ const AnalyzerDB = () => {
     }).then( function (res) {
       setTweet(res.data);
       for(const prop in res.data.feels){
-        if(prop == "sad"){
+        if(prop === "sad"){
           setSad(res.data.feels[prop]);
         }
-        else if(prop == "happy"){
+        else if(prop === "happy"){
           setHappy(res.data.feels[prop]);
         }
       }
-      data2 = [
+      setData([
         { name: "Happy", value: Number(parseFloat(happy*100).toFixed(2))  },
         { name: "Sad", value: Number(parseFloat(sad*100).toFixed(2)) },
-      ];
-      setData(data2);
+      ]);
     })
-
-    setLoading(false);
     
   }, []);
   
   
   
   for(var prop in data){
-    if(data[prop].name == "Happy")
-      data2.push({ name: "Happy", value: Number(parseFloat(happy*100).toFixed(2)), fill: '#0099e5' })
-    else if(data[prop].name == "Sad")
-      data2.push( { name: "Sad", value: Number(parseFloat(sad*100).toFixed(2)), fill: '#c81d41' })
+    if(data[prop].name === "Happy")
+      data2.push({ name: "Happy", value: Number(parseFloat(happy*100).toFixed(2)), fill: '#bbe7d5' })
+    else if(data[prop].name === "Sad")
+      data2.push( { name: "Sad", value: Number(parseFloat(sad*100).toFixed(2)), fill: '#d8bfbb' })
   }
+  
   return (
     <div>
       <div
@@ -100,44 +97,42 @@ const AnalyzerDB = () => {
 
         <ResponsiveContainer width="30%" height={300}>
           <PieChart height={250}>
-          <Pie
-        data={data2}
-        cx="50%"
-        cy="50%"
-        outerRadius={100}
-        fill="#8884d8"
-        dataKey="value"
-        label={({
-          cx,
-          cy,
-          midAngle,
-          innerRadius,
-          outerRadius,
-          value,
-          index
-        }) => {
-          const RADIAN = Math.PI / 180;
-          // eslint-disable-next-line
-          const radius = 25 + innerRadius + (outerRadius - innerRadius);
-          // eslint-disable-next-line
-          const x = cx + radius * Math.cos(-midAngle * RADIAN);
-          // eslint-disable-next-line
-          const y = cy + radius * Math.sin(-midAngle * RADIAN);
+            <Pie
+              data={data2}
+              cx="50%"
+              cy="50%"
+              outerRadius={100}
+              fill="green"
+              dataKey="value"
+              label={({
+                cx,
+                cy,
+                midAngle,
+                innerRadius,
+                outerRadius,
+                value,
+                index,
+              }) => {
+                console.log("handling label?");
+                const RADIAN = Math.PI / 180;
+                const radius = 25 + innerRadius + (outerRadius - innerRadius);
+                const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
-          return (
-            <text
-              x={x}
-              y={y}
-              fill="black"
-              textAnchor={x > cx ? "start" : "end"}
-              dominantBaseline="central"
-            >
-              {data2[index].name} ({value})
-            </text>
-          );
-        }}
-      />
-        </PieChart>
+                return (
+                  <text
+                    x={x}
+                    y={y}
+                    fill="black"
+                    textAnchor={x > cx ? "start" : "end"}
+                    dominantBaseline="central"
+                  >
+                    {data2[index].name} ({value}%)
+                  </text>
+                );
+              }}
+            />
+          </PieChart>
         </ResponsiveContainer>
       </div>
     </div>

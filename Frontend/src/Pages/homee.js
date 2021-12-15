@@ -5,7 +5,6 @@ import ReactPaginate from "react-paginate";
 import "../App.css";
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-const ObjectId = require('mongodb').ObjectId; 
 
 
 
@@ -31,19 +30,19 @@ const Homee = () => {
   var [pageNumber, setPageNumber] = useState(0);
 
   const [users, setUsers] = useState("");
-  const [isLoading, setLoading] = useState(true);
+  // const [isLoading, setLoading] = useState(true);
   pageNumber++;
 
 
   useEffect(() => {
     axios("https://localhost:7225/api/Tweets/all/" + pageNumber,{
     }).then(res => setUsers(res.data));
-    setLoading(false);
+    // setLoading(false);
   }, [pageNumber]);
 
 
-  const usersPerPage = 10;
-  const pagesVisited = pageNumber * usersPerPage;
+  // const usersPerPage = 10;
+  // const pagesVisited = pageNumber * usersPerPage;
   
   var url = "";
   var tweet_id = "";
@@ -64,7 +63,7 @@ const Homee = () => {
   }
   // console.log(users)
   const displayUsers = Object.keys(users).map((user,i) => {
-     var good_id = users[user].id;
+    //  var good_id = users[user].id;
      //var good_id = new ObjectId(id).ObjectId;
       return (
         <div className="block-parent" key={i}>
