@@ -7,44 +7,51 @@ const AnalyzerDB = () => {
   
   let location = useLocation();
   let url = location.pathname;
-    let tweet_id = url.substring(12, url.length);
+  let tweet_id = url.substring(12, url.length);
+  var data2 = [];
   
-  const [tweets, setTweet] = useState({hits: []});
-  const [isLoading, setLoading] = useState(true);
-  const [feels, setFeels] = useState({hits: []});
+  const [tweet, setTweet] = useState("");
+  const [happy, setHappy] = useState("");
+  const [sad, setSad] = useState("");
+  const [data, setData] = useState([]);
 
-  useEffect(async () => {
-    const result = await axios("https://localhost:7225/api/Tweets/one/" + tweet_id,{
-      
-    });
-    setTweet(result.data);
-    setFeels(result.data.feels)
-    setLoading(false);
+  useEffect(() => {
+    axios("https://localhost:7225/api/Tweets/one/" + tweet_id,{  
+    }).then( function (res) {
+      setTweet(res.data);
+      for(const prop in res.data.feels){
+        if(prop === "sad"){
+          setSad(res.data.feels[prop]);
+        }
+        else if(prop === "happy"){
+          setHappy(res.data.feels[prop]);
+        }
+      }
+      setData([
+        { name: "Happy", value: Number(parseFloat(happy*100).toFixed(2))  },
+        { name: "Sad", value: Number(parseFloat(sad*100).toFixed(2)) },
+      ]);
+    })
+    
   }, []);
-
-  // console.log(tweets);
-  const happy = feels.happy*100
-  const perch = parseFloat(happy).toFixed(2);
-  const sad = feels.sad*100
-  const percs = parseFloat(sad).toFixed(2);
-  const data = [
-    { name: "Happy", value: Number(perch)  },
-    { name: "Sad", value: Number(percs) },
-  ];
-  console.log(data);
-
-  if(isLoading){
-    return <div className="App4">Loading...</div>;
+  
+  
+  
+  for(var prop in data){
+    if(data[prop].name === "Happy")
+      data2.push({ name: "Happy", value: Number(parseFloat(happy*100).toFixed(2)), fill: '#bbe7d5' })
+    else if(data[prop].name === "Sad")
+      data2.push( { name: "Sad", value: Number(parseFloat(sad*100).toFixed(2)), fill: '#d8bfbb' })
   }
-
+  
   return (
     <div>
       <div
         style={{
           display: "flex",
           justifyContent: "center",
-          "margin-top": "4rem",
-          "font-size": "28px",
+          "marginTop": "4rem",
+          "fontSize": "28px",
         }}
       >
         <h1>Statistics about this tweet</h1>
@@ -56,32 +63,32 @@ const AnalyzerDB = () => {
           justifyContent: "center",
           alignItems: "center",
           height: "68vh",
-          "flex-direction": "column",
-          "margin-bottom": "5rem",
+          "flexDirection": "column",
+          "marginBottom": "5rem",
         }}
       >
-        <div class="block-parent-analyzer">
-          <div class="tweet-list">
-            <div class="tweet">
-              <div class="twitter-icon">
-                <div class="Icon Icon--twitter"></div>
+        <div className="block-parent-analyzer">
+          <div className="tweet-list">
+            <div className="tweet">
+              <div className="twitter-icon">
+                <div className="Icon Icon--twitter"></div>
               </div>
-              <div class="tweet-author">
-                <div class="TweetAuthor">
-                  <a class="TweetAuthor-link" href="#channel">
+              <div className="tweet-author">
+                <div className="TweetAuthor">
+                  <a className="TweetAuthor-link" href="#channel">
                     {" "}
                   </a>
-                  <span class="TweetAuthor-avatar">
-                    <div class="Avatar"> </div>
+                  <span className="TweetAuthor-avatar">
+                    <div className="Avatar"> </div>
                   </span>
-                  <span class="TweetAuthor-name">{tweets.user}</span>{" "}
-                  <span class="TweetAuthor-screenName">@{tweets.user}</span>
+                  <span className="TweetAuthor-name">{tweet.user}</span>{" "}
+                  <span className="TweetAuthor-screenName">@{tweet.user}</span>
                 </div>
               </div>
-              <div class="tweet-text">{tweets.text}</div>
-              <div class="tweet-timestamp">
-                <span class="tweet-timestamp-date">
-                  {tweets.date}
+              <div className="tweet-text">{tweet.text}</div>
+              <div className="tweet-timestamp">
+                <span className="tweet-timestamp-date">
+                  {tweet.date}
                 </span>
               </div>
             </div>
@@ -91,7 +98,7 @@ const AnalyzerDB = () => {
         <ResponsiveContainer width="30%" height={300}>
           <PieChart height={250}>
             <Pie
-              data={data}
+              data={data2}
               cx="50%"
               cy="50%"
               outerRadius={100}
@@ -120,7 +127,7 @@ const AnalyzerDB = () => {
                     textAnchor={x > cx ? "start" : "end"}
                     dominantBaseline="central"
                   >
-                    {data[index].name} ({value}%)
+                    {data2[index].name} ({value}%)
                   </text>
                 );
               }}

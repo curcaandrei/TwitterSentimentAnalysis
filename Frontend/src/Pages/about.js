@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../Components/Navigation';
 const About = () => {
   return (
     

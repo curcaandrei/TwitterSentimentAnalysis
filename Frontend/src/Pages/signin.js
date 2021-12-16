@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import BgImg from '../../src/tweet.png';
 import "./signin.css";
 import axios from 'axios';
-
+import LoadingScreen from 'react-loading-screen'
 
 const Section = styled.section`
   background-image: url(${BgImg});
@@ -33,62 +33,64 @@ const MyTweets2 = () => {
   const [user, setUser] = useState([]);
   const [username, setUsername] = useState([]);
 
-  useEffect(async () => {
-    const result = await axios.get("https://localhost:7225/signin", {
+  useEffect(() => {
+    axios.get("https://localhost:7225/signin", {
         params: {
             tweetinvi_auth_request_id: tweetinvi_auth_request_id,
             oauth_token : oauth_token,
             oauth_verifier: oauth_verifier
         }
-    });
-    setMyTweets(result.data.data)
-    setLoading(false);
-  });
-  if(isLoading){
-    var myId = ""
-    for(const prop in myTweets[0]){
-        if(prop == "id"){
-          myId = myTweets[0][prop]
+    }).then( function (res) {
+      setMyTweets(res.data.data);
+      var myId;
+    for(var prop in res.data.data[0]){
+        if(prop === "id"){
+          myId = res.data.data[0][prop];
         }
     }
-  
-    console.log(myId)
-  }  
-  
+    axios.get("https://localhost:7225/api/ExternalTwitter/tweetById/" + myId, {
 
-
-    useEffect(async () => {
-        const result = await axios.get("https://localhost:7225/api/ExternalTwitter/tweetById/" + myId, {
-
-        });
-        setUser(result.data.user);
-        setUsername(result.data.username);
+      }).then(function (res2) {
+        setUser(res2.data.user);
+        setUsername(res2.data.username);
         setLoading(false);
+      });
     });
-  
+  }, [oauth_token, oauth_verifier, tweetinvi_auth_request_id]);
+
+
+    
+  if(isLoading){
+    return <LoadingScreen
+    loading={true}
+    bgColor='#f1f1f1'
+    spinnerColor='#9ee5f8'
+    textColor='#676767'
+    text='Loading your tweets'
+  />
+  }
 
   const displayTweets = Object.keys(myTweets).map((tweet, i) =>{
       var good_id = myTweets[tweet].id;
       
             return (
-        <div class="block-parent">
-          <div class="tweet-list">
-            <div class="tweet">
-              <div class="twitter-icon">
-                <div class="Icon Icon--twitter"></div>
+        <div className="block-parent" key={i}>
+          <div className="tweet-list" key={++i}>
+            <div className="tweet" key={++i}>
+              <div className="twitter-icon" key={++i}>
+                <div className="Icon Icon--twitter" key={++i}></div>
               </div>
-              <div class="tweet-author">
-                <div class="TweetAuthor"><a class="TweetAuthor-link" href="#channel"> </a><span class="TweetAuthor-avatar"> 
-                  <div class="Avatar"> </div></span><span class="TweetAuthor-name">{user}</span> <span class="TweetAuthor-screenName">@{username}</span></div>
+              <div className="tweet-author" key={++i}>
+                <div className="TweetAuthor" key={++i}><a className="TweetAuthor-link" href="#channel"> </a><span className="TweetAuthor-avatar"> 
+                  <div className="Avatar" key={++i}> </div></span><span className="TweetAuthor-name">{user}</span> <span className="TweetAuthor-screenName">@{username}</span></div>
                 </div>
-                <div class="tweet-text">{myTweets[tweet].text}</div>
-                <div class="tweet-timestamp">
-                  <span class="tweet-timestamp-date"></span>
+                <div className="tweet-text" key={++i}>{myTweets[tweet].text}</div>
+                <div className="tweet-timestamp" key={++i}>
+                  <span className="tweet-timestamp-date"></span>
                 </div>
               </div>
             </div>
-            {/* <Link to={href} className="button">Analyze</Link> */}
-            <a href={"/analyzer/" + good_id} class="button">Analyze</a>
+            <a href={"/analyzer/" + good_id} className="button">Analyze</a>
           </div>
       );
   })
@@ -98,7 +100,7 @@ const MyTweets2 = () => {
       <Content>
        
         
-          <div class="url" style={{color: "#04050a", fontweight: 400, textalign: "-webkit-center"}}>
+          <div className="url" style={{color: "#04050a", fontweight: 400, textalign: "-webkit-center"}}>
           
           </div>
        <div className="App">
