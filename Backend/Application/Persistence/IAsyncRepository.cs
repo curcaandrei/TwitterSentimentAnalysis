@@ -1,5 +1,8 @@
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain.Dtos;
+using Domain.Entities;
 using MongoDB.Driver;
 
 namespace Application.Persistence
@@ -13,5 +16,11 @@ namespace Application.Persistence
         UpdateResult UpdateAsync(string id, System.Collections.Generic.Dictionary<string, float> feels);
 
         DeleteResult DeleteAsync(string id);
+
+        UserRole GetUserRole(string userId);
+
+        Object GetJwtToken(string data);
+
+        List<MiniTweet> GetMyTweets(string userId);
     }
 }

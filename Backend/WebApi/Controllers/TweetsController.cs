@@ -4,9 +4,12 @@ using Application.Commands.CreateTweet;
 using Application.Commands.DeleteTweet;
 using Application.Commands.UpdateTweet;
 using Application.Features.Tweets.GetAllTweets;
+using Application.Features.Tweets.GetMyTweets;
 using Application.Features.Tweets.GetOneTweet;
 using Domain.Dtos;
+using Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
@@ -61,6 +64,15 @@ namespace WebApi.Controllers
         public UpdateResult UpdateOne([FromRoute] string id, [FromBody]Dictionary<string, float> feels)
         {
             var res = _mediator.Send(new UpdateTweetCommand(id, feels));
+            return res.Result;
+        }
+        
+        [Authorize(Roles = "admin")]
+        [HttpGet("my-tweets/{userId}", Name = "Get My Tweets")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public List<MiniTweet> GetMyTweets([FromRoute]string userId)
+        {
+            var res = _mediator.Send(new GetMyTweetsQuery(userId));
             return res.Result;
         }
     }
