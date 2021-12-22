@@ -72,9 +72,9 @@ namespace Persistence.Repositories
             return res[0];
         }
 
-        public object GetJwtToken(string tweets)
+        public object GetJwtToken(string data)
         {
-            TweetSerializer tweetSerializer = JsonConvert.DeserializeObject<TweetSerializer>(tweets);
+            TweetSerializer tweetSerializer = JsonConvert.DeserializeObject<TweetSerializer>(data);
             
             foreach (var variable in tweetSerializer.data)
             {
@@ -91,7 +91,7 @@ namespace Persistence.Repositories
             }
             
             string key = "turbo-secret-key"; //Secret key which will be used later during validation    
-            var issuer = "http://twitter-sentiment-analyser.com";  //normally this will be your site URL    
+            var issuer = "https://twitter-sentiment-analyser.com";  //normally this will be your site URL    
             
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));    
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);    

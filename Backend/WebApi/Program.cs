@@ -57,8 +57,8 @@ builder.Services.AddAuthentication(options =>
     cfg.SaveToken = true;
     cfg.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidIssuer = "http://twitter-sentiment-analyser.com",
-        ValidAudience = "http://twitter-sentiment-analyser.com",
+        ValidIssuer = "https://twitter-sentiment-analyser.com",
+        ValidAudience = "https://twitter-sentiment-analyser.com",
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("turbo-secret-key")),
         ClockSkew = TimeSpan.Zero // remove delay of token when expire
     };
