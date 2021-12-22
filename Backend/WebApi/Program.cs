@@ -1,7 +1,12 @@
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 using Application;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Persistence;
 using Persistence.MongoDb;
 using Persistence.TwitterExternalAPI;
@@ -40,6 +45,25 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.CustomSchemaIds(type => type.ToString());
 });
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(cfg =>
+{
+    cfg.RequireHttpsMetadata = false;
+    cfg.SaveToken = true;
+    cfg.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidIssuer = "http://twitter-sentiment-analyser.com",
+        ValidAudience = "http://twitter-sentiment-analyser.com",
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("turbo-secret-key")),
+        ClockSkew = TimeSpan.Zero // remove delay of token when expire
+    };
+});
+
 var app = builder.Build();
 
 app.UseRouting();
@@ -47,7 +71,11 @@ app.UseCors(x =>
 {
     x.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(origin => true);
 });
+
+
+app.UseAuthentication();
 app.UseAuthorization();
+
 app.UseEndpoints(x => x.MapControllers());
 // Configure the HTTlP request pipeline.
 if (app.Environment.IsDevelopment())

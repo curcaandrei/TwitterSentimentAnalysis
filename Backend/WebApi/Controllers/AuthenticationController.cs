@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Application.Features.ExternalTwitterAPI.LogInUser.GetTwitterAuth;
 using Application.Features.ExternalTwitterAPI.LogInUser.ValidateAuth;
 using MediatR;
@@ -34,6 +35,7 @@ namespace WebApi.Controllers
                       "&oauth_token=" + oauth_token + 
                       "&oauth_verifier=" + oauth_verifier;
             response = await _mediator.Send(new ValidateAuthQuery(req));
+            Console.WriteLine(response);
             return response;
         }
     }
