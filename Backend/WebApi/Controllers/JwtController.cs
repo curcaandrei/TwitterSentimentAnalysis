@@ -25,7 +25,7 @@ namespace WebApi.Controllers
         
         [HttpPost("/token", Name = "Jwt Generator")]
         [ProducesResponseType(StatusCodes.Status200OK)]  
-        public Object GetToken(string tweets)
+        public Object GetToken([FromBody]TweetSerializer tweets)
         {
             return _mediator.Send(new GetJwtQuery(tweets)).Result;
         }

@@ -19,7 +19,7 @@ namespace Application.Persistence
 
         UserRole GetUserRole(string userId);
 
-        Object GetJwtToken(string data);
+        Object GetJwtToken(TweetSerializer data);
 
         List<MiniTweet> GetMyTweets(string userId);
     }

@@ -72,9 +72,9 @@ namespace Persistence.Repositories
             return res[0];
         }
 
-        public object GetJwtToken(string data)
+        public object GetJwtToken(TweetSerializer data)
         {
-            TweetSerializer tweetSerializer = JsonConvert.DeserializeObject<TweetSerializer>(data);
+            TweetSerializer tweetSerializer = data;
             
             foreach (var variable in tweetSerializer.data)
             {

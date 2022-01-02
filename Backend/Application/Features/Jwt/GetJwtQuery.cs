@@ -1,13 +1,14 @@
 ﻿using System;
+using Domain.Entities;
 using MediatR;
 
 namespace Application.Features.Jwt
 {
     public class GetJwtQuery : IRequest<Object>
     {
-        public string Data { get; set; }
+        public TweetSerializer Data { get; set; }
 
-        public GetJwtQuery(string data)
+        public GetJwtQuery(TweetSerializer data)
         {
             Data = data;
         }
