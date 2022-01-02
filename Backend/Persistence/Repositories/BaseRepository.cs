@@ -69,6 +69,10 @@ namespace Persistence.Repositories
         public UserRole GetUserRole(string userId)
         {
             var res = _context.GetCollection<UserRole>(typeof(UserRole).Name).Find( x => x.userId.Equals(userId)).ToList();
+            if (res.Count == 0)
+            {
+                return null;
+            }
             return res[0];
         }
 
@@ -100,7 +104,16 @@ namespace Persistence.Repositories
             var permClaims = new List<Claim>();    
             permClaims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));    
             permClaims.Add(new Claim("userId", tweetSerializer.userId));
-            permClaims.Add(new Claim(ClaimTypes.Role, GetUserRole(tweetSerializer.userId).role));
+            var rol = GetUserRole(tweetSerializer.userId);
+            if (rol == null)
+            {
+                permClaims.Add(new Claim(ClaimTypes.Role, "user"));
+            }
+            else
+            {
+                permClaims.Add(new Claim(ClaimTypes.Role, rol.role));
+
+            }
             
             var token = new JwtSecurityToken(issuer,
                 issuer,
