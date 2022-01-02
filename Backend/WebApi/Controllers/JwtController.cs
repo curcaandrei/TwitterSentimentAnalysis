@@ -23,7 +23,7 @@ namespace WebApi.Controllers
             _mediator = mediator;
         }
         
-        [HttpGet("/token", Name = "Jwt Generator")]
+        [HttpPost("/token", Name = "Jwt Generator")]
         [ProducesResponseType(StatusCodes.Status200OK)]  
         public Object GetToken(string tweets)
         {
