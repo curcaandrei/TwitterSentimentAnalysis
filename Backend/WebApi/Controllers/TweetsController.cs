@@ -67,7 +67,7 @@ namespace WebApi.Controllers
             return res.Result;
         }
         
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "user")]
         [HttpGet("my-tweets/{userId}", Name = "Get My Tweets")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public List<MiniTweet> GetMyTweets([FromRoute]string userId)
