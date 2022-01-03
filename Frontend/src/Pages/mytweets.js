@@ -4,8 +4,6 @@ import BgImg from '../../src/tweet.png';
 import "./signin.css";
 import axios from 'axios';
 import LoadingScreen from 'react-loading-screen'
-import { useHistory } from 'react-router-dom';
-import { Route } from 'react-router';
 import jwt_decode from "jwt-decode";
 
 const Section = styled.section`
@@ -26,7 +24,7 @@ const MyTweets3 = () => {
     var [myTweets, setJsonRes] = useState([]);
     var [loadingPage, setLoading] = useState(true);
     var userId = jwt_decode(localStorage.getItem('jwtToken')).userId
-    console.log(userId);
+    
     useEffect(() => {
         axios.get("https://localhost:7225/api/Tweets/my-tweets/" + userId, {
             headers:{
