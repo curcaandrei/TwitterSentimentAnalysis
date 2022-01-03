@@ -9,6 +9,36 @@ import { useState, useEffect } from 'react';
 import "../../App.css";
 import axios from 'axios';
 
+const AuthButton = (link) => {
+  return class extends React.Component {
+    render() {
+      var isLoggedIn = localStorage.getItem('jwtToken') != null ? true : false;
+
+      switch(isLoggedIn) {
+          case true:
+              return (
+                  <NavLink to='/usertweets' >
+                          MyTweets
+                        </NavLink>
+                  )
+          case false:
+              return (
+                  <><NavLink to='/mytweets'>
+                  Sign In
+                </NavLink><Route path='/mytweets' component={() => {
+                  window.location.href = link;
+                  return null;
+                } } /></>
+                )
+          default:
+              return null;
+      }
+    }
+  }
+  
+}
+
+
 
 const Navbar = () => {
   const [link, setLink] = useState("");
@@ -25,10 +55,13 @@ const Navbar = () => {
       });
   }, []);
 
+  const NewComponent = AuthButton(link);
+
   if(isLoading){
     return (
       <>
         <Nav>
+          
           <NavLink to='/'>
             Tweet Sentiment Analyzer
           </NavLink>
@@ -37,10 +70,7 @@ const Navbar = () => {
             <NavLink to='/about' >
               About
             </NavLink>
-            <NavLink to='/mytweets' >
-              My Tweets
-            </NavLink>
-            
+            <NewComponent />
           </NavMenu>
         </Nav>
       </>
@@ -58,14 +88,12 @@ const Navbar = () => {
           <NavLink to='/about' >
             About
           </NavLink>
-          <NavLink to='/mytweets' >
-            My Tweets
-          </NavLink>
-          <Route path='/mytweets' component={() => { 
-    window.location.href = link;
-    return null;
-}}/>
+
+          <NewComponent />
+            
+
           
+        
         </NavMenu>
       </Nav>
     </>

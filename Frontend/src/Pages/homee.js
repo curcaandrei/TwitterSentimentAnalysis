@@ -25,9 +25,10 @@ const Content = styled.div`
 
 
 const Homee = () => {
-  
+
 
   var [pageNumber, setPageNumber] = useState(0);
+  var [loading, setLoading] = useState(true);
 
   const [users, setUsers] = useState("");
   // const [isLoading, setLoading] = useState(true);
@@ -37,7 +38,7 @@ const Homee = () => {
   useEffect(() => {
     axios("https://localhost:7225/api/Tweets/all/" + pageNumber,{
     }).then(res => setUsers(res.data));
-    // setLoading(false);
+    setLoading(false);
   }, [pageNumber]);
 
 
@@ -93,7 +94,6 @@ const Homee = () => {
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
-
   return (
     <Section>
       <Content>

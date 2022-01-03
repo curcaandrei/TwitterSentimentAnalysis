@@ -9,10 +9,11 @@ import Homee from './Pages/homee';
 import Analyzer from './Pages/analyzer';
 import AnalyzerDB from './Pages/analyzerdb';
 import MyTweets2 from './Pages/signin';
+import { render } from 'react-dom';
+import MyTweets3 from './Pages/mytweets';
 
 
 function App() {
-
   return (
     
     <Router>  
@@ -26,6 +27,7 @@ function App() {
         <Route path='/analyzer' component={Analyzer} />
         <Route path='/analyzerdb' component={AnalyzerDB} />
         <Route path='/signin' component={MyTweets2} />
+        <Route path='/usertweets' component={MyTweets3} />
       </Switch>
     </Router>
      

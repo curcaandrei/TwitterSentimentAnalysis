@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, ResponsiveContainer } from "recharts";
 import { useLocation } from "react-router";
 import axios from 'axios';
+import LoadingScreen from 'react-loading-screen'
 
 const AnalyzerDB = () => {
   
@@ -14,6 +15,7 @@ const AnalyzerDB = () => {
   const [happy, setHappy] = useState("");
   const [sad, setSad] = useState("");
   const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     axios("https://localhost:7225/api/Tweets/one/" + tweet_id,{  
@@ -31,7 +33,8 @@ const AnalyzerDB = () => {
         { name: "Happy", value: Number(parseFloat(happy*100).toFixed(2))  },
         { name: "Sad", value: Number(parseFloat(sad*100).toFixed(2)) },
       ]);
-    })
+      setLoading(false);
+    });
     
   }, []);
   
@@ -42,6 +45,17 @@ const AnalyzerDB = () => {
       data2.push({ name: "Happy", value: Number(parseFloat(happy*100).toFixed(2)), fill: '#bbe7d5' })
     else if(data[prop].name === "Sad")
       data2.push( { name: "Sad", value: Number(parseFloat(sad*100).toFixed(2)), fill: '#d8bfbb' })
+  }
+
+  if(isLoading){
+    return <LoadingScreen
+    loading={true}
+    bgColor='#f1f1f1'
+    spinnerColor='#9ee5f8'
+    textColor='#676767'
+    text='Analyzing your tweet'
+    children=""
+  />
   }
   
   return (
