@@ -82,7 +82,7 @@ const MyTweets2 = () => {
     bgColor='#f1f1f1'
     spinnerColor='#9ee5f8'
     textColor='#676767'
-    text='Signin in...'
+    text='Signing in...'
   />
   }
 
