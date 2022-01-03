@@ -23,6 +23,7 @@ const Content = styled.div`
 const MyTweets3 = () => {
     var [myTweets, setJsonRes] = useState([]);
     var [loadingPage, setLoading] = useState(true);
+    var [username, setUsername] = useState(); 
     var userId = jwt_decode(localStorage.getItem('jwtToken')).userId
     
     useEffect(() => {
@@ -32,6 +33,11 @@ const MyTweets3 = () => {
         }).then(function (res) {
             setJsonRes(res.data);
             setLoading(false);
+            axios.get("https://localhost:7225/api/ExternalTwitter/tweetById/" + res.data[0].tweetId, {
+
+            }).then(function (res2) {
+              setUsername(res2.data.user);
+            })
         })
     })
 
@@ -57,7 +63,7 @@ const MyTweets3 = () => {
               </div>
               <div className="tweet-author" key={++i}>
                 <div className="TweetAuthor" key={++i}><a className="TweetAuthor-link" href="#channel"> </a><span className="TweetAuthor-avatar"> 
-                  <div className="Avatar" key={++i}> </div></span><span className="TweetAuthor-name">{localStorage.getItem('username')}</span> <span className="TweetAuthor-screenName">{userId}</span></div>
+                  <div className="Avatar" key={++i}> </div></span><span className="TweetAuthor-name">{username}</span> <span className="TweetAuthor-screenName">{userId}</span></div>
                 </div>
                 <div className="tweet-text" key={++i}>{myTweets[tweet].text}</div>
                 <div className="tweet-timestamp" key={++i}>

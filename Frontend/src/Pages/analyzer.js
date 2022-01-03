@@ -94,7 +94,7 @@ const Analyzer = () => {
                     <div className="Avatar"> </div>
                   </span>
                   <span className="TweetAuthor-name">{tweet.user}</span>{" "}
-                  <span className="TweetAuthor-screenName">@{tweet.user}</span>
+                  <span className="TweetAuthor-screenName">@{tweet.username}</span>
                 </div>
               </div>
               <div className="tweet-text">{tweet.text}</div>
