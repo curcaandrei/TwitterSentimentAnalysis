@@ -1,102 +1,85 @@
-import React from 'react';
-import {
-  Nav,
-  NavLink,
-  Bars,
-  NavMenu} from './NavbarElements';
-import { Route } from 'react-router';
-import { useState, useEffect } from 'react';
+import React from "react";
+import { Nav, NavLink, Bars, NavMenu } from "./NavbarElements";
+import { Route } from "react-router";
+import { useState, useEffect } from "react";
 import "../../App.css";
-import axios from 'axios';
+import axios from "axios";
+import { BrowserRouter as Router, Switch, Link } from "react-router-dom";
+
+const Logout = () => {
+  localStorage.removeItem("jwtToken");
+  localStorage.removeItem("username");
+};
 
 const AuthButton = (link) => {
   return class extends React.Component {
     render() {
-      var isLoggedIn = localStorage.getItem('jwtToken') != null ? true : false;
+      var isLoggedIn = localStorage.getItem("jwtToken") !== null ? true : false;
 
-      switch(isLoggedIn) {
-          case true:
-              return (
-                  <NavLink to='/usertweets' >
-                          MyTweets
-                        </NavLink>
-                  )
-          case false:
-              return (
-                  <><NavLink to='/mytweets'>
-                  Sign In
-                </NavLink><Route path='/mytweets' component={() => {
+      switch (isLoggedIn) {
+        case true:
+          return (
+            <>
+              <Router forceRefresh>
+                <NavLink to="/usertweets">MyTweets</NavLink>
+              </Router>
+              <Router forceRefresh>
+                <NavLink to="/" onClick={Logout}>
+                  Logout
+                </NavLink>
+              </Router>
+            </>
+          );
+        case false:
+          return (
+            <>
+              <NavLink to="/mytweets">Sign In</NavLink>
+              <Route
+                path="/mytweets"
+                component={() => {
                   window.location.href = link;
                   return null;
-                } } /></>
-                )
-          default:
-              return null;
+                }}
+              />
+            </>
+          );
+        default:
+          return null;
       }
     }
-  }
-  
-}
-
-
+  };
+};
 
 const Navbar = () => {
   const [link, setLink] = useState("");
-  // const [tweets, setTweets] = useState({hits: []});
-  const [isLoading, setLoading] = useState(true);
-    
   useEffect(() => {
-      axios({
-          method: 'post',
-          url: 'https://localhost:7225/signin'
-      }).then(function (res) {
-        setLink(res.data);
-        setLoading(false);
-      });
+    axios({
+      method: "post",
+      url: "https://localhost:7225/signin",
+    }).then(function (res) {
+      setLink(res.data);
+      // setLoading(false);
+    });
   }, []);
 
   const NewComponent = AuthButton(link);
 
-  if(isLoading){
-    return (
-      <>
-        <Nav>
-          
-          <NavLink to='/'>
-            Tweet Sentiment Analyzer
-          </NavLink>
-          <Bars />
-          <NavMenu>
-            <NavLink to='/about' >
-              About
-            </NavLink>
-            <NewComponent />
-          </NavMenu>
-        </Nav>
-      </>
-    );
-  }
-  
   return (
-    <>
-      <Nav>
-        <NavLink to='/'>
-          Tweet Sentiment Analyzer
-        </NavLink>
-        <Bars />
-        <NavMenu>
-          <NavLink to='/about' >
-            About
-          </NavLink>
+    <Nav>
+      <Router forceRefresh>
+        <NavLink to="/">Tweet Sentiment Analyzer</NavLink>
+      </Router>
 
-          <NewComponent />
-            
+      <Bars />
 
-          
-        
-        </NavMenu>
-      </Nav>
-    </>
+      <NavMenu>
+        <Router forceRefresh>
+          <NavLink to="/about">About</NavLink>
+        </Router>
+
+        <NewComponent />
+      </NavMenu>
+    </Nav>
   );
 };
 
