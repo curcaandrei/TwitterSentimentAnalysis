@@ -105,7 +105,7 @@ namespace Persistence.Repositories
             permClaims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));    
             permClaims.Add(new Claim("userId", tweetSerializer.userId));
             var rol = GetUserRole(tweetSerializer.userId);
-            if (rol.userId == "none")
+            if (rol.role == "none")
             {
                 permClaims.Add(new Claim(ClaimTypes.Role, "user"));
             }
