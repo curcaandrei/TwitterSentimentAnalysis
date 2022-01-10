@@ -11,9 +11,11 @@ using Application.Features.Tweets.GetAllTweets;
 using Application.Features.Tweets.GetOneTweet;
 using Application.Features.Tweets.PredictTweetSentiment;
 using Application.Persistence;
+using Autofac.Util;
 using AutoMapper;
 using Domain.Entities;
 using FakeItEasy;
+using InfrastructureTest.ExternalTwitterAPITestsDir;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using Moq;
@@ -24,7 +26,7 @@ using Xunit;
 
 namespace InfrastructureTest.QueryHandlers
 {
-    public class QueryHandlersTests
+    public class QueryHandlersTests : Disposable
     {
         protected readonly Mock<BaseRepository<Tweet>> _baseRepository;
         protected readonly Mock<MlRepository> _mlRepository;
@@ -145,7 +147,6 @@ namespace InfrastructureTest.QueryHandlers
 
             var cmd2 = new DeleteTweetRequestCommand("61dca0d61911884830b44df1");
             var handler2 = new DeleteTweetRequestCommandHandler(_requestTweetRepository.Object);
-
             var res2 = handler2.Handle(cmd2, default);
             Assert.True(res.IsCompleted);
         }
@@ -200,5 +201,10 @@ namespace InfrastructureTest.QueryHandlers
             Assert.True(res.IsCompleted);
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            _requestTweetRepository.Object.DeleteAsync("61dca0d61911884830b44df1");
+            base.Dispose(disposing);
+        }
     }
 }
