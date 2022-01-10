@@ -148,7 +148,7 @@ namespace InfrastructureTest.QueryHandlers
             var cmd2 = new DeleteTweetRequestCommand("61dca0d61911884830b44df1");
             var handler2 = new DeleteTweetRequestCommandHandler(_requestTweetRepository.Object);
             var res2 = handler2.Handle(cmd2, default);
-            Assert.True(res.IsCompleted);
+            Assert.Equal("61dca0d61911884830b44df1",res.Result.Id.ToString());
         }
         
         [Fact]
