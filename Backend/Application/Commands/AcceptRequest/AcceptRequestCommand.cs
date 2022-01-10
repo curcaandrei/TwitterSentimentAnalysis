@@ -5,7 +5,7 @@ namespace Application.Commands.AcceptRequest
 {
     public class AcceptRequestCommand : IRequest<string>
     {
-        public string Id;
+        public readonly string Id;
         
         public AcceptRequestCommand(string id)
         {

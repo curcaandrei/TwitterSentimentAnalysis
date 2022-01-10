@@ -33,7 +33,7 @@ namespace Persistence.Repositories
             
             foreach (var variable in tweets)
             {
-                Tweet t = variable as Tweet;
+                Tweet t = variable;
 
                 TweetDto tweetDto = new TweetDto();
                 if (t != null)
@@ -81,7 +81,7 @@ namespace Persistence.Repositories
             for(int i = 0; i < csvTable.Rows.Count; i++)
             {
                 var row = csvTable.Rows[i];
-                dataList.Add(new TweetML.ModelInput() { Label = Convert.ToSingle(row.ItemArray[0]), Text = Convert.ToString(row.ItemArray[1]) });
+                dataList.Add(new TweetML.ModelInput() { Label = Convert.ToSingle(row.ItemArray[0]), Text = Convert.ToString(row.ItemArray[1]) ?? string.Empty });
             }
             dataList.Add(new TweetML.ModelInput()
             {
