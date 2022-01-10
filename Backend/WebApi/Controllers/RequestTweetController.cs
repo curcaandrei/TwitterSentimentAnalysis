@@ -9,6 +9,7 @@ using Domain;
 using Domain.Dtos;
 using Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
@@ -24,7 +25,8 @@ namespace WebApi.Controllers
         {
             _mediator = mediator;
         }
-        
+
+        [Authorize(Roles = "admin")]
         [HttpGet("all")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<List<TweetDto>> GetAll()
@@ -40,7 +42,8 @@ namespace WebApi.Controllers
             
             await _mediator.Send(new RequestToAddTweetQuery(tweet));
         }
-        
+
+        [Authorize(Roles = "admin")]
         [HttpDelete("delete/{id}", Name = "DeleteRequest")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public DeleteResult DeleteRequest(string id)
@@ -48,7 +51,8 @@ namespace WebApi.Controllers
             var res = _mediator.Send(new DeleteTweetRequestCommand(id));
             return res.Result;
         }
-        
+
+        [Authorize(Roles = "admin")]
         [HttpPost("accept-request/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public void AcceptRequest(string id)
