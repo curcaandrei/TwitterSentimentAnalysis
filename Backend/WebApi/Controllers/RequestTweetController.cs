@@ -25,26 +25,26 @@ namespace WebApi.Controllers
         
         [HttpPost("/request-to-add")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task AddToRequests([FromBody] TweetDto tweet)
+        public async Task AddToRequests([FromBody] Tweet tweet)
         {
+            
             await _mediator.Send(new RequestToAddTweetQuery(tweet));
         }
         
         [HttpDelete("delete/{id}", Name = "DeleteRequest")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public DeleteResult DeleteRequest([FromBody] string id)
+        public DeleteResult DeleteRequest(string id)
         {
             var res = _mediator.Send(new DeleteTweetRequestCommand(id));
             return res.Result;
         }
         
-        [HttpPost("accept-request")]
+        [HttpPost("accept-request/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public void AcceptRequest([FromBody]JsonElement body)
+        public void AcceptRequest(string id)
         {
-            string json = System.Text.Json.JsonSerializer.Serialize(body);
-            
-            _mediator.Send(new AcceptRequestCommand(json));
+
+            _mediator.Send(new AcceptRequestCommand(id));
         }
     }
 }

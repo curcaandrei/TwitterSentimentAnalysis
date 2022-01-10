@@ -4,12 +4,17 @@ using MediatR;
 
 namespace Application.Features.RequestTweet
 {
-    public class RequestToAddTweetQuery: IRequest<TweetDto>
+    public class RequestToAddTweetQuery: IRequest<Tweet>
     {
-        public TweetDto Tweet;
+        public Tweet Tweet;
 
-        public RequestToAddTweetQuery(TweetDto tweet)
+        public RequestToAddTweetQuery(Tweet tweet)
         {
+            // Tweet normal_tweet = new Tweet();
+            // normal_tweet.Username = tweet.Username;
+            // normal_tweet.User = tweet.User;
+            // normal_tweet.feels = tweet.Feels;
+            // normal_tweet.Date = tweet.Date;
             Tweet = tweet;
         }
 

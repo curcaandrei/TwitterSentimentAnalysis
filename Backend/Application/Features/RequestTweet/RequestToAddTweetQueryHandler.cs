@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Application.Features.RequestTweet
 {
-    public class RequestToAddTweetQueryHandler : IRequestHandler<RequestToAddTweetQuery, TweetDto>
+    public class RequestToAddTweetQueryHandler : IRequestHandler<RequestToAddTweetQuery, Tweet>
     {
         private readonly IRequestTweetRepository _repository;
         
@@ -16,7 +16,7 @@ namespace Application.Features.RequestTweet
             _repository = repository;
         }
         
-        public Task<TweetDto> Handle(RequestToAddTweetQuery request, CancellationToken cancellationToken)
+        public Task<Tweet> Handle(RequestToAddTweetQuery request, CancellationToken cancellationToken)
         {
             return _repository.AddAsync(request.Tweet);
         }
