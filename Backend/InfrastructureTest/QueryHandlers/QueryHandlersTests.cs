@@ -1,12 +1,16 @@
 ﻿using System.Collections.Generic;
 using Application.Commands.CreateTweet;
 using Application.Commands.DeleteTweet;
+using Application.Commands.RequestTweet;
 using Application.Commands.UpdateTweet;
 using Application.Features.ExternalTwitterAPI.GetTweetFromURL;
 using Application.Features.ExternalTwitterAPI.LogInUser.GetTwitterAuth;
+using Application.Features.Jwt;
+using Application.Features.RequestTweet;
 using Application.Features.Tweets.GetAllTweets;
 using Application.Features.Tweets.GetOneTweet;
 using Application.Features.Tweets.PredictTweetSentiment;
+using Application.Persistence;
 using AutoMapper;
 using Domain.Entities;
 using FakeItEasy;
@@ -25,6 +29,8 @@ namespace InfrastructureTest.QueryHandlers
         protected readonly Mock<MlRepository> _mlRepository;
         protected readonly Mock<TweetRepository> _tweetsRepository;
         protected readonly Mock<ExternalTwitterRepository> _externalTwitterRepository;
+        protected readonly Mock<RequestTweetRepository> _requestTweetRepository;
+        private readonly Mock<BaseRepository<UserRole>> _asyncRepository;
 
         protected Tweet _tweet;
         protected readonly Mock<TwitterHelper> _twitterHelper;
@@ -51,6 +57,8 @@ namespace InfrastructureTest.QueryHandlers
             _baseRepository = new Mock<BaseRepository<Tweet>>(_mockContext.Object);
             _mlRepository = new Mock<MlRepository>();
             _tweetsRepository = new Mock<TweetRepository>(_mockContext.Object);
+            _requestTweetRepository = new Mock<RequestTweetRepository>(_mockContext.Object);
+            _asyncRepository = new Mock<BaseRepository<UserRole>>(_mockContext.Object);
             _mapper = A.Fake<IMapper>();
         }
         
@@ -123,5 +131,68 @@ namespace InfrastructureTest.QueryHandlers
             
             Assert.True(res.Result["sad"] > res.Result["happy"]);
         }
+
+        [Fact]
+        public void RequestHandlerTest()
+        {
+            var cmd = new RequestToAddTweetQuery();
+            var handler = new RequestToAddTweetQueryHandler(_requestTweetRepository.Object);
+
+            var res = handler.Handle(cmd, default);
+            
+            Assert.True(res.IsCompleted);
+
+        }
+        
+        [Fact]
+        public void GetAllRequestsQueryHandlerTest()
+        {
+            var cmd = new GetAllRequestsQuery();
+            var handler = new GetAllRequestsQueryHandler(_requestTweetRepository.Object);
+
+            var res = handler.Handle(cmd, default);
+            
+            Assert.True(res.IsCompleted);
+
+        }
+        
+        [Fact]
+        public void DeleteTweetRequestCommandTest()
+        {
+            var cmd = new DeleteTweetRequestCommand("61c3817ead0f3ee2a51be90d");
+            var handler = new DeleteTweetRequestCommandHandler(_requestTweetRepository.Object);
+
+            var res = handler.Handle(cmd, default);
+            
+            Assert.True(res.IsCompleted);
+
+        }
+
+        [Fact]
+        public void GetJwtQueryTest()
+        {
+            TweetSerializer tweetSerializer = new TweetSerializer();
+            tweetSerializer.userId = "@curcaandrei99";
+            tweetSerializer.data = new List<MiniTweetDto>()
+            {
+                new MiniTweetDto()
+                {
+                    id = "1470666379263107072",
+                    text = "I do not feel very good"
+                },
+                new MiniTweetDto()
+                {
+                    id = "1469987067379728389",
+                    text = "i'm so sad today"
+                }
+            };
+            var cmd = new GetJwtQuery(tweetSerializer);
+            var handler = new GetJwtQueryHandler(_asyncRepository.Object);
+
+            var res = handler.Handle(cmd, default);
+            
+            Assert.True(res.IsCompleted);
+        }
+
     }
 }
