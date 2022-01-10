@@ -4,6 +4,21 @@ import { useLocation } from "react-router";
 import axios from 'axios';
 import LoadingScreen from 'react-loading-screen'
 
+
+function requestReview() {
+  if(localStorage.getItem("jwtToken") == null) {
+    return "";
+  } else {
+    return "Looking good? Help us improve the algorithm.";
+  }
+}
+
+
+function requestbtn(_tweet) {
+  document.getElementById("requestbtn").innerHTML = "Thank you for your support!";
+  axios.post("https://localhost:7225/request-to-add",_tweet);
+}
+
 const Analyzer = () => {
   
   let location = useLocation();
@@ -102,6 +117,7 @@ const Analyzer = () => {
                 <span className="tweet-timestamp-date">
                   {tweet.date}
                 </span>
+                <a href="#" type='submit' id="requestbtn" className="requestbtn" onClick = {() => requestbtn(tweet)}>{requestReview()}</a>
               </div>
             </div>
           </div>
