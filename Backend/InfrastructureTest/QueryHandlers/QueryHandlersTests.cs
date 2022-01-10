@@ -135,12 +135,16 @@ namespace InfrastructureTest.QueryHandlers
         [Fact]
         public void RequestHandlerTest()
         {
-            var cmd = new RequestToAddTweetQuery();
+            Tweet tweet = new Tweet();
+            var cmd = new RequestToAddTweetQuery(tweet);
             var handler = new RequestToAddTweetQueryHandler(_requestTweetRepository.Object);
 
             var res = handler.Handle(cmd, default);
-            
-            Assert.True(res.IsCompleted);
+
+            var cmdDelete = new DeleteTweetRequestCommand(tweet.Id.ToString());
+            var cmdHandler = new DeleteTweetRequestCommandHandler(_requestTweetRepository.Object);
+            var resDelete = cmdHandler.Handle(cmdDelete, default);
+            Assert.Equal(1, resDelete.Result.DeletedCount);
 
         }
         

@@ -156,15 +156,11 @@
     <lineToCover lineNumber="23" covered="true" />
   </file>
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Application\Features\RequestTweet\RequestToAddTweetQuery.cs">
+    <lineToCover lineNumber="10" covered="true" />
     <lineToCover lineNumber="11" covered="true" />
     <lineToCover lineNumber="12" covered="true" />
     <lineToCover lineNumber="13" covered="true" />
     <lineToCover lineNumber="14" covered="true" />
-    <lineToCover lineNumber="16" covered="true" />
-    <lineToCover lineNumber="17" covered="true" />
-    <lineToCover lineNumber="18" covered="true" />
-    <lineToCover lineNumber="19" covered="true" />
-    <lineToCover lineNumber="21" covered="true" />
   </file>
   <file path="C:\Users\Andrei\Documents\GitHub\ProiectDotNet\Backend\Application\Features\RequestTweet\RequestToAddTweetQueryHandler.cs">
     <lineToCover lineNumber="14" covered="true" />
@@ -504,8 +500,8 @@
     <lineToCover lineNumber="54" covered="false" />
     <lineToCover lineNumber="55" covered="true" />
     <lineToCover lineNumber="56" covered="true" />
-    <lineToCover lineNumber="57" covered="false" />
-    <lineToCover lineNumber="58" covered="false" />
+    <lineToCover lineNumber="57" covered="true" />
+    <lineToCover lineNumber="58" covered="true" />
     <lineToCover lineNumber="59" covered="false" />
     <lineToCover lineNumber="60" covered="false" />
     <lineToCover lineNumber="61" covered="true" />
