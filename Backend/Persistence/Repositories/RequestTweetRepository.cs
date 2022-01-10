@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Application.Persistence;
 using Domain;
 using Domain.Dtos;
 using Domain.Entities;
 using Microsoft.ML;
-using Microsoft.ML.Data;
-using Microsoft.ML.Trainers;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Persistence.MongoDb;
+using LumenWorks.Framework.IO.Csv;
+using System.Data;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Persistence.Repositories
 {
@@ -33,16 +33,17 @@ namespace Persistence.Repositories
             
             foreach (var variable in tweets)
             {
-                Tweet? t = variable as Tweet;
+                Tweet t = variable as Tweet;
+
                 TweetDto tweetDto = new TweetDto();
                 if (t != null)
                 {
-                    tweetDto.Feels = t.feels;
+                    tweetDto.User = t.User;
+                    tweetDto.Username = t.Username;
                     tweetDto.Date = t.Date;
                     tweetDto.Id = t.Id.ToString();
                     tweetDto.Text = t.Text;
-                    tweetDto.User = t.User;
-                    tweetDto.Username = t.Username;
+                    tweetDto.Feels = t.feels;
                     tweetDtos.Add(tweetDto);
                 }
             }
@@ -66,20 +67,40 @@ namespace Persistence.Repositories
         {
             var objectId = new ObjectId(id);
             var modelInput = _collection.Find(x => x.Id == objectId).ToList();
-            var result = modelInput[0].feels["sad"] > modelInput[0].feels["happy"] ? 0 : 1;
+            var result = modelInput[0].feels["sad"] > modelInput[0].feels["happy"] ? 0 : 4;
             
             var mlContext = new MLContext();
-            TweetML.ModelInput[] newData = new[]
+
+            var csvTable = new DataTable();
+            using (var csvReader = new CsvReader(new StreamReader(System.IO.File.OpenRead(@"..\\Domain\\shuffled_tweets.csv")), true))
             {
-                new TweetML.ModelInput()
-                {
-                    Text = modelInput[0].Text,
-                    Label = result
-                }
-            };
-            var data = mlContext.Data.LoadFromEnumerable<TweetML.ModelInput>(newData);
-            var retrainedModel = TweetML.RetrainPipeline(mlContext, data);
-            mlContext.Model.Save(retrainedModel, data.Schema, "..\\Domain\\TweetML2.zip");
+                csvTable.Load(csvReader);
+            }
+            List<TweetML.ModelInput> dataList = new List<TweetML.ModelInput>();
+
+            for(int i = 0; i < csvTable.Rows.Count; i++)
+            {
+                var row = csvTable.Rows[i];
+                dataList.Add(new TweetML.ModelInput() { Label = Convert.ToSingle(row.ItemArray[0]), Text = Convert.ToString(row.ItemArray[1]) });
+            }
+            dataList.Add(new TweetML.ModelInput()
+            {
+                Text = modelInput[0].Text,
+                Label = result
+            });
+            TweetML.ModelInput[] validData = dataList.ToArray();
+
+           IDataView newData = mlContext.Data.LoadFromEnumerable<TweetML.ModelInput>(validData);
+            var pipelineEstimator =
+            mlContext.Transforms.Text.FeaturizeText(@"Text", @"Text")
+                                    .Append(mlContext.Transforms.Concatenate(@"Features", @"Text"))
+                                    .Append(mlContext.Transforms.Conversion.MapValueToKey(@"Label", @"Label"))
+                                    .Append(mlContext.Transforms.NormalizeMinMax(@"Features", @"Features"))
+                                    .Append(mlContext.MulticlassClassification.Trainers.OneVersusAll(binaryEstimator: mlContext.BinaryClassification.Trainers.LbfgsLogisticRegression(l1Regularization: 3.26121927060575F, l2Regularization: 59.2224549814234F, labelColumnName: @"Label", featureColumnName: @"Features"), labelColumnName: @"Label"))
+                                    .Append(mlContext.Transforms.Conversion.MapKeyToValue(@"PredictedLabel", @"PredictedLabel"));
+            ITransformer trainedModel = pipelineEstimator.Fit(newData);
+            mlContext.Model.Save(trainedModel, newData.Schema, "..\\Domain\\TweetML.zip");
+
             var res = _context.GetCollection<TweetDto>("RequestedTweets").DeleteOne(Builders<TweetDto>.Filter.Eq("_id", objectId));
             Console.WriteLine(res.DeletedCount);
         }
