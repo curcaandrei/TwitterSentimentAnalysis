@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Persistence;
@@ -24,7 +25,31 @@ namespace Persistence.Repositories
             _context = dbContext;
             _collection = dbContext.GetCollection<Tweet>("RequestedTweets");
         }
-        
+
+        public async Task<List<TweetDto>> ListAllAsync()
+        {
+            List<Tweet> tweets =  _context.GetCollection<Tweet>("RequestedTweets").Find(_ => true).ToList();
+            List<TweetDto> tweetDtos = new List<TweetDto>();
+            
+            foreach (var variable in tweets)
+            {
+                Tweet? t = variable as Tweet;
+                TweetDto tweetDto = new TweetDto();
+                if (t != null)
+                {
+                    tweetDto.Feels = t.feels;
+                    tweetDto.Date = t.Date;
+                    tweetDto.Id = t.Id.ToString();
+                    tweetDto.Text = t.Text;
+                    tweetDto.User = t.User;
+                    tweetDto.Username = t.Username;
+                    tweetDtos.Add(tweetDto);
+                }
+            }
+
+            return await Task.FromResult(tweetDtos);
+        }
+
         public async Task<Tweet> AddAsync(Tweet entity)
         {
             await _context.GetCollection<Tweet>("RequestedTweets").InsertOneAsync(entity);

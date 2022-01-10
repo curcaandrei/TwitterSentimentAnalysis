@@ -1,8 +1,10 @@
-﻿using System.Text.Json;
+﻿using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Application.Commands.AcceptRequest;
 using Application.Commands.RequestTweet;
 using Application.Features.RequestTweet;
+using Application.Features.Tweets.GetAllTweets;
 using Domain;
 using Domain.Dtos;
 using Domain.Entities;
@@ -21,6 +23,14 @@ namespace WebApi.Controllers
         public RequestTweetController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+        
+        [HttpGet("all")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<List<TweetDto>> GetAll()
+        {
+            var list = await _mediator.Send(new GetAllRequestsQuery());
+            return list;
         }
         
         [HttpPost("/request-to-add")]
