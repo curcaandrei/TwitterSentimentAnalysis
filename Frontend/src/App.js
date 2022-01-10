@@ -11,7 +11,7 @@ import AnalyzerDB from './Pages/analyzerdb';
 import MyTweets2 from './Pages/signin';
 import { render } from 'react-dom';
 import MyTweets3 from './Pages/mytweets';
-
+import Admin from './Pages/admin';
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
         <Route path='/analyzerdb' component={AnalyzerDB} />
         <Route path='/signin' component={MyTweets2} />
         <Route path='/usertweets' component={MyTweets3} />
+        <Route path='/editTweets' component={Admin}/>
       </Switch>
     </Router>
      

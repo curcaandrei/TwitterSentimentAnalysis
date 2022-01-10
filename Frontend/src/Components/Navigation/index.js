@@ -24,6 +24,9 @@ const AuthButton = (link) => {
                 <NavLink to="/usertweets">MyTweets</NavLink>
               </Router>
               <Router forceRefresh>
+                <NavLink to="/editTweets">Admin</NavLink>
+              </Router>
+              <Router forceRefresh>
                 <NavLink to="/" onClick={Logout}>
                   Logout
                 </NavLink>
