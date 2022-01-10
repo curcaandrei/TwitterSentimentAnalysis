@@ -8,6 +8,7 @@ namespace Application.Persistence
 {
     public interface IRequestTweetRepository
     {
+        Task<System.Collections.Generic.List<TweetDto>> ListAllAsync();
         public Task<Tweet> AddAsync(Tweet entity);
         
         public DeleteResult DeleteAsync(string id);
