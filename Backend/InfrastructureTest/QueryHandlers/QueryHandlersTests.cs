@@ -15,6 +15,7 @@ using AutoMapper;
 using Domain.Entities;
 using FakeItEasy;
 using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using Moq;
 using Persistence.MongoDb;
 using Persistence.Repositories;
@@ -136,16 +137,17 @@ namespace InfrastructureTest.QueryHandlers
         public void RequestHandlerTest()
         {
             Tweet tweet = new Tweet();
+            tweet.Id = new ObjectId("61dca0d61911884830b44df1");
             var cmd = new RequestToAddTweetQuery(tweet);
             var handler = new RequestToAddTweetQueryHandler(_requestTweetRepository.Object);
 
             var res = handler.Handle(cmd, default);
 
-            var cmdDelete = new DeleteTweetRequestCommand(tweet.Id.ToString());
-            var cmdHandler = new DeleteTweetRequestCommandHandler(_requestTweetRepository.Object);
-            var resDelete = cmdHandler.Handle(cmdDelete, default);
-            Assert.Equal(1, resDelete.Result.DeletedCount);
+            var cmd2 = new DeleteTweetRequestCommand("61dca0d61911884830b44df1");
+            var handler2 = new DeleteTweetRequestCommandHandler(_requestTweetRepository.Object);
 
+            var res2 = handler2.Handle(cmd2, default);
+            Assert.True(res.IsCompleted);
         }
         
         [Fact]
@@ -163,7 +165,7 @@ namespace InfrastructureTest.QueryHandlers
         [Fact]
         public void DeleteTweetRequestCommandTest()
         {
-            var cmd = new DeleteTweetRequestCommand("61c3817ead0f3ee2a51be90d");
+            var cmd = new DeleteTweetRequestCommand("61dca0d61911884830b44df1");
             var handler = new DeleteTweetRequestCommandHandler(_requestTweetRepository.Object);
 
             var res = handler.Handle(cmd, default);
