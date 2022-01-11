@@ -26,7 +26,6 @@ jobs:
     steps:
       - checkout
       - build-tools/install-ci-tools
-      - sudo apt install git
       - run:
           name: Restore dependencies
           command: dotnet restore
