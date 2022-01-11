@@ -53,7 +53,7 @@ namespace WebApi.Controllers
         }
 
         [Authorize(Roles = "admin")]
-        [HttpPost("accept-request/{id}")]
+        [HttpGet("accept-request/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public void AcceptRequest(string id)
         {

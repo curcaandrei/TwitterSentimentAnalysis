@@ -233,6 +233,9 @@
   font-size: 13px;
 }
 
+.nav-link {
+  color: #ff1010 !important;
+}
 
 .button {
   float: right;
@@ -240,6 +243,48 @@
   padding: 8px 12px;
   border-radius: 10rem;
   color: #fff;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  margin: 1%;
+  text-decoration: none;
+}
+
+.button-green {
+  float: right;
+  display: flex;
+  padding: 8px 12px;
+  border-radius: 10rem;
+  color: rgb(63, 212, 33);
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  margin: 1%;
+  text-decoration: none;
+}
+
+#info {
+  float: left;
+  display: flex;
+  padding: 8px 12px;
+  border-radius: 10rem;
+  color: rgb(0, 0, 0);
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  margin: 1%;
+  text-decoration: none;
+}
+
+.button-red {
+  float: right;
+  display: flex;
+  padding: 8px 12px;
+  border-radius: 10rem;
+  color: rgb(212, 33, 33);
   transition: all 0.3s;
   position: relative;
   overflow: hidden;
