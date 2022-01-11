@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import "../../App.css";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Link } from "react-router-dom";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import jwt_decode from "jwt-decode";
 
 const Logout = () => {
   localStorage.removeItem("jwtToken");
@@ -14,17 +16,39 @@ const Logout = () => {
 const AuthButton = (link) => {
   return class extends React.Component {
     render() {
-      var isLoggedIn = localStorage.getItem("jwtToken") !== null ? true : false;
 
-      switch (isLoggedIn) {
-        case true:
+      var role = localStorage.getItem("jwtToken") !== null ? "logat" : "nelogat";
+      if (role == "logat" && jwt_decode(localStorage.getItem("jwtToken"))["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]== "admin") {
+          role = "admin"
+      }
+
+      switch (role) {
+        case "admin":
           return (
             <>
               <Router forceRefresh>
                 <NavLink to="/usertweets">MyTweets</NavLink>
               </Router>
+              <NavDropdown title="Admin Page" id="nav-dropdown">
+                <NavDropdown.Item href="/ml-requests">
+                  ML Requests
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/manage-tweets">
+                  Manage Tweets
+                </NavDropdown.Item>
+              </NavDropdown>
               <Router forceRefresh>
-                <NavLink to="/editTweets">Admin</NavLink>
+                <NavLink to="/" onClick={Logout}>
+                  Logout
+                </NavLink>
+              </Router>
+            </>
+          );
+          case "logat":
+          return (
+            <>
+              <Router forceRefresh>
+                <NavLink to="/usertweets">MyTweets</NavLink>
               </Router>
               <Router forceRefresh>
                 <NavLink to="/" onClick={Logout}>
@@ -33,7 +57,7 @@ const AuthButton = (link) => {
               </Router>
             </>
           );
-        case false:
+        case "nelogat":
           return (
             <>
               <NavLink to="/mytweets">Sign In</NavLink>
@@ -77,7 +101,7 @@ const Navbar = () => {
 
       <NavMenu>
         <Router forceRefresh>
-          <NavLink to="/about">About</NavLink>
+          
         </Router>
 
         <NewComponent />

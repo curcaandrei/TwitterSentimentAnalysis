@@ -85,10 +85,8 @@ const MyTweets2 = () => {
     text='Signing in...'
   />
   }
-
     history.push("/");
-    
-    history.go(0);
+    window.location.reload(false);
   return (
     <div>
       
