@@ -36,6 +36,7 @@ jobs:
           command: |
             apt update
             apt install sudo -y
+            apt install git
             dotnet build -p:RunAnalyzersDuringBuild=true
   test:
     working_directory: Backend
